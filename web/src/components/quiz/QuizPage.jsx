@@ -7,8 +7,6 @@ import { Progress } from "../ui/progress";
 import { ArrowLeft, ArrowRight, CheckCircle, Clock } from "lucide-react";
 import { motion } from "framer-motion";
 
-const GeminiQuiz = React.lazy(() => import("./GeminiQuiz"));
-
 // Mock quiz questions
 const MOCK_QUESTIONS = [
   { id: "q1", section: "Interests", text: "How much do you enjoy solving logical or scientific problems?", type: "likert" },

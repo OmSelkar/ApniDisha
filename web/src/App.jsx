@@ -9,7 +9,6 @@ import SignupPage from './components/auth/SignupPage'
 // Modern Career & Education Advisor Components
 import ModernLandingPage from './components/ModernLandingPage'
 import QuizPage from './components/quiz/QuizPage'
-import ModernQuizList from './components/quiz/ModernQuizList'
 import QuizResults from './components/quiz/QuizResults'
 import ModernRecommendationsPage from './components/recommendations/ModernRecommendationsPage'
 import ModernCollegeDirectory from './components/colleges/ModernCollegeDirectory'
