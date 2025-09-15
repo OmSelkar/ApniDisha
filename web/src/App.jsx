@@ -7,7 +7,7 @@ import LoginPage from './components/auth/LoginPage'
 import SignupPage from './components/auth/SignupPage'
 
 // Modern Career & Education Advisor Components
-import ModernLandingPage from './components/ModernLandingPage'
+import LandingPage from './components/LandingPage'
 import QuizPage from './components/quiz/QuizPage'
 import QuizResults from './components/quiz/QuizResults'
 import ModernRecommendationsPage from './components/recommendations/ModernRecommendationsPage'
@@ -58,7 +58,7 @@ const appRouter = createBrowserRouter([
   // Core Routes - Career & Education Advisor Platform
   {
     path: '/',
-    element: <ModernLayout><ModernLandingPage /></ModernLayout>
+    element: <ModernLayout><LandingPage /></ModernLayout>
   },
   {
     path: "/profile",

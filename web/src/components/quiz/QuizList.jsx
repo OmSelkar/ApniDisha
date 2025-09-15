@@ -18,7 +18,7 @@ const JOURNEY_STAGES = [
     color: "from-pink-400 to-rose-500",
     xp: 100,
     isUnlocked: true,
-    isCompleted: true,
+    isCompleted: false,
     badge: "Explorer",
   },
   {
