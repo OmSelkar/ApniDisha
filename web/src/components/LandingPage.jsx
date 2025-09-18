@@ -272,7 +272,7 @@ const LandingPage = () => {
                 {heroSlides[currentSlide].subtitle}
               </p>
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                <Link to="/quiz">
+                <Link to="/login">
                   <Button size="lg" className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold px-8 py-4 text-lg rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
                     <Lightbulb className="mr-2 h-5 w-5" />
                     Take the Quiz

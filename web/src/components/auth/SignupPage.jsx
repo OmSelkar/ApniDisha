@@ -3,10 +3,13 @@ import { useState } from "react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
-import { User, Mail, Lock } from "lucide-react";
+import { User, Mail, Lock, Phone } from "lucide-react";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function SignupPage({ onSwitch }) {
-  const [form, setForm] = useState({ name: "", email: "", password: "" });
+  const [form, setForm] = useState({ name: "", email: "", password: "",mobile:"" });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -16,6 +19,7 @@ export default function SignupPage({ onSwitch }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Signup data:", form);
+     navigate("/quiz");
   };
 
   return (
@@ -62,6 +66,27 @@ export default function SignupPage({ onSwitch }) {
             </div>
 
             <div>
+              <label className="block text-sm font-medium text-gray-600">Mobile Number</label>
+              <div className="relative mt-1">
+                <Input
+                  type="tel"
+                  name="mobile"
+                  value={form.mobile}
+                  onChange={(e) => {
+                    const numericValue = e.target.value.replace(/\D/g, "").slice(0, 10);
+                    setForm((prev) => ({ ...prev, mobile: numericValue }));
+                  }}
+                  className="pl-10 rounded-lg"
+                  placeholder="Enter 10-digit mobile number"
+                  pattern="[0-9]{10}"
+                  maxLength={10}
+                  required
+                />
+                <Phone className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-4 w-4" />
+              </div>
+            </div>
+
+            <div>
               <label className="block text-sm font-medium text-gray-600">Password</label>
               <div className="relative mt-1">
                 <Input
@@ -76,6 +101,7 @@ export default function SignupPage({ onSwitch }) {
                 <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 h-4 w-4" />
               </div>
             </div>
+            
 
             <Button
               type="submit"
@@ -86,6 +112,7 @@ export default function SignupPage({ onSwitch }) {
 
             <p className="text-center text-sm text-gray-500">
               Already have an account?{" "}
+              <Link to="/login">
               <button
                 type="button"
                 onClick={onSwitch}
@@ -93,6 +120,7 @@ export default function SignupPage({ onSwitch }) {
               >
                 Login
               </button>
+              </Link>
             </p>
           </form>
         </CardContent>

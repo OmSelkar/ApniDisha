@@ -55,7 +55,7 @@ const Footer = () => {
               </div>
               <div>
                 <h3 className="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                  Career Advisor
+                  ApniDisha
                 </h3>
                 <p className="text-sm text-gray-400">Education Platform</p>
               </div>
@@ -69,7 +69,7 @@ const Footer = () => {
             <div className="space-y-2 text-sm text-gray-400">
               <div className="flex items-center space-x-2">
                 <Mail className="h-4 w-4" />
-                <span>support@careeradvisor.com</span>
+                <span>support@apnidisha.com</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Phone className="h-4 w-4" />
@@ -160,7 +160,7 @@ const Footer = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex items-center space-x-4 text-sm text-gray-400">
-              <span>© {currentYear} Career Advisor. All rights reserved.</span>
+              <span>© {currentYear} ApniDisha. All rights reserved.</span>
               <span className="hidden md:inline">•</span>
               <Link to="/terms" className="hover:text-blue-400 transition-colors">
                 Terms of Service

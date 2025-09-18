@@ -4,9 +4,12 @@ import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { User, Lock } from "lucide-react";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginPage({ onSwitch }) {
   const [form, setForm] = useState({ email: "", password: "" });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -16,6 +19,7 @@ export default function LoginPage({ onSwitch }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Login data:", form);
+    navigate("/quiz");
   };
 
   return (
@@ -70,6 +74,7 @@ export default function LoginPage({ onSwitch }) {
 
             <p className="text-center text-sm text-gray-500">
               Don’t have an account?{" "}
+              <Link to="/signup">
               <button
                 type="button"
                 onClick={onSwitch}
@@ -77,6 +82,7 @@ export default function LoginPage({ onSwitch }) {
               >
                 Sign up
               </button>
+              </Link>
             </p>
           </form>
         </CardContent>

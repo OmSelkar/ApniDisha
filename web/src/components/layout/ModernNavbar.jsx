@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
 import NotificationCenter from '../notifications/NotificationCenter';
+import logo from './image.png';
 import { 
   Menu, 
   X, 
@@ -52,6 +53,7 @@ const ModernNavbar = () => {
     { name: 'Colleges', href: '/colleges', icon: Users },
     { name: 'Timeline', href: '/timeline', icon: Calendar },
     { name: 'Content Hub', href: '/content', icon: FileText },
+    
   ];
 
   const isActive = (path) => location.pathname === path;
@@ -63,9 +65,7 @@ const ModernNavbar = () => {
           {/* Logo */}
           <div className="flex items-center">
             <Link to="/" className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                <GraduationCap className="h-5 w-5 text-white" />
-              </div>
+              <img src={logo} alt="logo" className="h-8 w-auto" />
               <span className="text-xl font-bold text-gray-900">CareerAdvisor</span>
             </Link>
           </div>
@@ -143,10 +143,12 @@ const ModernNavbar = () => {
                     Bookmarks
                   </Link>
                   <hr className="my-1" />
+                  <Link to="/login">
                   <button className="flex items-center w-full px-4 py-2 text-sm text-red-600 hover:bg-red-50">
                     <LogOut className="h-4 w-4 mr-2" />
                     Sign Out
                   </button>
+                  </Link>
                 </div>
               )}
             </div>
