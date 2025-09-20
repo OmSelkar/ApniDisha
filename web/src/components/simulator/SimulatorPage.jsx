@@ -1,3 +1,5 @@
+"use client"
+
 import { useState, useEffect, useRef, useMemo } from "react"
 import { Mic, Volume2, X, Target, Users, GraduationCap } from "lucide-react"
 /* ----------------------
@@ -41,7 +43,6 @@ const i18nStrings = {
     employmentProbability: "Employment probability",
     averageStartingSalary: "Average starting salary",
     typicalTimeToEmployment: "Typical time to employment",
-    roi: "ROI",
     employ: "Employ",
     startingSalary: "Starting Salary",
     timeToJob: "Time to job",
@@ -130,9 +131,261 @@ const i18nStrings = {
     sankeyFlow: "सैंकी / फ्लो",
     visualizeCourse: "कोर्स → नौकरी → वेतन प्रवाह देखें",
     scenario: "परिदृश्य",
-    engineeringGovt: "इंजीनियरिंग — सरकारी",
+    engineeringGovt: "इंजीनियरिंग — सरकार",
     npv: "शुद्ध वर्तमान मूल्य",
     roi: "निवेश पर रिटर्न",
+  },
+  ur: {
+    title: "دشا لیب",
+    subtitle: "منظرنامے بنائیں، نتائج کا موازنہ کریں، اور خاندانوں کو ثبوت دکھائیں۔",
+    stream: "سلسلہ",
+    course: "کورس",
+    collegeType: "کالج کی قسم",
+    college: "کالج",
+    skills: "مہارتیں",
+    upskill: "مہارت بڑھانا",
+    scholarships: "وظائف",
+    suggestForMe: "تجویز کریں",
+    addScenario: "منظرنامہ شامل کریں",
+    compare: "موازنہ",
+    save: "محفوظ کریں",
+    exportPDF: "پی ڈی ایف ایکسپورٹ",
+    share: "شیئر کریں",
+    language: "زبان",
+    consentMic: "وائس اسسٹنٹ استعمال کرنے کے لیے مائیکروفون کی اجازت دیں۔",
+    consentAccept: "اجازت دیں",
+    consentDecline: "انکار",
+    noBadgesYet: "ابھی کوئی بیج نہیں",
+    points: "پوائنٹس",
+    badges: "بیجز",
+    playgroundMode: "خودکار تجربہ",
+    sensitivityLens: "حساسیت",
+    governmentFirst: "حکومت پہلے",
+    clear: "صاف کریں",
+    reset: "دوبارہ سیٹ کریں",
+    totalScenarios: "کل منظرنامے",
+    engagement: "شمولیت",
+    high: "زیادہ",
+    summary: "خلاصہ",
+    netPresentValue: "خالص موجودہ قیمت",
+    returnOnInvestment: "سرمایہ کاری پر واپسی",
+    employmentProbability: "ملازمت کا امکان",
+    averageStartingSalary: "اوسط ابتدائی تنخواہ",
+    typicalTimeToEmployment: "ملازمت کا عام وقت",
+    employ: "ملازمت",
+    startingSalary: "ابتدائی تنخواہ",
+    timeToJob: "نوکری کا وقت",
+    months: "مہینے",
+    includesScholarship: "وظیفہ اور مہارت کی بہتری کی مفروضات شامل",
+    scholarshipOdds: "وظیفہ کے امکانات",
+    explainVoice: "وضاحت (آواز)",
+    export: "ایکسپورٹ",
+    voiceAssistant: "وائس اسسٹنٹ",
+    tryCommands: 'کوشش کریں: "موازنہ" / "آر او آئی کی وضاحت"',
+    close: "بند کریں",
+    listening: "سن رہا ہے",
+    on: "آن",
+    off: "آف",
+    noTranscriptsYet: "ابھی کوئی ٹرانسکرپٹ نہیں",
+    suggestedCommands: "تجویز کردہ کمانڈز",
+    copy: "کاپی کریں",
+    done: "مکمل",
+    interactiveVisualizer: "انٹرایکٹو ویژولائزر • سینکی / ٹائم لائن / نقشہ",
+    sankeyFlow: "سینکی / فلو",
+    visualizeCourse: "کورس → نوکری → تنخواہ کا بہاؤ دیکھیں",
+    scenario: "منظرنامہ",
+    engineeringGovt: "انجینئرنگ — حکومت",
+    npv: "این پی وی",
+    roi: "آر او آئی",
+  },
+  dogri: {
+    title: "दिशा लैब",
+    subtitle: "परिदृश्य बनाओ, नतीजें दी तुलना करो, ते परिवारें गी सबूत दस्सो।",
+    stream: "धारा",
+    course: "कोर्स",
+    collegeType: "कॉलेज दी किस्म",
+    college: "कॉलेज",
+    skills: "हुनर",
+    upskill: "हुनर बधाना",
+    scholarships: "छात्रवृत्ति",
+    suggestForMe: "सुझाओ",
+    addScenario: "परिदृश्य जोड़ो",
+    compare: "तुलना",
+    save: "बचाओ",
+    exportPDF: "पीडीएफ निकालो",
+    share: "साझा करो",
+    language: "भाषा",
+    consentMic: "वॉयस असिस्टेंट इस्तेमाल करने आस्तै माइक्रोफोन दी इजाजत दियो।",
+    consentAccept: "इजाजत दियो",
+    consentDecline: "मना करो",
+    noBadgesYet: "अजे कोई बैज नेईं",
+    points: "अंक",
+    badges: "बैज",
+    playgroundMode: "अपने आप तजुर्बा",
+    sensitivityLens: "संवेदनशीलता",
+    governmentFirst: "सरकार पैह्ले",
+    clear: "साफ करो",
+    reset: "दुबारा सेट करो",
+    totalScenarios: "कुल परिदृश्य",
+    engagement: "भागीदारी",
+    high: "मता",
+    summary: "सारांश",
+    netPresentValue: "शुद्ध वर्तमान मूल्य",
+    returnOnInvestment: "निवेश पर वापसी",
+    employmentProbability: "नौकरी दा मौका",
+    averageStartingSalary: "औसत शुरुआती तनख्वाह",
+    typicalTimeToEmployment: "नौकरी दा आम समय",
+    employ: "नौकरी",
+    startingSalary: "शुरुआती तनख्वाह",
+    timeToJob: "नौकरी दा समय",
+    months: "महीने",
+    includesScholarship: "छात्रवृत्ति ते हुनर बधाने दी मान्यताएं शामिल",
+    scholarshipOdds: "छात्रवृत्ति दे मौके",
+    explainVoice: "समझाओ (आवाज़)",
+    export: "निकालो",
+    voiceAssistant: "वॉयस असिस्टेंट",
+    tryCommands: 'कोशिश करो: "तुलना" / "आरओआई समझाओ"',
+    close: "बंद करो",
+    listening: "सुनदा पिया",
+    on: "चालू",
+    off: "बंद",
+    noTranscriptsYet: "अजे तगर कोई ट्रांसक्रिप्ट नेईं",
+    suggestedCommands: "सुझाए गदे कमांड",
+    copy: "कॉपी करो",
+    done: "पूरा",
+    interactiveVisualizer: "इंटरैक्टिव विज़ुअलाइज़र • सैंकी / टाइमलाइन / नक्शा",
+    sankeyFlow: "सैंकी / फ्लो",
+    visualizeCourse: "कोर्स → नौकरी → तनख्वाह दा बहाव दिक्खो",
+    scenario: "परिदृश्य",
+    engineeringGovt: "इंजीनियरिंग — सरकार",
+    npv: "एनपीवी",
+    roi: "आरओआई",
+  },
+  gojri: {
+    title: "दिशा लैब",
+    subtitle: "हालात बनाओ, नतीजन दा मुकाबला करो, अर खानदानन गी सबूत दखाओ।",
+    stream: "धारा",
+    course: "कोर्स",
+    collegeType: "कॉलेज दी किस्म",
+    college: "कॉलेज",
+    skills: "हुनर",
+    upskill: "हुनर बधाणा",
+    scholarships: "छात्रवृत्ति",
+    suggestForMe: "सलाह दियो",
+    addScenario: "हालात जोड़ो",
+    compare: "मुकाबला",
+    save: "बचाओ",
+    exportPDF: "पीडीएफ निकालो",
+    share: "साझा करो",
+    language: "भाषा",
+    consentMic: "वॉयस असिस्टेंट इस्तेमाल करने खातिर माइक्रोफोन दी इजाजत दियो।",
+    consentAccept: "इजाजत दियो",
+    consentDecline: "ना करो",
+    noBadgesYet: "अजे कोई बैज नेईं",
+    points: "अंक",
+    badges: "बैज",
+    playgroundMode: "अपने आप तजुर्बा",
+    sensitivityLens: "संवेदनशीलता",
+    governmentFirst: "सरकार पैह्ले",
+    clear: "साफ करो",
+    reset: "दुबारा सेट करो",
+    totalScenarios: "कुल हालात",
+    engagement: "भागीदारी",
+    high: "जादा",
+    summary: "सारांश",
+    netPresentValue: "साफ मौजूदा कीमत",
+    returnOnInvestment: "निवेश पर वापसी",
+    employmentProbability: "नौकरी दा मौका",
+    averageStartingSalary: "औसत शुरुआती तनख्वाह",
+    typicalTimeToEmployment: "नौकरी दा आम वक्त",
+    employ: "नौकरी",
+    startingSalary: "शुरुआती तनख्वाह",
+    timeToJob: "नौकरी दा वक्त",
+    months: "महीने",
+    includesScholarship: "छात्रवृत्ति अर हुनर बधाने दी मान्यताएं शामिल",
+    scholarshipOdds: "छात्रवृत्ति दे मौके",
+    explainVoice: "समझाओ (आवाज़)",
+    export: "निकालो",
+    voiceAssistant: "वॉयस असिस्टेंट",
+    tryCommands: 'कोशिश करो: "मुकाबला" / "आरओआई समझाओ"',
+    close: "बंद करो",
+    listening: "सुणदा पिया",
+    on: "चालू",
+    off: "बंद",
+    noTranscriptsYet: "अजे तगर कोई ट्रांसक्रिप्ट नेईं",
+    suggestedCommands: "सलाह दित्ते गदे कमांड",
+    copy: "कॉपी करो",
+    done: "पूरा",
+    interactiveVisualizer: "इंटरैक्टिव विज़ुअलाइज़र • सैंकी / टाइमलाइन / नक्शा",
+    sankeyFlow: "सैंकी / फ्लो",
+    visualizeCourse: "कोर्स → नौकरी → तनख्वाह दा बहाव दिक्खो",
+    scenario: "हालात",
+    engineeringGovt: "इंजीनियरिंग — सरकार",
+    npv: "एनपीवी",
+    roi: "आरओआई",
+  },
+  pahari: {
+    title: "दिशा लैब",
+    subtitle: "दृश्य बनाओ, परिणामन दा तुलना करो, अर परिवारन गी प्रमाण दखाओ।",
+    stream: "धारा",
+    course: "कोर्स",
+    collegeType: "कॉलेज दी प्रकार",
+    college: "कॉलेज",
+    skills: "कौशल",
+    upskill: "कौशल बधाणा",
+    scholarships: "छात्रवृत्ति",
+    suggestForMe: "सुझाव दियो",
+    addScenario: "दृश्य जोड़ो",
+    compare: "तुलना",
+    save: "सहेजो",
+    exportPDF: "पीडीएफ निकालो",
+    share: "साझा करो",
+    language: "भाषा",
+    consentMic: "वॉयस असिस्टेंट इस्तेमाल करने खातिर माइक्रोफोन दी अनुमति दियो।",
+    consentAccept: "अनुमति दियो",
+    consentDecline: "मना करो",
+    noBadgesYet: "अजे कोई बैज नेईं",
+    points: "अंक",
+    badges: "बैज",
+    playgroundMode: "स्वचालित प्रयोग",
+    sensitivityLens: "संवेदनशीलता",
+    governmentFirst: "सरकार पैह्ले",
+    clear: "साफ करो",
+    reset: "रीसेट करो",
+    totalScenarios: "कुल दृश्य",
+    engagement: "सहभागिता",
+    high: "उच्च",
+    summary: "सारांश",
+    netPresentValue: "शुद्ध वर्तमान मूल्य",
+    returnOnInvestment: "निवेश पर रिटर्न",
+    employmentProbability: "रोजगार संभावना",
+    averageStartingSalary: "औसत प्रारंभिक वेतन",
+    typicalTimeToEmployment: "रोजगार दा सामान्य समय",
+    employ: "रोजगार",
+    startingSalary: "प्रारंभिक वेतन",
+    timeToJob: "नौकरी दा समय",
+    months: "महीने",
+    includesScholarship: "छात्रवृत्ति अर कौशल बधाने दी मान्यताएं शामिल",
+    scholarshipOdds: "छात्रवृत्ति संभावनाएं",
+    explainVoice: "समझाओ (आवाज़)",
+    export: "निर्यात",
+    voiceAssistant: "वॉयस असिस्टेंट",
+    tryCommands: 'कोशिश करो: "तुलना" / "आरओआई समझाओ"',
+    close: "बंद करो",
+    listening: "सुणदा पिया",
+    on: "चालू",
+    off: "बंद",
+    noTranscriptsYet: "अजे तगर कोई ट्रांसक्रिप्ट नेईं",
+    suggestedCommands: "सुझाए गदे कमांड",
+    copy: "कॉपी करो",
+    done: "पूरा",
+    interactiveVisualizer: "इंटरैक्टिव विज़ुअलाइज़र • सैंकी / टाइमलाइन / मैप",
+    sankeyFlow: "सैंकी / फ्लो",
+    visualizeCourse: "कोर्स → नौकरी → वेतन प्रवाह दिक्खो",
+    scenario: "दृश्य",
+    engineeringGovt: "इंजीनियरिंग — सरकार",
+    npv: "एनपीवी",
+    roi: "आरओआई",
   },
 }
 
@@ -297,7 +550,7 @@ export default function SimulatorPage() {
           recognitionRef.current.onend = null
           recognitionRef.current.onerror = null
           recognitionRef.current = null
-        } catch {}
+        } catch { }
       }
       return
     }
@@ -336,7 +589,7 @@ export default function SimulatorPage() {
         recognition.onend = null
         recognition.onerror = null
         recognitionRef.current = null
-      } catch {}
+      } catch { }
     }
   }, [voiceConsent, lang])
 
@@ -354,7 +607,7 @@ export default function SimulatorPage() {
     if (listening) {
       try {
         rec.stop()
-      } catch {}
+      } catch { }
       setListening(false)
     } else {
       try {
@@ -397,41 +650,41 @@ export default function SimulatorPage() {
         return `Scenario ${i + 1}:
   Name: ${s.name || `Scenario ${i + 1}`}
   Stream: ${getLabel(
-    STREAMS.find((st) => st.id === s.stream),
-    lang,
-  )}
+          STREAMS.find((st) => st.id === s.stream),
+          lang,
+        )}
   Course: ${getLabel(
-    (COURSES[s.stream] || []).find((c) => c.id === s.course),
-    lang,
-  )}
+          (COURSES[s.stream] || []).find((c) => c.id === s.course),
+          lang,
+        )}
   College Type: ${getLabel(
-    COLLEGE_TYPES.find((ct) => ct.id === s.collegeType),
-    lang,
-  )}
+          COLLEGE_TYPES.find((ct) => ct.id === s.collegeType),
+          lang,
+        )}
   College: ${getLabel(
-    (COLLEGES[s.collegeType] || []).find((cl) => cl.id === s.college),
-    lang,
-  )}
+          (COLLEGES[s.collegeType] || []).find((cl) => cl.id === s.college),
+          lang,
+        )}
   Skills: ${(s.skills || [])
-    .map((sk) =>
-      getLabel(
-        SKILLS.find((skl) => skl.id === sk),
-        lang,
-      ),
-    )
-    .join(", ")}
+            .map((sk) =>
+              getLabel(
+                SKILLS.find((skl) => skl.id === sk),
+                lang,
+              ),
+            )
+            .join(", ")}
   Upskill: ${(s.upskill || [])
-    .map((u) =>
-      getLabel(
-        UPSKILLS.find((up) => up.id === u),
-        lang,
-      ),
-    )
-    .join(", ")}
+            .map((u) =>
+              getLabel(
+                UPSKILLS.find((up) => up.id === u),
+                lang,
+              ),
+            )
+            .join(", ")}
   Scholarship: ${getLabel(
-    SCHOLARSHIPS.find((sch) => sch.id === s.scholarship),
-    lang,
-  )}
+              SCHOLARSHIPS.find((sch) => sch.id === s.scholarship),
+              lang,
+            )}
   NPV: ${s.npv ? currency(s.npv) : "-"}
   ROI: ${s.roi ?? "-"}
   Employment Probability: ${s.employmentProb ? `${(s.employmentProb * 100).toFixed(1)}%` : "-"}
@@ -511,7 +764,20 @@ export default function SimulatorPage() {
   }
 
   // language switch
-  const onSwitchLanguage = () => setLang((prev) => (prev === "en" ? "hi" : "en"))
+  const languages = [
+    { code: "en", name: "English" },
+    { code: "hi", name: "हिंदी" },
+    { code: "ur", name: "اردو" },
+    { code: "dogri", name: "डोगरी" },
+    { code: "gojri", name: "गोजरी" },
+    { code: "pahari", name: "पहाड़ी" },
+  ]
+
+  const onSwitchLanguage = () => {
+    const currentIndex = languages.findIndex((l) => l.code === lang)
+    const nextIndex = (currentIndex + 1) % languages.length
+    setLang(languages[nextIndex].code)
+  }
 
   /* -------------------------
      Layout & Render
@@ -538,13 +804,23 @@ export default function SimulatorPage() {
                 {t.playgroundMode}
               </button> */}
 
-              <button
-                onClick={onSwitchLanguage}
-                className="px-4 py-2 border border-white border-opacity-50 rounded-lg text-sm font-medium hover:bg-white hover:bg-opacity-20 transition focus:outline-none focus:ring-2 focus:ring-white"
-                aria-label={t.language}
+              <select
+                value={lang}
+                onChange={(e) => {
+                  const selectedLang = e.target.value;
+                  setLang(selectedLang);
+                 
+                }}
+                className="px-4 py-2 border border-white border-opacity-50 rounded-lg text-sm font-medium bg-transparent text-white hover:bg-white hover:bg-opacity-20 transition focus:outline-none focus:ring-2 focus:ring-white"
+                aria-label="Select language"
               >
-                {lang === "en" ? "हिंदी" : "EN"}
-              </button>
+                <option value="en" className="text-black">English</option>
+                <option value="hi" className="text-black">हिंदी</option>
+                <option value="ur" className="text-black">Urdu</option>
+                <option value="dogri" className="text-black">Dogri</option>
+                <option value="gojri" className="text-black">Gojri</option>
+                <option value="pahari" className="text-black">Pahari</option>
+              </select>
 
               <label className="inline-flex items-center gap-2 text-sm cursor-pointer select-none">
                 <input
@@ -695,8 +971,10 @@ export default function SimulatorPage() {
             <div className="flex items-start justify-between">
               <div>
                 <h2 className="text-2xl font-extrabold text-indigo-700">
-                  {active?.name || `${t.scenario} ${activeScenarioIndex + 1}`}
+                  {active?.name || `${t.engineeringGovt} ${activeScenarioIndex + 1}`}
                 </h2>
+                {/* <h1>{ `${t.engineeringGovt}`}</h1> */}
+
                 <p className="text-sm text-indigo-400 mt-1 font-medium tracking-wide">{t.interactiveVisualizer}</p>
               </div>
 
