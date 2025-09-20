@@ -29,7 +29,7 @@ import i18nLib from "i18next";
    i18n initialization (in-file)
    --------------------------------- */
 const EN = {
-  scenarioBuilderTitle: "Scenario Builder",
+  scenarioBuilderTitle: "Disha Lab",
   stream: "Stream",
   course: "Course",
   career: "Career",
@@ -41,7 +41,7 @@ const EN = {
   voiceOn: "Stop",
   voiceOff: "Listen",
   totalPoints: "Total Points",
-  scenarioBuilder: "Scenario Builder",
+  scenarioBuilder: "Disha Lab",
   quiz: "Quiz",
   recommendations: "Recommendations",
   colleges: "Colleges",
@@ -53,7 +53,7 @@ const EN = {
 };
 
 const HI = {
-  scenarioBuilderTitle: "परिदृश्य निर्माता",
+  scenarioBuilderTitle: "दिशा लैब",
   stream: "स्ट्रीम",
   course: "कोर्स",
   career: "करियर",
@@ -65,7 +65,7 @@ const HI = {
   voiceOn: "रोकें",
   voiceOff: "सुनें",
   totalPoints: "कुल अंक",
-  scenarioBuilder: "परिदृश्य निर्माता",
+  scenarioBuilder: "दिशा लैब",
   quiz: "क्विज़",
   recommendations: "सिफारिशें",
   colleges: "कॉलेज",
@@ -365,11 +365,11 @@ function CareerScenarioBuilder({ onClose }) {
     <div
       className="p-5 bg-white border rounded-xl shadow-xl max-w-3xl mx-auto my-6"
       role="region"
-      aria-label="Scenario builder"
+      aria-label="Disha Lab"
       onKeyDown={onKeyDown}
     >
       <div className="flex items-start justify-between mb-4">
-        <h2 className="text-lg font-semibold text-gray-900">{t("scenarioBuilderTitle") ?? "Scenario Builder"}</h2>
+        <h2 className="text-lg font-semibold text-gray-900">{t("scenarioBuilderTitle") ?? "Disha Lab"}</h2>
         <div className="flex items-center space-x-2">
           <Button variant="ghost" size="sm" onClick={onClose} aria-label="Close">
             ✕
@@ -601,10 +601,10 @@ const ModernNavbar = () => {
               <Link
                 to="/simulator"
                 className="inline-flex items-center px-3 py-2 rounded-md text-sm font-medium bg-teal-50 hover:bg-teal-100 transition"
-                aria-label={t("scenarioBuilder") ?? "Scenario Builder"}
+                aria-label={t("scenarioBuilder") ?? "Disha Lab"}
               >
                 <Target className="h-4 w-4 mr-2 text-teal-600" />
-                <span>{t("scenarioBuilder") ?? "Scenario Builder"}</span>
+                <span>{t("scenarioBuilder") ?? "Disha Lab"}</span>
               </Link>
             </div>
 
@@ -689,7 +689,7 @@ const ModernNavbar = () => {
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   <Target className="h-5 w-5 mr-3" />
-                  <span>{t("scenarioBuilder") ?? "Scenario Builder"}</span>
+                  <span>{t("scenarioBuilder") ?? "Disha Lab"}</span>
                 </Link>
               </div>
             </div>
@@ -699,7 +699,7 @@ const ModernNavbar = () => {
         <NotificationCenter isOpen={isNotificationOpen} onClose={() => setIsNotificationOpen(false)} />
       </nav>
 
-      {/* scenario builder panel (accessible region) - kept as optional slide-over for quick access */}
+      {/* Disha Lab panel (accessible region) - kept as optional slide-over for quick access */}
       {isScenarioOpen && (
         <div
           id="scenario-builder-panel"
