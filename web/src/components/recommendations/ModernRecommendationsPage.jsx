@@ -1,13 +1,15 @@
-import { useState, useEffect } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
-import { Button } from '../ui/button';
-import { Badge } from '../ui/badge';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
-import { 
-  GraduationCap, 
-  BookOpen, 
-  Building, 
-  Briefcase, 
+"use client"
+import { useState, useEffect } from "react"
+import { useTranslation } from "react-i18next"
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card"
+import { Button } from "../ui/button"
+import { Badge } from "../ui/badge"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs"
+import {
+  GraduationCap,
+  BookOpen,
+  Building,
+  Briefcase,
   Star,
   TrendingUp,
   Users,
@@ -15,423 +17,423 @@ import {
   Clock,
   IndianRupee,
   ExternalLink,
-  Loader2
-} from 'lucide-react';
-import { recommendationsAPI } from '../../services/api';
+  Loader2,
+} from "lucide-react"
+import { recommendationsAPI } from "../../services/api"
 
 const ModernRecommendationsPage = () => {
+  const { t } = useTranslation()
   const [recommendations, setRecommendations] = useState({
     streams: [],
     degrees: [],
     colleges: [],
     careers: [],
-    content: []
-  });
-  const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState('streams');
+    content: [],
+  })
+  const [loading, setLoading] = useState(true)
+  const [activeTab, setActiveTab] = useState("streams")
 
   useEffect(() => {
-    fetchRecommendations();
-  }, []);
+    fetchRecommendations()
+  }, [])
 
   const fetchRecommendations = async () => {
     try {
-      setLoading(true);
-      
+      setLoading(true)
+
       try {
         // Try to get personalized recommendations (requires auth)
-        const response = await recommendationsAPI.getPersonalized();
-        const recoData = response.data.data || response.data.recommendations || {};
-        
+        const response = await recommendationsAPI.getPersonalized()
+        const recoData = response.data.data || response.data.recommendations || {}
+
         setRecommendations({
           streams: recoData.streams || [],
           degrees: recoData.degrees || [],
           colleges: recoData.colleges || [],
           careers: recoData.careers || [],
-          content: recoData.content || []
-        });
+          content: recoData.content || [],
+        })
       } catch {
         // User not authenticated - show sample recommendations
-        console.log('User not authenticated - showing sample recommendations');
+        console.log("User not authenticated - showing sample recommendations")
         setRecommendations({
-            streams: [
-              {
-                _id: '1',
-                name: 'Science',
-                description: 'Mathematics, Physics, Chemistry, Biology and related fields',
-                matchScore: 85,
-                category: 'STEM'
-              },
-              {
-                _id: '2',
-                name: 'Commerce',
-                description: 'Business, Economics, Accounting, Finance and related fields',
-                matchScore: 75,
-                category: 'Business'
-              },
-              {
-                _id: '3',
-                name: 'Arts & Humanities',
-                description: 'History, Sociology, Political Science, Literature and related fields',
-                matchScore: 70,
-                category: 'Humanities'
-              },
-              {
-                _id: '4',
-                name: 'Vocational Studies',
-                description: 'Practical skills in fields like IT, Tourism, Hospitality, and Design',
-                matchScore: 65,
-                category: 'Applied'
-              },
-              {
-                _id: '5',
-                name: 'Law',
-                description: 'Study of legal systems, rights, and justice',
-                matchScore: 72,
-                category: 'Legal'
-              },
-              {
-                _id: '6',
-                name: 'Medical',
-                description: 'MBBS, Nursing, Pharmacy, and related healthcare fields',
-                matchScore: 88,
-                category: 'Healthcare'
-              },
-              {
-                _id: '7',
-                name: 'Fine Arts',
-                description: 'Painting, Music, Dance, Theatre and other creative arts',
-                matchScore: 60,
-                category: 'Creative'
-              },
-              {
-                _id: '8',
-                name: 'Agriculture',
-                description: 'Farming, Soil Science, Horticulture, and Food Technology',
-                matchScore: 68,
-                category: 'Agriculture'
-              }
-            ],
+          streams: [
+            {
+              _id: "1",
+              name: t("recommendations_1.sampleData.streams.science.name"),
+              description: t("recommendations_1.sampleData.streams.science.description"),
+              matchScore: 85,
+              category: t("recommendations_1.sampleData.streams.science.category"),
+            },
+            {
+              _id: "2",
+              name: t("recommendations_1.sampleData.streams.commerce.name"),
+              description: t("recommendations_1.sampleData.streams.commerce.description"),
+              matchScore: 75,
+              category: t("recommendations_1.sampleData.streams.commerce.category"),
+            },
+            {
+              _id: "3",
+              name: t("recommendations_1.sampleData.streams.arts.name"),
+              description: t("recommendations_1.sampleData.streams.arts.description"),
+              matchScore: 70,
+              category: t("recommendations_1.sampleData.streams.arts.category"),
+            },
+            {
+              _id: "4",
+              name: t("recommendations_1.sampleData.streams.vocational.name"),
+              description: t("recommendations_1.sampleData.streams.vocational.description"),
+              matchScore: 65,
+              category: t("recommendations_1.sampleData.streams.vocational.category"),
+            },
+            {
+              _id: "5",
+              name: t("recommendations_1.sampleData.streams.law.name"),
+              description: t("recommendations_1.sampleData.streams.law.description"),
+              matchScore: 72,
+              category: t("recommendations_1.sampleData.streams.law.category"),
+            },
+            {
+              _id: "6",
+              name: t("recommendations_1.sampleData.streams.medical.name"),
+              description: t("recommendations_1.sampleData.streams.medical.description"),
+              matchScore: 88,
+              category: t("recommendations_1.sampleData.streams.medical.category"),
+            },
+            {
+              _id: "7",
+              name: t("recommendations_1.sampleData.streams.fineArts.name"),
+              description: t("recommendations_1.sampleData.streams.fineArts.description"),
+              matchScore: 60,
+              category: t("recommendations_1.sampleData.streams.fineArts.category"),
+            },
+            {
+              _id: "8",
+              name: t("recommendations_1.sampleData.streams.agriculture.name"),
+              description: t("recommendations_1.sampleData.streams.agriculture.description"),
+              matchScore: 68,
+              category: t("recommendations_1.sampleData.streams.agriculture.category"),
+            },
+          ],
 
-            degrees: [
-              {
-                _id: '1',
-                name: 'Bachelor of Technology',
-                description: 'Engineering degree with specialization in various technical fields',
-                level: 'Undergraduate',
-                matchScore: 90,
-                duration: '4 years',
-                averageFee: 200000
-              },
-              {
-                _id: '2',
-                name: 'Bachelor of Commerce',
-                description: 'Commerce degree covering business, finance, and accounting',
-                level: 'Undergraduate',
-                matchScore: 80,
-                duration: '3 years',
-                averageFee: 120000
-              },
-              {
-                _id: '3',
-                name: 'Bachelor of Arts',
-                description: 'Focus on humanities and social sciences',
-                level: 'Undergraduate',
-                matchScore: 75,
-                duration: '3 years',
-                averageFee: 100000
-              },
-              {
-                _id: '4',
-                name: 'Bachelor of Science',
-                description: 'Core science subjects like Physics, Chemistry, and Biology',
-                level: 'Undergraduate',
-                matchScore: 78,
-                duration: '3 years',
-                averageFee: 150000
-              },
-              {
-                _id: '5',
-                name: 'Bachelor of Medicine and Surgery (MBBS)',
-                description: 'Professional degree in medicine and surgery',
-                level: 'Undergraduate',
-                matchScore: 92,
-                duration: '5.5 years',
-                averageFee: 600000
-              },
-              {
-                _id: '6',
-                name: 'Bachelor of Fine Arts',
-                description: 'Degree focusing on visual and performing arts',
-                level: 'Undergraduate',
-                matchScore: 70,
-                duration: '4 years',
-                averageFee: 180000
-              },
-              {
-                _id: '7',
-                name: 'Bachelor of Law (LLB)',
-                description: 'Degree in legal studies and law practice',
-                level: 'Undergraduate',
-                matchScore: 82,
-                duration: '3 years',
-                averageFee: 220000
-              },
-              {
-                _id: '8',
-                name: 'Bachelor of Business Administration',
-                description: 'Focus on management, marketing, and entrepreneurship',
-                level: 'Undergraduate',
-                matchScore: 85,
-                duration: '3 years',
-                averageFee: 250000
-              }
-            ],
+          degrees: [
+            {
+              _id: "1",
+              name: t("recommendations_1.sampleData.degrees.btech.name"),
+              description: t("recommendations_1.sampleData.degrees.btech.description"),
+              level: t("recommendations_1.sampleData.degrees.btech.level"),
+              matchScore: 90,
+              duration: "4 years",
+              averageFee: 200000,
+            },
+            {
+              _id: "2",
+              name: t("recommendations_1.sampleData.degrees.bcom.name"),
+              description: t("recommendations_1.sampleData.degrees.bcom.description"),
+              level: t("recommendations_1.sampleData.degrees.bcom.level"),
+              matchScore: 80,
+              duration: "3 years",
+              averageFee: 120000,
+            },
+            {
+              _id: "3",
+              name: t("recommendations_1.sampleData.degrees.ba.name"),
+              description: t("recommendations_1.sampleData.degrees.ba.description"),
+              level: t("recommendations_1.sampleData.degrees.ba.level"),
+              matchScore: 75,
+              duration: "3 years",
+              averageFee: 100000,
+            },
+            {
+              _id: "4",
+              name: t("recommendations_1.sampleData.degrees.bsc.name"),
+              description: t("recommendations_1.sampleData.degrees.bsc.description"),
+              level: t("recommendations_1.sampleData.degrees.bsc.level"),
+              matchScore: 78,
+              duration: "3 years",
+              averageFee: 150000,
+            },
+            {
+              _id: "5",
+              name: t("recommendations_1.sampleData.degrees.mbbs.name"),
+              description: t("recommendations_1.sampleData.degrees.mbbs.description"),
+              level: t("recommendations_1.sampleData.degrees.mbbs.level"),
+              matchScore: 92,
+              duration: "5.5 years",
+              averageFee: 600000,
+            },
+            {
+              _id: "6",
+              name: t("recommendations_1.sampleData.degrees.bfa.name"),
+              description: t("recommendations_1.sampleData.degrees.bfa.description"),
+              level: t("recommendations_1.sampleData.degrees.bfa.level"),
+              matchScore: 70,
+              duration: "4 years",
+              averageFee: 180000,
+            },
+            {
+              _id: "7",
+              name: t("recommendations_1.sampleData.degrees.llb.name"),
+              description: t("recommendations_1.sampleData.degrees.llb.description"),
+              level: t("recommendations_1.sampleData.degrees.llb.level"),
+              matchScore: 82,
+              duration: "3 years",
+              averageFee: 220000,
+            },
+            {
+              _id: "8",
+              name: t("recommendations_1.sampleData.degrees.bba.name"),
+              description: t("recommendations_1.sampleData.degrees.bba.description"),
+              level: t("recommendations_1.sampleData.degrees.bba.level"),
+              matchScore: 85,
+              duration: "3 years",
+              averageFee: 250000,
+            },
+          ],
 
-            colleges: [
-              {
-                _id: '1',
-                name: 'Indian Institute of Technology Delhi',
-                type: 'Government',
-                rating: 4.8,
-                location: 'New Delhi, Delhi',
-                studentsCount: 8000,
-                averageFee: 200000
-              },
-              {
-                _id: '2',
-                name: 'Delhi University',
-                type: 'Government',
-                rating: 4.6,
-                location: 'New Delhi, Delhi',
-                studentsCount: 200000,
-                averageFee: 60000
-              },
-              {
-                _id: '3',
-                name: 'Christ University',
-                type: 'Private',
-                rating: 4.4,
-                location: 'Bengaluru, Karnataka',
-                studentsCount: 25000,
-                averageFee: 180000
-              },
-              {
-                _id: '4',
-                name: 'St. Xavier’s College',
-                type: 'Private',
-                rating: 4.5,
-                location: 'Mumbai, Maharashtra',
-                studentsCount: 5000,
-                averageFee: 120000
-              },
-              {
-                _id: '5',
-                name: 'All India Institute of Medical Sciences',
-                type: 'Government',
-                rating: 4.9,
-                location: 'New Delhi, Delhi',
-                studentsCount: 15000,
-                averageFee: 300000
-              },
-              {
-                _id: '6',
-                name: 'National Law School of India University',
-                type: 'Government',
-                rating: 4.7,
-                location: 'Bengaluru, Karnataka',
-                studentsCount: 2000,
-                averageFee: 250000
-              },
-              {
-                _id: '7',
-                name: 'Banaras Hindu University',
-                type: 'Government',
-                rating: 4.6,
-                location: 'Varanasi, Uttar Pradesh',
-                studentsCount: 30000,
-                averageFee: 100000
-              },
-              {
-                _id: '8',
-                name: 'Symbiosis International University',
-                type: 'Private',
-                rating: 4.3,
-                location: 'Pune, Maharashtra',
-                studentsCount: 18000,
-                averageFee: 200000
-              }
-            ],
+          colleges: [
+            {
+              _id: "1",
+              name: "Indian Institute of Technology Delhi",
+              type: "Government",
+              rating: 4.8,
+              location: "New Delhi, Delhi",
+              studentsCount: 8000,
+              averageFee: 200000,
+            },
+            {
+              _id: "2",
+              name: "Delhi University",
+              type: "Government",
+              rating: 4.6,
+              location: "New Delhi, Delhi",
+              studentsCount: 200000,
+              averageFee: 60000,
+            },
+            {
+              _id: "3",
+              name: "Christ University",
+              type: "Private",
+              rating: 4.4,
+              location: "Bengaluru, Karnataka",
+              studentsCount: 25000,
+              averageFee: 180000,
+            },
+            {
+              _id: "4",
+              name: "St. Xavier's College",
+              type: "Private",
+              rating: 4.5,
+              location: "Mumbai, Maharashtra",
+              studentsCount: 5000,
+              averageFee: 120000,
+            },
+            {
+              _id: "5",
+              name: "All India Institute of Medical Sciences",
+              type: "Government",
+              rating: 4.9,
+              location: "New Delhi, Delhi",
+              studentsCount: 15000,
+              averageFee: 300000,
+            },
+            {
+              _id: "6",
+              name: "National Law School of India University",
+              type: "Government",
+              rating: 4.7,
+              location: "Bengaluru, Karnataka",
+              studentsCount: 2000,
+              averageFee: 250000,
+            },
+            {
+              _id: "7",
+              name: "Banaras Hindu University",
+              type: "Government",
+              rating: 4.6,
+              location: "Varanasi, Uttar Pradesh",
+              studentsCount: 30000,
+              averageFee: 100000,
+            },
+            {
+              _id: "8",
+              name: "Symbiosis International University",
+              type: "Private",
+              rating: 4.3,
+              location: "Pune, Maharashtra",
+              studentsCount: 18000,
+              averageFee: 200000,
+            },
+          ],
 
-            careers: [
-              {
-                _id: '1',
-                title: 'Software Engineer',
-                description: 'Design, develop, and maintain software applications',
-                industry: 'Technology',
-                matchScore: 88,
-                averageSalary: 800000,
-                growthRate: 'High'
-              },
-              {
-                _id: '2',
-                title: 'Chartered Accountant',
-                description: 'Manage financial accounts, audits, and business taxation',
-                industry: 'Finance',
-                matchScore: 82,
-                averageSalary: 900000,
-                growthRate: 'High'
-              },
-              {
-                _id: '3',
-                title: 'Civil Services Officer',
-                description: 'Serve the nation in administrative roles',
-                industry: 'Government',
-                matchScore: 78,
-                averageSalary: 700000,
-                growthRate: 'Moderate'
-              },
-              {
-                _id: '4',
-                title: 'Graphic Designer',
-                description: 'Create visual content for digital and print media',
-                industry: 'Design',
-                matchScore: 72,
-                averageSalary: 400000,
-                growthRate: 'High'
-              },
-              {
-                _id: '5',
-                title: 'Doctor',
-                description: 'Diagnose and treat patients across various specializations',
-                industry: 'Healthcare',
-                matchScore: 92,
-                averageSalary: 1200000,
-                growthRate: 'High'
-              },
-              {
-                _id: '6',
-                title: 'Lawyer',
-                description: 'Advocate for clients in courts and provide legal advice',
-                industry: 'Legal',
-                matchScore: 80,
-                averageSalary: 1000000,
-                growthRate: 'High'
-              },
-              {
-                _id: '7',
-                title: 'Entrepreneur',
-                description: 'Start and manage your own business venture',
-                industry: 'Business',
-                matchScore: 76,
-                averageSalary: 1500000,
-                growthRate: 'Very High'
-              },
-              {
-                _id: '8',
-                title: 'Data Scientist',
-                description: 'Analyze data to extract insights and build predictive models',
-                industry: 'Technology',
-                matchScore: 89,
-                averageSalary: 1400000,
-                growthRate: 'Very High'
-              }
-            ],
+          careers: [
+            {
+              _id: "1",
+              title: t("recommendations_1.sampleData.careers.softwareEngineer.title"),
+              description: t("recommendations_1.sampleData.careers.softwareEngineer.description"),
+              industry: t("recommendations_1.sampleData.careers.softwareEngineer.industry"),
+              matchScore: 88,
+              averageSalary: 800000,
+              growthRate: t("recommendations_1.sampleData.careers.softwareEngineer.growthRate"),
+            },
+            {
+              _id: "2",
+              title: t("recommendations_1.sampleData.careers.charteredAccountant.title"),
+              description: t("recommendations_1.sampleData.careers.charteredAccountant.description"),
+              industry: t("recommendations_1.sampleData.careers.charteredAccountant.industry"),
+              matchScore: 82,
+              averageSalary: 900000,
+              growthRate: t("recommendations_1.sampleData.careers.charteredAccountant.growthRate"),
+            },
+            {
+              _id: "3",
+              title: t("recommendations_1.sampleData.careers.civilServicesOfficer.title"),
+              description: t("recommendations_1.sampleData.careers.civilServicesOfficer.description"),
+              industry: t("recommendations_1.sampleData.careers.civilServicesOfficer.industry"),
+              matchScore: 78,
+              averageSalary: 700000,
+              growthRate: t("recommendations_1.sampleData.careers.civilServicesOfficer.growthRate"),
+            },
+            {
+              _id: "4",
+              title: t("recommendations_1.sampleData.careers.graphicDesigner.title"),
+              description: t("recommendations_1.sampleData.careers.graphicDesigner.description"),
+              industry: t("recommendations_1.sampleData.careers.graphicDesigner.industry"),
+              matchScore: 72,
+              averageSalary: 400000,
+              growthRate: t("recommendations_1.sampleData.careers.graphicDesigner.growthRate"),
+            },
+            {
+              _id: "5",
+              title: t("recommendations_1.sampleData.careers.doctor.title"),
+              description: t("recommendations_1.sampleData.careers.doctor.description"),
+              industry: t("recommendations_1.sampleData.careers.doctor.industry"),
+              matchScore: 92,
+              averageSalary: 1200000,
+              growthRate: t("recommendations_1.sampleData.careers.doctor.growthRate"),
+            },
+            {
+              _id: "6",
+              title: t("recommendations_1.sampleData.careers.lawyer.title"),
+              description: t("recommendations_1.sampleData.careers.lawyer.description"),
+              industry: t("recommendations_1.sampleData.careers.lawyer.industry"),
+              matchScore: 80,
+              averageSalary: 1000000,
+              growthRate: t("recommendations_1.sampleData.careers.lawyer.growthRate"),
+            },
+            {
+              _id: "7",
+              title: t("recommendations_1.sampleData.careers.entrepreneur.title"),
+              description: t("recommendations_1.sampleData.careers.entrepreneur.description"),
+              industry: t("recommendations_1.sampleData.careers.entrepreneur.industry"),
+              matchScore: 76,
+              averageSalary: 1500000,
+              growthRate: t("recommendations_1.sampleData.careers.entrepreneur.growthRate"),
+            },
+            {
+              _id: "8",
+              title: t("recommendations_1.sampleData.careers.dataScientist.title"),
+              description: t("recommendations_1.sampleData.careers.dataScientist.description"),
+              industry: t("recommendations_1.sampleData.careers.dataScientist.industry"),
+              matchScore: 89,
+              averageSalary: 1400000,
+              growthRate: t("recommendations_1.sampleData.careers.dataScientist.growthRate"),
+            },
+          ],
 
-            content: [
-              {
-                _id: '1',
-                title: 'Complete Guide to JEE Preparation',
-                description: 'Comprehensive study material for JEE Main and Advanced',
-                type: 'Study Material',
-                rating: 4.5,
-                duration: '2 hours',
-                enrollments: 1500
-              },
-              {
-                _id: '2',
-                title: 'Commerce Starter Pack',
-                description: 'Covers basics of accounting, economics, and business studies',
-                type: 'E-Book',
-                rating: 4.2,
-                duration: '3 hours',
-                enrollments: 1200
-              },
-              {
-                _id: '3',
-                title: 'UPSC Preparation Guide',
-                description: 'Key strategies, notes, and mock tests for UPSC aspirants',
-                type: 'Course',
-                rating: 4.6,
-                duration: '5 hours',
-                enrollments: 2500
-              },
-              {
-                _id: '4',
-                title: 'Graphic Design for Beginners',
-                description: 'Learn Photoshop, Illustrator, and Figma basics',
-                type: 'Video Course',
-                rating: 4.3,
-                duration: '6 hours',
-                enrollments: 3000
-              },
-              {
-                _id: '5',
-                title: 'NEET Crash Course',
-                description: 'Quick revision for NEET aspirants with mock tests',
-                type: 'Course',
-                rating: 4.7,
-                duration: '10 hours',
-                enrollments: 3500
-              },
-              {
-                _id: '6',
-                title: 'Corporate Law Basics',
-                description: 'Introduction to business and corporate law',
-                type: 'E-Book',
-                rating: 4.1,
-                duration: '4 hours',
-                enrollments: 1000
-              },
-              {
-                _id: '7',
-                title: 'Entrepreneurship Masterclass',
-                description: 'Step-by-step guide to launching and scaling startups',
-                type: 'Webinar',
-                rating: 4.8,
-                duration: '3 hours',
-                enrollments: 4000
-              },
-              {
-                _id: '8',
-                title: 'Data Science Bootcamp',
-                description: 'Hands-on projects in Python, ML, and AI',
-                type: 'Course',
-                rating: 4.9,
-                duration: '15 hours',
-                enrollments: 5000
-              }
-            ]
-          }
-        );
+          content: [
+            {
+              _id: "1",
+              title: t("recommendations_1.sampleData.content.jeeGuide.title"),
+              description: t("recommendations_1.sampleData.content.jeeGuide.description"),
+              type: t("recommendations_1.sampleData.content.jeeGuide.type"),
+              rating: 4.5,
+              duration: "2 hours",
+              enrollments: 1500,
+            },
+            {
+              _id: "2",
+              title: t("recommendations_1.sampleData.content.commercePack.title"),
+              description: t("recommendations_1.sampleData.content.commercePack.description"),
+              type: t("recommendations_1.sampleData.content.commercePack.type"),
+              rating: 4.2,
+              duration: "3 hours",
+              enrollments: 1200,
+            },
+            {
+              _id: "3",
+              title: t("recommendations_1.sampleData.content.upscGuide.title"),
+              description: t("recommendations_1.sampleData.content.upscGuide.description"),
+              type: t("recommendations_1.sampleData.content.upscGuide.type"),
+              rating: 4.6,
+              duration: "5 hours",
+              enrollments: 2500,
+            },
+            {
+              _id: "4",
+              title: t("recommendations_1.sampleData.content.graphicDesignCourse.title"),
+              description: t("recommendations_1.sampleData.content.graphicDesignCourse.description"),
+              type: t("recommendations_1.sampleData.content.graphicDesignCourse.type"),
+              rating: 4.3,
+              duration: "6 hours",
+              enrollments: 3000,
+            },
+            {
+              _id: "5",
+              title: t("recommendations_1.sampleData.content.neetCourse.title"),
+              description: t("recommendations_1.sampleData.content.neetCourse.description"),
+              type: t("recommendations_1.sampleData.content.neetCourse.type"),
+              rating: 4.7,
+              duration: "10 hours",
+              enrollments: 3500,
+            },
+            {
+              _id: "6",
+              title: t("recommendations_1.sampleData.content.corporateLaw.title"),
+              description: t("recommendations_1.sampleData.content.corporateLaw.description"),
+              type: t("recommendations_1.sampleData.content.corporateLaw.type"),
+              rating: 4.1,
+              duration: "4 hours",
+              enrollments: 1000,
+            },
+            {
+              _id: "7",
+              title: t("recommendations_1.sampleData.content.entrepreneurshipMaster.title"),
+              description: t("recommendations_1.sampleData.content.entrepreneurshipMaster.description"),
+              type: t("recommendations_1.sampleData.content.entrepreneurshipMaster.type"),
+              rating: 4.8,
+              duration: "3 hours",
+              enrollments: 4000,
+            },
+            {
+              _id: "8",
+              title: t("recommendations_1.sampleData.content.dataScienceBootcamp.title"),
+              description: t("recommendations_1.sampleData.content.dataScienceBootcamp.description"),
+              type: t("recommendations_1.sampleData.content.dataScienceBootcamp.type"),
+              rating: 4.9,
+              duration: "15 hours",
+              enrollments: 5000,
+            },
+          ],
+        })
       }
     } catch (error) {
-      console.error('Error fetching recommendations:', error);
-      console.warn('Failed to load recommendations');
+      console.error("Error fetching recommendations:", error)
+      console.warn("Failed to load recommendations")
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4 text-blue-600" />
-          <p className="text-gray-600">Loading recommendations...</p>
+          <p className="text-gray-600">{t("recommendations_1.loading")}</p>
         </div>
       </div>
-    );
+    )
   }
 
   return (
@@ -439,10 +441,8 @@ const ModernRecommendationsPage = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Personalized Recommendations</h1>
-          <p className="text-lg text-gray-600">
-            Discover career paths, colleges, and resources tailored to your profile and interests
-          </p>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">{t("recommendations_1.title")}</h1>
+          <p className="text-lg text-gray-600">{t("recommendations_1.subtitle")}</p>
         </div>
 
         {/* Tabs */}
@@ -450,23 +450,23 @@ const ModernRecommendationsPage = () => {
           <TabsList className="grid w-full grid-cols-5 mb-8">
             <TabsTrigger value="streams" className="flex items-center gap-2">
               <GraduationCap className="h-4 w-4" />
-              Streams
+              {t("recommendations_1.tabs.streams")}
             </TabsTrigger>
             <TabsTrigger value="degrees" className="flex items-center gap-2">
               <BookOpen className="h-4 w-4" />
-              Degrees
+              {t("recommendations_1.tabs.degrees")}
             </TabsTrigger>
             <TabsTrigger value="colleges" className="flex items-center gap-2">
               <Building className="h-4 w-4" />
-              Colleges
+              {t("recommendations_1.tabs.colleges")}
             </TabsTrigger>
             <TabsTrigger value="careers" className="flex items-center gap-2">
               <Briefcase className="h-4 w-4" />
-              Careers
+              {t("recommendations_1.tabs.careers")}
             </TabsTrigger>
             <TabsTrigger value="content" className="flex items-center gap-2">
               <BookOpen className="h-4 w-4" />
-              Content
+              {t("recommendations_1.tabs.content")}
             </TabsTrigger>
           </TabsList>
 
@@ -478,8 +478,10 @@ const ModernRecommendationsPage = () => {
                   <Card className="border-0 shadow-lg">
                     <CardContent className="p-12 text-center">
                       <GraduationCap className="h-16 w-16 text-gray-400 mx-auto mb-4" />
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">No stream recommendations</h3>
-                      <p className="text-gray-600">Complete a career quiz to get personalized stream recommendations.</p>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                        {t("recommendations_1.streams.noRecommendations")}
+                      </h3>
+                      <p className="text-gray-600">{t("recommendations_1.streams.noRecommendationsDesc")}</p>
                     </CardContent>
                   </Card>
                 </div>
@@ -491,7 +493,9 @@ const ModernRecommendationsPage = () => {
                         <Badge className="bg-blue-100 text-blue-800 hover:bg-blue-100">{stream.category}</Badge>
                         <div className="flex items-center">
                           <Star className="h-4 w-4 text-yellow-500 mr-1" />
-                          <span className="text-sm text-gray-600">{stream.matchScore}% match</span>
+                          <span className="text-sm text-gray-600">
+                            {stream.matchScore}% {t("recommendations_1.streams.match")}
+                          </span>
                         </div>
                       </div>
                       <CardTitle className="text-lg">{stream.name}</CardTitle>
@@ -501,15 +505,19 @@ const ModernRecommendationsPage = () => {
                       <div className="space-y-2 mb-4">
                         <div className="flex items-center text-sm text-gray-500">
                           <Users className="h-4 w-4 mr-2" />
-                          <span>{stream.popularity} students enrolled</span>
+                          <span>
+                            {stream.popularity} {t("recommendations_1.streams.studentsEnrolled")}
+                          </span>
                         </div>
                         <div className="flex items-center text-sm text-gray-500">
                           <TrendingUp className="h-4 w-4 mr-2" />
-                          <span>{stream.growthRate}% job growth</span>
+                          <span>
+                            {stream.growthRate}% {t("recommendations_1.streams.jobGrowth")}
+                          </span>
                         </div>
                       </div>
-                      <Button className="w-full" variant="outline">
-                        Learn More
+                      <Button className="w-full bg-transparent" variant="outline">
+                        {t("recommendations_1.streams.learnMore")}
                         <ExternalLink className="h-4 w-4 ml-2" />
                       </Button>
                     </CardContent>
@@ -527,8 +535,10 @@ const ModernRecommendationsPage = () => {
                   <Card className="border-0 shadow-lg">
                     <CardContent className="p-12 text-center">
                       <BookOpen className="h-16 w-16 text-gray-400 mx-auto mb-4" />
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">No degree recommendations</h3>
-                      <p className="text-gray-600">Complete a career quiz to get personalized degree recommendations.</p>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                        {t("recommendations_1.degrees.noRecommendations")}
+                      </h3>
+                      <p className="text-gray-600">{t("recommendations_1.degrees.noRecommendationsDesc")}</p>
                     </CardContent>
                   </Card>
                 </div>
@@ -540,7 +550,9 @@ const ModernRecommendationsPage = () => {
                         <Badge className="bg-green-100 text-green-800 hover:bg-green-100">{degree.level}</Badge>
                         <div className="flex items-center">
                           <Star className="h-4 w-4 text-yellow-500 mr-1" />
-                          <span className="text-sm text-gray-600">{degree.matchScore}% match</span>
+                          <span className="text-sm text-gray-600">
+                            {degree.matchScore}% {t("recommendations_1.degrees.match")}
+                          </span>
                         </div>
                       </div>
                       <CardTitle className="text-lg">{degree.name}</CardTitle>
@@ -550,15 +562,19 @@ const ModernRecommendationsPage = () => {
                       <div className="space-y-2 mb-4">
                         <div className="flex items-center text-sm text-gray-500">
                           <Clock className="h-4 w-4 mr-2" />
-                          <span>{degree.duration} years</span>
+                          <span>
+                            {degree.duration} {t("recommendations_1.degrees.years")}
+                          </span>
                         </div>
                         <div className="flex items-center text-sm text-gray-500">
                           <IndianRupee className="h-4 w-4 mr-2" />
-                          <span>₹{degree.averageFee?.toLocaleString()} avg fee</span>
+                          <span>
+                            ₹{degree.averageFee?.toLocaleString()} {t("recommendations_1.degrees.avgFee")}
+                          </span>
                         </div>
                       </div>
-                      <Button className="w-full" variant="outline">
-                        View Colleges
+                      <Button className="w-full bg-transparent" variant="outline">
+                        {t("recommendations_1.degrees.viewColleges")}
                         <ExternalLink className="h-4 w-4 ml-2" />
                       </Button>
                     </CardContent>
@@ -576,8 +592,10 @@ const ModernRecommendationsPage = () => {
                   <Card className="border-0 shadow-lg">
                     <CardContent className="p-12 text-center">
                       <Building className="h-16 w-16 text-gray-400 mx-auto mb-4" />
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">No college recommendations</h3>
-                      <p className="text-gray-600">Complete a career quiz to get personalized college recommendations.</p>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                        {t("recommendations_1.colleges.noRecommendations")}
+                      </h3>
+                      <p className="text-gray-600">{t("recommendations_1.colleges.noRecommendationsDesc")}</p>
                     </CardContent>
                   </Card>
                 </div>
@@ -602,15 +620,19 @@ const ModernRecommendationsPage = () => {
                         </div>
                         <div className="flex items-center text-sm text-gray-500">
                           <Users className="h-4 w-4 mr-2" />
-                          <span>{college.studentsCount} students</span>
+                          <span>
+                            {college.studentsCount} {t("recommendations_1.colleges.students")}
+                          </span>
                         </div>
                         <div className="flex items-center text-sm text-gray-500">
                           <IndianRupee className="h-4 w-4 mr-2" />
-                          <span>₹{college.averageFee?.toLocaleString()} per year</span>
+                          <span>
+                            ₹{college.averageFee?.toLocaleString()} {t("recommendations_1.colleges.perYear")}
+                          </span>
                         </div>
                       </div>
-                      <Button className="w-full" variant="outline">
-                        View Details
+                      <Button className="w-full bg-transparent" variant="outline">
+                        {t("recommendations_1.colleges.viewDetails")}
                         <ExternalLink className="h-4 w-4 ml-2" />
                       </Button>
                     </CardContent>
@@ -628,8 +650,10 @@ const ModernRecommendationsPage = () => {
                   <Card className="border-0 shadow-lg">
                     <CardContent className="p-12 text-center">
                       <Briefcase className="h-16 w-16 text-gray-400 mx-auto mb-4" />
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">No career recommendations</h3>
-                      <p className="text-gray-600">Complete a career quiz to get personalized career recommendations.</p>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                        {t("recommendations_1.careers.noRecommendations")}
+                      </h3>
+                      <p className="text-gray-600">{t("recommendations_1.careers.noRecommendationsDesc")}</p>
                     </CardContent>
                   </Card>
                 </div>
@@ -641,7 +665,9 @@ const ModernRecommendationsPage = () => {
                         <Badge className="bg-orange-100 text-orange-800 hover:bg-orange-100">{career.industry}</Badge>
                         <div className="flex items-center">
                           <Star className="h-4 w-4 text-yellow-500 mr-1" />
-                          <span className="text-sm text-gray-600">{career.matchScore}% match</span>
+                          <span className="text-sm text-gray-600">
+                            {career.matchScore}% {t("recommendations_1.careers.match")}
+                          </span>
                         </div>
                       </div>
                       <CardTitle className="text-lg">{career.title}</CardTitle>
@@ -651,15 +677,19 @@ const ModernRecommendationsPage = () => {
                       <div className="space-y-2 mb-4">
                         <div className="flex items-center text-sm text-gray-500">
                           <IndianRupee className="h-4 w-4 mr-2" />
-                          <span>₹{career.averageSalary?.toLocaleString()} per year</span>
+                          <span>
+                            ₹{career.averageSalary?.toLocaleString()} {t("recommendations_1.careers.perYear")}
+                          </span>
                         </div>
                         <div className="flex items-center text-sm text-gray-500">
                           <TrendingUp className="h-4 w-4 mr-2" />
-                          <span>{career.growthRate}% job growth</span>
+                          <span>
+                            {career.growthRate} {t("recommendations_1.careers.jobGrowth")}
+                          </span>
                         </div>
                       </div>
-                      <Button className="w-full" variant="outline">
-                        Explore Career
+                      <Button className="w-full bg-transparent" variant="outline">
+                        {t("recommendations_1.careers.exploreCareeer")}
                         <ExternalLink className="h-4 w-4 ml-2" />
                       </Button>
                     </CardContent>
@@ -677,8 +707,10 @@ const ModernRecommendationsPage = () => {
                   <Card className="border-0 shadow-lg">
                     <CardContent className="p-12 text-center">
                       <BookOpen className="h-16 w-16 text-gray-400 mx-auto mb-4" />
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">No content recommendations</h3>
-                      <p className="text-gray-600">Complete a career quiz to get personalized content recommendations.</p>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                        {t("recommendations_1.content.noRecommendations")}
+                      </h3>
+                      <p className="text-gray-600">{t("recommendations_1.content.noRecommendationsDesc")}</p>
                     </CardContent>
                   </Card>
                 </div>
@@ -704,11 +736,13 @@ const ModernRecommendationsPage = () => {
                         </div>
                         <div className="flex items-center text-sm text-gray-500">
                           <Users className="h-4 w-4 mr-2" />
-                          <span>{content.enrollments} enrolled</span>
+                          <span>
+                            {content.enrollments} {t("recommendations_1.content.enrolled")}
+                          </span>
                         </div>
                       </div>
-                      <Button className="w-full" variant="outline">
-                        Access Content
+                      <Button className="w-full bg-transparent" variant="outline">
+                        {t("recommendations_1.content.accessContent")}
                         <ExternalLink className="h-4 w-4 ml-2" />
                       </Button>
                     </CardContent>
@@ -720,7 +754,7 @@ const ModernRecommendationsPage = () => {
         </Tabs>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ModernRecommendationsPage;
+export default ModernRecommendationsPage
