@@ -1,76 +1,456 @@
-// src/SimulatorPage.js (or your component file)
 "use client"
 
 import { useState, useEffect, useRef, useMemo } from "react"
 import { Mic, Volume2, X, Target, Users, GraduationCap } from "lucide-react"
-import { useTranslation } from 'react-i18next';
-import i18n from '../../i18n' // Import to initialize
-
 /* ----------------------
-   Fixtures
+   i18n strings + fixtures
    ---------------------- */
+const i18nStrings = {
+  en: {
+    title: "Disha Lab",
+    subtitle: "Build scenarios, compare outcomes, and show families the evidence.",
+    stream: "Stream",
+    course: "Course",
+    collegeType: "College Type",
+    college: "College",
+    skills: "Skills",
+    upskill: "Upskill",
+    scholarships: "Scholarships",
+    suggestForMe: "Suggest",
+    addScenario: "Add Scenario",
+    compare: "Compare",
+    save: "Save",
+    exportPDF: "Export PDF",
+    share: "Share",
+    language: "Language",
+    consentMic: "Allow microphone to use the voice assistant.",
+    consentAccept: "Allow",
+    consentDecline: "Decline",
+    noBadgesYet: "No badges yet",
+    points: "Points",
+    badges: "Badges",
+    playgroundMode: "Auto-Experiment",
+    sensitivityLens: "Sensitivity",
+    governmentFirst: "Govt-First",
+    clear: "Clear",
+    reset: "Reset",
+    totalScenarios: "Total scenarios",
+    engagement: "Engagement",
+    high: "High",
+    summary: "Summary",
+    netPresentValue: "Net Present Value",
+    returnOnInvestment: "Return on Investment",
+    employmentProbability: "Employment probability",
+    averageStartingSalary: "Average starting salary",
+    typicalTimeToEmployment: "Typical time to employment",
+    employ: "Employ",
+    startingSalary: "Starting Salary",
+    timeToJob: "Time to job",
+    months: "months",
+    includesScholarship: "Includes scholarship & upskill assumptions",
+    scholarshipOdds: "Scholarship Odds",
+    explainVoice: "Explain (Voice)",
+    export: "Export",
+    voiceAssistant: "Voice Assistant",
+    tryCommands: 'Try: "Compare" / "Explain ROI"',
+    close: "Close",
+    listening: "Listening",
+    on: "ON",
+    off: "OFF",
+    noTranscriptsYet: "No transcripts yet",
+    suggestedCommands: "Suggested commands",
+    copy: "Copy",
+    done: "Done",
+    interactiveVisualizer: "Interactive visualizer • Sankey / Timeline / Map",
+    sankeyFlow: "Sankey / Flow",
+    visualizeCourse: "Visualize course → jobs → salary flows",
+    scenario: "Scenario",
+    engineeringGovt: "Engineering — Govt",
+    npv: "NPV",
+    roi: "ROI",
+  },
+  hi: {
+    title: "दिशा लैब",
+    subtitle: "परिदृश्य बनाएं, तुलना करें, और परिवार को समझाएँ।",
+    stream: "धारा",
+    course: "कोर्स",
+    collegeType: "कॉलेज प्रकार",
+    college: "कॉलेज",
+    skills: "कौशल",
+    upskill: "अपस्किल",
+    scholarships: "छात्रवृत्ति",
+    suggestForMe: "सुझाएँ",
+    autoSuggest: "स्वतः सुझाव",
+    shuffle: "शफल",
+    addScenario: "परिदृश्य जोड़ें",
+    compare: "तुलना",
+    save: "सहेजें",
+    exportPDF: "पीडीएफ निर्यात",
+    share: "साझा करें",
+    language: "भाषा",
+    consentMic: "वॉयस असिस्टेंट के लिए माइक्रोफोन की अनुमति दें।",
+    consentAccept: "अनुमोदित",
+    consentDecline: "अस्वीकार",
+    noBadgesYet: "अभी कोई बैज नहीं",
+    points: "अंक",
+    badges: "बैज",
+    playgroundMode: "स्वतः परीक्षण",
+    sensitivityLens: "संवेदनशीलता",
+    governmentFirst: "सरकार-प्रथम",
+    clear: "साफ़ करें",
+    reset: "रीसेट",
+    totalScenarios: "कुल परिदृश्य",
+    engagement: "सहभागिता",
+    high: "उच्च",
+    summary: "सारांश",
+    netPresentValue: "शुद्ध वर्तमान मूल्य",
+    returnOnInvestment: "निवेश पर रिटर्न",
+    employmentProbability: "रोजगार संभावना",
+    averageStartingSalary: "औसत प्रारंभिक वेतन",
+    typicalTimeToEmployment: "रोजगार का सामान्य समय",
+    roi: "आरओआई",
+    employ: "रोजगार",
+    startingSalary: "प्रारंभिक वेतन",
+    timeToJob: "नौकरी का समय",
+    months: "महीने",
+    includesScholarship: "छात्रवृत्ति और अपस्किल मान्यताएं शामिल",
+    scholarshipOdds: "छात्रवृत्ति संभावनाएं",
+    explainVoice: "समझाएं (आवाज़)",
+    export: "निर्यात",
+    voiceAssistant: "वॉयस असिस्टेंट",
+    tryCommands: 'कोशिश करें: "तुलना" / "आरओआई समझाएं"',
+    close: "बंद करें",
+    listening: "सुन रहा है",
+    on: "चालू",
+    off: "बंद",
+    noTranscriptsYet: "अभी तक कोई ट्रांसक्रिप्ट नहीं",
+    suggestedCommands: "सुझाए गए कमांड",
+    copy: "कॉपी करें",
+    done: "पूर्ण",
+    interactiveVisualizer: "इंटरैक्टिव विज़ुअलाइज़र • सैंकी / टाइमलाइन / मैप",
+    sankeyFlow: "सैंकी / फ्लो",
+    visualizeCourse: "कोर्स → नौकरी → वेतन प्रवाह देखें",
+    scenario: "परिदृश्य",
+    engineeringGovt: "इंजीनियरिंग — सरकार",
+    npv: "शुद्ध वर्तमान मूल्य",
+    roi: "निवेश पर रिटर्न",
+  },
+  ur: {
+    title: "دشا لیب",
+    subtitle: "منظرنامے بنائیں، نتائج کا موازنہ کریں، اور خاندانوں کو ثبوت دکھائیں۔",
+    stream: "سلسلہ",
+    course: "کورس",
+    collegeType: "کالج کی قسم",
+    college: "کالج",
+    skills: "مہارتیں",
+    upskill: "مہارت بڑھانا",
+    scholarships: "وظائف",
+    suggestForMe: "تجویز کریں",
+    addScenario: "منظرنامہ شامل کریں",
+    compare: "موازنہ",
+    save: "محفوظ کریں",
+    exportPDF: "پی ڈی ایف ایکسپورٹ",
+    share: "شیئر کریں",
+    language: "زبان",
+    consentMic: "وائس اسسٹنٹ استعمال کرنے کے لیے مائیکروفون کی اجازت دیں۔",
+    consentAccept: "اجازت دیں",
+    consentDecline: "انکار",
+    noBadgesYet: "ابھی کوئی بیج نہیں",
+    points: "پوائنٹس",
+    badges: "بیجز",
+    playgroundMode: "خودکار تجربہ",
+    sensitivityLens: "حساسیت",
+    governmentFirst: "حکومت پہلے",
+    clear: "صاف کریں",
+    reset: "دوبارہ سیٹ کریں",
+    totalScenarios: "کل منظرنامے",
+    engagement: "شمولیت",
+    high: "زیادہ",
+    summary: "خلاصہ",
+    netPresentValue: "خالص موجودہ قیمت",
+    returnOnInvestment: "سرمایہ کاری پر واپسی",
+    employmentProbability: "ملازمت کا امکان",
+    averageStartingSalary: "اوسط ابتدائی تنخواہ",
+    typicalTimeToEmployment: "ملازمت کا عام وقت",
+    employ: "ملازمت",
+    startingSalary: "ابتدائی تنخواہ",
+    timeToJob: "نوکری کا وقت",
+    months: "مہینے",
+    includesScholarship: "وظیفہ اور مہارت کی بہتری کی مفروضات شامل",
+    scholarshipOdds: "وظیفہ کے امکانات",
+    explainVoice: "وضاحت (آواز)",
+    export: "ایکسپورٹ",
+    voiceAssistant: "وائس اسسٹنٹ",
+    tryCommands: 'کوشش کریں: "موازنہ" / "آر او آئی کی وضاحت"',
+    close: "بند کریں",
+    listening: "سن رہا ہے",
+    on: "آن",
+    off: "آف",
+    noTranscriptsYet: "ابھی کوئی ٹرانسکرپٹ نہیں",
+    suggestedCommands: "تجویز کردہ کمانڈز",
+    copy: "کاپی کریں",
+    done: "مکمل",
+    interactiveVisualizer: "انٹرایکٹو ویژولائزر • سینکی / ٹائم لائن / نقشہ",
+    sankeyFlow: "سینکی / فلو",
+    visualizeCourse: "کورس → نوکری → تنخواہ کا بہاؤ دیکھیں",
+    scenario: "منظرنامہ",
+    engineeringGovt: "انجینئرنگ — حکومت",
+    npv: "این پی وی",
+    roi: "آر او آئی",
+  },
+  dogri: {
+    title: "दिशा लैब",
+    subtitle: "परिदृश्य बनाओ, नतीजें दी तुलना करो, ते परिवारें गी सबूत दस्सो।",
+    stream: "धारा",
+    course: "कोर्स",
+    collegeType: "कॉलेज दी किस्म",
+    college: "कॉलेज",
+    skills: "हुनर",
+    upskill: "हुनर बधाना",
+    scholarships: "छात्रवृत्ति",
+    suggestForMe: "सुझाओ",
+    addScenario: "परिदृश्य जोड़ो",
+    compare: "तुलना",
+    save: "बचाओ",
+    exportPDF: "पीडीएफ निकालो",
+    share: "साझा करो",
+    language: "भाषा",
+    consentMic: "वॉयस असिस्टेंट इस्तेमाल करने आस्तै माइक्रोफोन दी इजाजत दियो।",
+    consentAccept: "इजाजत दियो",
+    consentDecline: "मना करो",
+    noBadgesYet: "अजे कोई बैज नेईं",
+    points: "अंक",
+    badges: "बैज",
+    playgroundMode: "अपने आप तजुर्बा",
+    sensitivityLens: "संवेदनशीलता",
+    governmentFirst: "सरकार पैह्ले",
+    clear: "साफ करो",
+    reset: "दुबारा सेट करो",
+    totalScenarios: "कुल परिदृश्य",
+    engagement: "भागीदारी",
+    high: "मता",
+    summary: "सारांश",
+    netPresentValue: "शुद्ध वर्तमान मूल्य",
+    returnOnInvestment: "निवेश पर वापसी",
+    employmentProbability: "नौकरी दा मौका",
+    averageStartingSalary: "औसत शुरुआती तनख्वाह",
+    typicalTimeToEmployment: "नौकरी दा आम समय",
+    employ: "नौकरी",
+    startingSalary: "शुरुआती तनख्वाह",
+    timeToJob: "नौकरी दा समय",
+    months: "महीने",
+    includesScholarship: "छात्रवृत्ति ते हुनर बधाने दी मान्यताएं शामिल",
+    scholarshipOdds: "छात्रवृत्ति दे मौके",
+    explainVoice: "समझाओ (आवाज़)",
+    export: "निकालो",
+    voiceAssistant: "वॉयस असिस्टेंट",
+    tryCommands: 'कोशिश करो: "तुलना" / "आरओआई समझाओ"',
+    close: "बंद करो",
+    listening: "सुनदा पिया",
+    on: "चालू",
+    off: "बंद",
+    noTranscriptsYet: "अजे तगर कोई ट्रांसक्रिप्ट नेईं",
+    suggestedCommands: "सुझाए गदे कमांड",
+    copy: "कॉपी करो",
+    done: "पूरा",
+    interactiveVisualizer: "इंटरैक्टिव विज़ुअलाइज़र • सैंकी / टाइमलाइन / नक्शा",
+    sankeyFlow: "सैंकी / फ्लो",
+    visualizeCourse: "कोर्स → नौकरी → तनख्वाह दा बहाव दिक्खो",
+    scenario: "परिदृश्य",
+    engineeringGovt: "इंजीनियरिंग — सरकार",
+    npv: "एनपीवी",
+    roi: "आरओआई",
+  },
+  gojri: {
+    title: "दिशा लैब",
+    subtitle: "हालात बनाओ, नतीजन दा मुकाबला करो, अर खानदानन गी सबूत दखाओ।",
+    stream: "धारा",
+    course: "कोर्स",
+    collegeType: "कॉलेज दी किस्म",
+    college: "कॉलेज",
+    skills: "हुनर",
+    upskill: "हुनर बधाणा",
+    scholarships: "छात्रवृत्ति",
+    suggestForMe: "सलाह दियो",
+    addScenario: "हालात जोड़ो",
+    compare: "मुकाबला",
+    save: "बचाओ",
+    exportPDF: "पीडीएफ निकालो",
+    share: "साझा करो",
+    language: "भाषा",
+    consentMic: "वॉयस असिस्टेंट इस्तेमाल करने खातिर माइक्रोफोन दी इजाजत दियो।",
+    consentAccept: "इजाजत दियो",
+    consentDecline: "ना करो",
+    noBadgesYet: "अजे कोई बैज नेईं",
+    points: "अंक",
+    badges: "बैज",
+    playgroundMode: "अपने आप तजुर्बा",
+    sensitivityLens: "संवेदनशीलता",
+    governmentFirst: "सरकार पैह्ले",
+    clear: "साफ करो",
+    reset: "दुबारा सेट करो",
+    totalScenarios: "कुल हालात",
+    engagement: "भागीदारी",
+    high: "जादा",
+    summary: "सारांश",
+    netPresentValue: "साफ मौजूदा कीमत",
+    returnOnInvestment: "निवेश पर वापसी",
+    employmentProbability: "नौकरी दा मौका",
+    averageStartingSalary: "औसत शुरुआती तनख्वाह",
+    typicalTimeToEmployment: "नौकरी दा आम वक्त",
+    employ: "नौकरी",
+    startingSalary: "शुरुआती तनख्वाह",
+    timeToJob: "नौकरी दा वक्त",
+    months: "महीने",
+    includesScholarship: "छात्रवृत्ति अर हुनर बधाने दी मान्यताएं शामिल",
+    scholarshipOdds: "छात्रवृत्ति दे मौके",
+    explainVoice: "समझाओ (आवाज़)",
+    export: "निकालो",
+    voiceAssistant: "वॉयस असिस्टेंट",
+    tryCommands: 'कोशिश करो: "मुकाबला" / "आरओआई समझाओ"',
+    close: "बंद करो",
+    listening: "सुणदा पिया",
+    on: "चालू",
+    off: "बंद",
+    noTranscriptsYet: "अजे तगर कोई ट्रांसक्रिप्ट नेईं",
+    suggestedCommands: "सलाह दित्ते गदे कमांड",
+    copy: "कॉपी करो",
+    done: "पूरा",
+    interactiveVisualizer: "इंटरैक्टिव विज़ुअलाइज़र • सैंकी / टाइमलाइन / नक्शा",
+    sankeyFlow: "सैंकी / फ्लो",
+    visualizeCourse: "कोर्स → नौकरी → तनख्वाह दा बहाव दिक्खो",
+    scenario: "हालात",
+    engineeringGovt: "इंजीनियरिंग — सरकार",
+    npv: "एनपीवी",
+    roi: "आरओआई",
+  },
+  pahari: {
+    title: "दिशा लैब",
+    subtitle: "दृश्य बनाओ, परिणामन दा तुलना करो, अर परिवारन गी प्रमाण दखाओ।",
+    stream: "धारा",
+    course: "कोर्स",
+    collegeType: "कॉलेज दी प्रकार",
+    college: "कॉलेज",
+    skills: "कौशल",
+    upskill: "कौशल बधाणा",
+    scholarships: "छात्रवृत्ति",
+    suggestForMe: "सुझाव दियो",
+    addScenario: "दृश्य जोड़ो",
+    compare: "तुलना",
+    save: "सहेजो",
+    exportPDF: "पीडीएफ निकालो",
+    share: "साझा करो",
+    language: "भाषा",
+    consentMic: "वॉयस असिस्टेंट इस्तेमाल करने खातिर माइक्रोफोन दी अनुमति दियो।",
+    consentAccept: "अनुमति दियो",
+    consentDecline: "मना करो",
+    noBadgesYet: "अजे कोई बैज नेईं",
+    points: "अंक",
+    badges: "बैज",
+    playgroundMode: "स्वचालित प्रयोग",
+    sensitivityLens: "संवेदनशीलता",
+    governmentFirst: "सरकार पैह्ले",
+    clear: "साफ करो",
+    reset: "रीसेट करो",
+    totalScenarios: "कुल दृश्य",
+    engagement: "सहभागिता",
+    high: "उच्च",
+    summary: "सारांश",
+    netPresentValue: "शुद्ध वर्तमान मूल्य",
+    returnOnInvestment: "निवेश पर रिटर्न",
+    employmentProbability: "रोजगार संभावना",
+    averageStartingSalary: "औसत प्रारंभिक वेतन",
+    typicalTimeToEmployment: "रोजगार दा सामान्य समय",
+    employ: "रोजगार",
+    startingSalary: "प्रारंभिक वेतन",
+    timeToJob: "नौकरी दा समय",
+    months: "महीने",
+    includesScholarship: "छात्रवृत्ति अर कौशल बधाने दी मान्यताएं शामिल",
+    scholarshipOdds: "छात्रवृत्ति संभावनाएं",
+    explainVoice: "समझाओ (आवाज़)",
+    export: "निर्यात",
+    voiceAssistant: "वॉयस असिस्टेंट",
+    tryCommands: 'कोशिश करो: "तुलना" / "आरओआई समझाओ"',
+    close: "बंद करो",
+    listening: "सुणदा पिया",
+    on: "चालू",
+    off: "बंद",
+    noTranscriptsYet: "अजे तगर कोई ट्रांसक्रिप्ट नेईं",
+    suggestedCommands: "सुझाए गदे कमांड",
+    copy: "कॉपी करो",
+    done: "पूरा",
+    interactiveVisualizer: "इंटरैक्टिव विज़ुअलाइज़र • सैंकी / टाइमलाइन / मैप",
+    sankeyFlow: "सैंकी / फ्लो",
+    visualizeCourse: "कोर्स → नौकरी → वेतन प्रवाह दिक्खो",
+    scenario: "दृश्य",
+    engineeringGovt: "इंजीनियरिंग — सरकार",
+    npv: "एनपीवी",
+    roi: "आरओआई",
+  },
+}
+
 const STREAMS = [
-  { id: "arts", label: { en: "Arts", hi: "आर्ट्स", ur: "آرٹس", dogri: "आर्ट्स", gojri: "آर्टس", pahari: "आर्ट्स" } },
-  { id: "science", label: { en: "Science", hi: "साइंस", ur: "سائنس", dogri: "साइंस", gojri: "سائنس", pahari: "साइंस" } },
-  { id: "commerce", label: { en: "Commerce", hi: "कॉमर्स", ur: "کامرس", dogri: "कॉमर्स", gojri: "کامرس", pahari: "कॉमर्स" } },
-  { id: "vocational", label: { en: "Vocational", hi: "वोकेशनल", ur: "ووکیشنل", dogri: "वोकेशनल", gojri: "ووکیشنل", pahari: "वोकेशनल" } },
-];
+  { id: "arts", label: { en: "Arts", hi: "आर्ट्स" } },
+  { id: "science", label: { en: "Science", hi: "साइंस" } },
+  { id: "commerce", label: { en: "Commerce", hi: "कॉमर्स" } },
+  { id: "vocational", label: { en: "Vocational", hi: "वोकेशनल" } },
+]
 
 const COURSES = {
   arts: [
-    { id: "ba", label: { en: "B.A.", hi: "बी.ए.", ur: "بی. اے.", dogri: "बी.ए.", gojri: "بی. اے.", pahari: "बी.ए." } },
-    { id: "bfa", label: { en: "B.F.A.", hi: "बी.एफ.ए.", ur: "بی. ایف. اے.", dogri: "बी.एफ.ए.", gojri: "بی. ایف. اے.", pahari: "बी.एफ.ए." } },
+    { id: "ba", label: { en: "B.A.", hi: "बी.ए." } },
+    { id: "bfa", label: { en: "B.F.A.", hi: "बी.एफ.ए." } },
   ],
   science: [
-    { id: "bsc", label: { en: "B.Sc.", hi: "बी.एससी.", ur: "بی. ایس سی.", dogri: "बी.एससी.", gojri: "بی. ایس سی.", pahari: "बी.एससी." } },
-    { id: "btech", label: { en: "B.Tech", hi: "बी.टेक", ur: "بی. ٹیک", dogri: "बी.टेक", gojri: "بی. ٹیک", pahari: "बी.टेक" } },
+    { id: "bsc", label: { en: "B.Sc.", hi: "बी.एससी." } },
+    { id: "btech", label: { en: "B.Tech", hi: "बी.टेक" } },
   ],
   commerce: [
-    { id: "bcom", label: { en: "B.Com.", hi: "बी.कॉम.", ur: "بی. کام.", dogri: "बी.कॉम.", gojri: "بی. کام.", pahari: "बी.कॉम." } },
-    { id: "bba", label: { en: "B.B.A.", hi: "बी.बी.ए.", ur: "بی. بی. اے.", dogri: "बी.बी.ए.", gojri: "بی. بی. اے.", pahari: "बी.बी.ए." } },
+    { id: "bcom", label: { en: "B.Com.", hi: "बी.कॉम." } },
+    { id: "bba", label: { en: "B.B.A.", hi: "बी.बी.ए." } },
   ],
   vocational: [
-    { id: "diploma", label: { en: "Diploma", hi: "डिप्लोमा", ur: "ڈپلومہ", dogri: "डिप्लोमा", gojri: "ڈپلومہ", pahari: "डिप्लोमा" } },
-    { id: "certificate", label: { en: "Certificate Course", hi: "सर्टिफिकेट कोर्स", ur: "سرٹیفکیٹ کورس", dogri: "सर्टिफिकेट कोर्स", gojri: "سرٹیفکیٹ کورس", pahari: "सर्टिफिकेट कोर्स" } },
+    { id: "diploma", label: { en: "Diploma", hi: "डिप्लोमा" } },
+    { id: "certificate", label: { en: "Certificate Course", hi: "सर्टिफिकेट कोर्स" } },
   ],
-};
+}
 
 const COLLEGE_TYPES = [
-  { id: "govt", label: { en: "Government", hi: "सरकारी", ur: "حکومتی", dogri: "सरकारी", gojri: "حکومتی", pahari: "सरकारी" } },
-  { id: "private", label: { en: "Private", hi: "निजी", ur: "نجی", dogri: "निजी", gojri: "نجی", pahari: "निजी" } },
-];
+  { id: "govt", label: { en: "Government", hi: "सरकारी" } },
+  { id: "private", label: { en: "Private", hi: "निजी" } },
+]
 
 const COLLEGES = {
   govt: [
-    { id: "govt1", label: { en: "Govt College A", hi: "सरकारी कॉलेज ए", ur: "حکومتی کالج اے", dogri: "सरकारी कॉलेज ए", gojri: "حکومتی کالج اے", pahari: "सरकारी कॉलेज ए" }, location: "Delhi" },
-    { id: "govt2", label: { en: "Govt College B", hi: "सरकारी कॉलेज बी", ur: "حکومتی کالج بی", dogri: "सरकारी कॉलेज बी", gojri: "حکومتی کالج بی", pahari: "सरकारी कॉलेज बी" }, location: "Mumbai" },
+    { id: "govt1", label: { en: "Govt College A", hi: "सरकारी कॉलेज ए" }, location: "Delhi" },
+    { id: "govt2", label: { en: "Govt College B", hi: "सरकारी कॉलेज बी" }, location: "Mumbai" },
   ],
   private: [
-    { id: "priv1", label: { en: "Private College X", hi: "निजी कॉलेज एक्स", ur: "نجی کالج ایکس", dogri: "निजी कॉलेज एक्स", gojri: "نجی کالج ایکس", pahari: "निजी कॉलेज एक्स" }, location: "Bengaluru" },
-    { id: "priv2", label: { en: "Private College Y", hi: "निजी कॉलेज वाई", ur: "نجی کالج وائی", dogri: "निजी कॉलेज वाई", gojri: "نجی کالج وائی", pahari: "निजी कॉलेज वाई" }, location: "Chennai" },
+    { id: "priv1", label: { en: "Private College X", hi: "निजी कॉलेज एक्स" }, location: "Bengaluru" },
+    { id: "priv2", label: { en: "Private College Y", hi: "निजी कॉलेज वाई" }, location: "Chennai" },
   ],
-};
+}
 
 const SKILLS = [
-  { id: "communication", label: { en: "Communication", hi: "संचार", ur: "مواصلات", dogri: "संचार", gojri: "مواصلات", pahari: "संचार" } },
-  { id: "coding", label: { en: "Coding", hi: "कोडिंग", ur: "کوڈنگ", dogri: "कोडिंग", gojri: "کوڈنگ", pahari: "कोडिंग" } },
-  { id: "management", label: { en: "Management", hi: "प्रबंधन", ur: "مینجمنٹ", dogri: "प्रबंधन", gojri: "مینجمنٹ", pahari: "प्रबंधन" } },
-];
+  { id: "communication", label: { en: "Communication", hi: "संचार" } },
+  { id: "coding", label: { en: "Coding", hi: "कोडिंग" } },
+  { id: "management", label: { en: "Management", hi: "प्रबंधन" } },
+]
 
 const UPSKILLS = [
-  { id: "cert1", label: { en: "Certification 1", hi: "प्रमाणपत्र 1", ur: "سرٹیفیکیشن 1", dogri: "प्रमाणपत्र 1", gojri: "سرٹیفیکیشن 1", pahari: "प्रमाणपत्र 1" } },
-  { id: "cert2", label: { en: "Certification 2", hi: "प्रमाणपत्र 2", ur: "سرٹیفیکیشن 2", dogri: "प्रमाणपत्र 2", gojri: "سرٹیفیکیشن 2", pahari: "प्रमाणपत्र 2" } },
-];
+  { id: "cert1", label: { en: "Certification 1", hi: "प्रमाणपत्र 1" } },
+  { id: "cert2", label: { en: "Certification 2", hi: "प्रमाणपत्र 2" } },
+]
 
 const SCHOLARSHIPS = [
-  { id: "sch1", label: { en: "Merit Scholarship", hi: "मेरिट छात्रवृत्ति", ur: "میرٹ سکالرشپ", dogri: "मेरिट छात्रवृत्ति", gojri: "میرٹ سکالرشپ", pahari: "मेरिट छात्रवृत्ति" } },
-  { id: "sch2", label: { en: "Need-based Scholarship", hi: "आवश्यकता आधारित छात्रवृत्ति", ur: "ضرورت پر مبنی سکالرشپ", dogri: "आवश्यकता आधारित छात्रवृत्ति", gojri: "ضرورت پر مبنی سکالرشپ", pahari: "आवश्यकता आधारित छात्रवृत्ति" } },
-];
+  { id: "sch1", label: { en: "Merit Scholarship", hi: "मेरिट छात्रवृत्ति" } },
+  { id: "sch2", label: { en: "Need-based Scholarship", hi: "आवश्यकता आधारित छात्रवृत्ति" } },
+]
 
 const SAMPLE_SCENARIOS = [
   {
     id: "sc1",
-    name: "engineeringGovt", // Use translation key
+    name: "Engineering — Govt",
     stream: "science",
     course: "btech",
     collegeType: "govt",
@@ -87,7 +467,7 @@ const SAMPLE_SCENARIOS = [
   },
   {
     id: "sc2",
-    name: "commercePrivate", // Use translation key
+    name: "Commerce — Private",
     stream: "commerce",
     course: "bcom",
     collegeType: "private",
@@ -102,7 +482,7 @@ const SAMPLE_SCENARIOS = [
     timeToJob: 8,
     scholarshipOdds: 0.5,
   },
-];
+]
 
 function getLabel(item, lang = "en") {
   if (!item) return ""
@@ -112,13 +492,20 @@ function currency(x) {
   return `₹${Number(x).toLocaleString()}`
 }
 
+/* -------------------------
+   MAIN: SimulatorPage
+   ------------------------- */
 export default function SimulatorPage() {
-  const { t } = useTranslation();
+  // language + i18n
+  const [lang, setLang] = useState("en")
+  const t = i18nStrings[lang]
 
+  // scenario state
   const [scenarios, setScenarios] = useState(SAMPLE_SCENARIOS)
   const [activeScenarioIndex, setActiveScenarioIndex] = useState(0)
   const active = scenarios[activeScenarioIndex] || SAMPLE_SCENARIOS[0]
 
+  // selection state (controlled by active scenario)
   const [stream, setStream] = useState(active.stream)
   const [course, setCourse] = useState(active.course)
   const [collegeType, setCollegeType] = useState(active.collegeType)
@@ -130,13 +517,15 @@ export default function SimulatorPage() {
   const [playgroundMode, setPlaygroundMode] = useState(false)
   const [govtFirst, setGovtFirst] = useState(true)
 
+  // voice assistant state + refs
   const [voiceConsent, setVoiceConsent] = useState(false)
   const [listening, setListening] = useState(false)
   const [transcripts, setTranscripts] = useState([])
-  const [dockExpanded, setDockExpanded] = useState(false)
+  const [dockExpanded, setDockExpanded] = useState(false) // collapsed FAB vs expanded panel
   const recognitionRef = useRef(null)
   const synthRef = useRef(typeof window !== "undefined" && window.speechSynthesis ? window.speechSynthesis : null)
 
+  // Derived: points & badges
   const totalPoints = useMemo(
     () => scenarios.reduce((acc, s) => acc + Math.round((s.npv || 0) / 100000), 0),
     [scenarios],
@@ -149,8 +538,12 @@ export default function SimulatorPage() {
     return out
   }, [totalPoints])
 
+  /* -------------------------
+     SpeechRecognition setup
+     ------------------------- */
   useEffect(() => {
     if (!voiceConsent) {
+      // cleanup if any
       if (recognitionRef.current) {
         try {
           recognitionRef.current.onresult = null
@@ -164,21 +557,13 @@ export default function SimulatorPage() {
 
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition || null
     if (!SpeechRecognition) {
+      // feature missing: we keep the UI but warn user
       console.warn("SpeechRecognition not available in this browser.")
       return
     }
 
     const recognition = new SpeechRecognition()
-    switch (i18n.language) {
-      case "en":
-        recognition.lang = "en-US"
-        break
-      case "ur":
-        recognition.lang = "ur-PK"
-        break
-      default:
-        recognition.lang = "hi-IN"
-    }
+    recognition.lang = lang === "en" ? "en-US" : "hi-IN"
     recognition.interimResults = false
     recognition.continuous = false
 
@@ -206,11 +591,12 @@ export default function SimulatorPage() {
         recognitionRef.current = null
       } catch { }
     }
-  }, [voiceConsent, i18n.language])
+  }, [voiceConsent, lang])
 
+  // Toggle listening (safe)
   const toggleListening = () => {
     if (!voiceConsent) {
-      alert(t('consentMic'))
+      alert(t.consentMic)
       return
     }
     const rec = recognitionRef.current
@@ -234,6 +620,9 @@ export default function SimulatorPage() {
     }
   }
 
+  /* -------------------------
+     playTts: TEXT-TO-SPEECH
+     ------------------------- */
   const playTts = (text) => {
     if (!text || typeof text !== "string") return
     if (typeof window === "undefined" || !("speechSynthesis" in window)) {
@@ -243,16 +632,7 @@ export default function SimulatorPage() {
     try {
       if (synthRef.current && synthRef.current.speaking) synthRef.current.cancel()
       const u = new SpeechSynthesisUtterance(text)
-      switch (i18n.language) {
-        case "en":
-          u.lang = "en-US"
-          break
-        case "ur":
-          u.lang = "ur-PK"
-          break
-        default:
-          u.lang = "hi-IN"
-      }
+      u.lang = lang === "en" ? "en-US" : "hi-IN"
       u.rate = 1
       u.pitch = 1
       synthRef.current.speak(u)
@@ -261,32 +641,35 @@ export default function SimulatorPage() {
     }
   }
 
+  /* -------------------------
+     exportSummary
+     ------------------------- */
   const exportSummary = () => {
     const summary = scenarios
       .map((s, i) => {
-        return `${t('scenario')} ${i + 1}:
-  Name: ${s.name || `${t('scenario')} ${i + 1}`}
+        return `Scenario ${i + 1}:
+  Name: ${s.name || `Scenario ${i + 1}`}
   Stream: ${getLabel(
           STREAMS.find((st) => st.id === s.stream),
-          i18n.language,
+          lang,
         )}
   Course: ${getLabel(
           (COURSES[s.stream] || []).find((c) => c.id === s.course),
-          i18n.language,
+          lang,
         )}
   College Type: ${getLabel(
           COLLEGE_TYPES.find((ct) => ct.id === s.collegeType),
-          i18n.language,
+          lang,
         )}
   College: ${getLabel(
           (COLLEGES[s.collegeType] || []).find((cl) => cl.id === s.college),
-          i18n.language,
+          lang,
         )}
   Skills: ${(s.skills || [])
             .map((sk) =>
               getLabel(
                 SKILLS.find((skl) => skl.id === sk),
-                i18n.language,
+                lang,
               ),
             )
             .join(", ")}
@@ -294,19 +677,19 @@ export default function SimulatorPage() {
             .map((u) =>
               getLabel(
                 UPSKILLS.find((up) => up.id === u),
-                i18n.language,
+                lang,
               ),
             )
             .join(", ")}
   Scholarship: ${getLabel(
               SCHOLARSHIPS.find((sch) => sch.id === s.scholarship),
-              i18n.language,
+              lang,
             )}
   NPV: ${s.npv ? currency(s.npv) : "-"}
   ROI: ${s.roi ?? "-"}
   Employment Probability: ${s.employmentProb ? `${(s.employmentProb * 100).toFixed(1)}%` : "-"}
   Starting Salary: ${s.startingSalary ? currency(s.startingSalary) : "-"}
-  Time to Job: ${s.timeToJob ?? "-"} ${t('months')}
+  Time to Job: ${s.timeToJob ?? "-"} months
   Scholarship Odds: ${s.scholarshipOdds ? `${(s.scholarshipOdds * 100).toFixed(1)}%` : "-"}
 `
       })
@@ -327,9 +710,11 @@ export default function SimulatorPage() {
     }
   }
 
+  // toggle helpers
   const toggleSkill = (id) => setSkills((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]))
   const toggleUpskill = (id) => setUpskill((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]))
 
+  // autoExperiment (perturb)
   const autoExperiment = () => {
     setScenarios((prevScenarios) => {
       if (prevScenarios.length === 0) return prevScenarios
@@ -378,6 +763,7 @@ export default function SimulatorPage() {
     setTimeout(() => setPlaygroundMode(false), 2200)
   }
 
+  // language switch
   const languages = [
     { code: "en", name: "English" },
     { code: "hi", name: "हिंदी" },
@@ -387,27 +773,53 @@ export default function SimulatorPage() {
     { code: "pahari", name: "पहाड़ी" },
   ]
 
+  const onSwitchLanguage = () => {
+    const currentIndex = languages.findIndex((l) => l.code === lang)
+    const nextIndex = (currentIndex + 1) % languages.length
+    setLang(languages[nextIndex].code)
+  }
+
+  /* -------------------------
+     Layout & Render
+     - main difference: dockExpanded controls whether the Assistant is collapsed FAB or expanded panel
+     - when expanded we use an overlay on small screens (modal) and a right-side panel on large screens
+     - the main page already has bottom padding (pb-32) to avoid being hidden by the FAB
+     ------------------------- */
   return (
     <div className="min-h-screen bg-gradient-to-b from-indigo-50 via-white to-indigo-100 text-gray-900 font-sans selection:bg-indigo-300 selection:text-white">
       {/* HERO */}
       <div className="max-w-7xl mx-auto px-6 py-10">
         <div className="rounded-3xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 p-8 shadow-2xl flex flex-col md:flex-row md:items-center md:justify-between gap-6 text-white">
           <div>
-            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight drop-shadow-lg">{t('title')}</h1>
-            <p className="mt-3 text-lg max-w-3xl drop-shadow-sm">{t('subtitle')}</p>
+            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight drop-shadow-lg">{t.title}</h1>
+            <p className="mt-3 text-lg max-w-3xl drop-shadow-sm">{t.subtitle}</p>
 
             <div className="mt-6 flex flex-wrap gap-4 items-center">
+              {/* <button
+                onClick={autoExperiment}
+                className="inline-flex items-center gap-2 bg-white bg-opacity-20 hover:bg-opacity-30 transition rounded-xl px-5 py-3 font-semibold shadow-lg shadow-indigo-700/30 hover:shadow-indigo-700/50 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-indigo-300"
+                aria-label={t.playgroundMode}
+              >
+                <RefreshCcw className="w-5 h-5" />
+                {t.playgroundMode}
+              </button> */}
+
               <select
-                value={i18n.language}
-                onChange={(e) => i18n.changeLanguage(e.target.value)}
+                value={lang}
+                onChange={(e) => {
+                  const selectedLang = e.target.value;
+                  setLang(selectedLang);
+                 
+                }}
                 className="px-4 py-2 border border-white border-opacity-50 rounded-lg text-sm font-medium bg-transparent text-white hover:bg-white hover:bg-opacity-20 transition focus:outline-none focus:ring-2 focus:ring-white"
                 aria-label="Select language"
               >
-                {languages.map(({ code, name }) => (
-                  <option key={code} value={code} className="text-black">
-                    {name}
-                  </option>
-                ))}
+                <option value="en" className="text-black">English</option>
+                <option value="hi" className="text-black">हिंदी</option>
+                <option value="ur" className="text-black">Urdu</option>
+                <option value="dogri" className="text-black">Dogri</option>
+                <option value="gojri" className="text-black">Gojri</option>
+                <option value="pahari" className="text-black">Pahari</option>
               </select>
 
               <label className="inline-flex items-center gap-2 text-sm cursor-pointer select-none">
@@ -417,21 +829,21 @@ export default function SimulatorPage() {
                   onChange={() => setGovtFirst(!govtFirst)}
                   className="h-5 w-5 rounded border-transparent focus:ring-2 focus:ring-offset-1 focus:ring-white cursor-pointer"
                 />
-                <span className="text-white font-semibold">{t('governmentFirst')}</span>
+                <span className="text-white font-semibold">{t.governmentFirst}</span>
               </label>
             </div>
           </div>
 
           <div className="flex items-center gap-8">
             <div className="text-right">
-              <div className="text-sm opacity-80">{t('totalScenarios')}</div>
+              <div className="text-sm opacity-80">{t.totalScenarios}</div>
               <div className="text-3xl font-extrabold">{scenarios.length}</div>
             </div>
             <div className="bg-white bg-opacity-20 rounded-xl px-6 py-3 shadow-lg flex items-center gap-4">
               <Target className="w-8 h-8 text-white" />
               <div>
-                <div className="text-xs opacity-80">{t('engagement')}</div>
-                <div className="font-semibold text-lg">{t('high')}</div>
+                <div className="text-xs opacity-80">{t.engagement}</div>
+                <div className="font-semibold text-lg">{t.high}</div>
               </div>
             </div>
           </div>
@@ -440,33 +852,35 @@ export default function SimulatorPage() {
 
       {/* GRID LAYOUT */}
       <div className="max-w-7xl mx-auto px-6 pb-40 grid grid-cols-1 md:grid-cols-12 gap-8">
+        {/* note: pb-40 ensures FAB never hides bottom content */}
+
         {/* LEFT: Controls */}
         <aside className="md:col-span-3 bg-white rounded-3xl p-8 shadow-xl sticky top-24 h-fit border border-indigo-200">
           <h3 className="text-xl font-semibold mb-6 text-indigo-700">
-            {t('stream')} & {t('course')}
+            {t.stream} & {t.course}
           </h3>
           <div className="space-y-5">
-            <Select label={t('stream')} value={stream} options={STREAMS} lang={i18n.language} onChange={setStream} />
+            <Select label={t.stream} value={stream} options={STREAMS} lang={lang} onChange={setStream} />
             <Select
-              label={t('course')}
+              label={t.course}
               value={course}
               options={COURSES[stream] || []}
-              lang={i18n.language}
+              lang={lang}
               onChange={setCourse}
               disabled={!stream}
             />
             <Select
-              label={t('collegeType')}
+              label={t.collegeType}
               value={collegeType}
               options={COLLEGE_TYPES}
-              lang={i18n.language}
+              lang={lang}
               onChange={setCollegeType}
             />
             <Select
-              label={t('college')}
+              label={t.college}
               value={college}
               options={COLLEGES[collegeType] || []}
-              lang={i18n.language}
+              lang={lang}
               onChange={setCollege}
               disabled={!collegeType}
             />
@@ -476,15 +890,15 @@ export default function SimulatorPage() {
 
           <div>
             <div className="flex items-center justify-between mb-3">
-              <h4 className="font-semibold text-indigo-700">{t('skills')}</h4>
+              <h4 className="font-semibold text-indigo-700">{t.skills}</h4>
               <button onClick={() => setSkills([])} className="text-sm text-indigo-500 hover:underline">
-                {t('clear')}
+                {t.clear}
               </button>
             </div>
             <div className="flex flex-wrap gap-3">
               {SKILLS.map((s) => (
                 <Chip key={s.id} active={skills.includes(s.id)} onClick={() => toggleSkill(s.id)}>
-                  {getLabel(s, i18n.language)}
+                  {getLabel(s, lang)}
                 </Chip>
               ))}
             </div>
@@ -492,31 +906,31 @@ export default function SimulatorPage() {
 
           <div className="mt-6">
             <div className="flex items-center justify-between mb-3">
-              <h4 className="font-semibold text-indigo-700">{t('upskill')}</h4>
+              <h4 className="font-semibold text-indigo-700">{t.upskill}</h4>
               <button onClick={() => setUpskill([])} className="text-sm text-indigo-500 hover:underline">
-                {t('clear')}
+                {t.clear}
               </button>
             </div>
             <div className="flex flex-wrap gap-3">
               {UPSKILLS.map((u) => (
                 <Chip key={u.id} active={upskill.includes(u.id)} onClick={() => toggleUpskill(u.id)}>
-                  {getLabel(u, i18n.language)}
+                  {getLabel(u, lang)}
                 </Chip>
               ))}
             </div>
           </div>
 
           <div className="mt-6">
-            <label className="block mb-3 font-semibold text-indigo-700">{t('scholarships')}</label>
+            <label className="block mb-3 font-semibold text-indigo-700">{t.scholarships}</label>
             <select
               value={scholarship}
               onChange={(e) => setScholarship(e.target.value)}
               className="w-full rounded-xl p-3 border border-indigo-300 shadow-sm"
             >
-              <option value="">{`-- ${t('scholarships')} --`}</option>
+              <option value="">{`-- ${t.scholarships} --`}</option>
               {SCHOLARSHIPS.map((s) => (
                 <option key={s.id} value={s.id}>
-                  {getLabel(s, i18n.language)}
+                  {getLabel(s, lang)}
                 </option>
               ))}
             </select>
@@ -526,13 +940,13 @@ export default function SimulatorPage() {
             <button
               onClick={() => {
                 const copy = [...scenarios]
-                copy.push({ ...copy[activeScenarioIndex], id: `sc${Date.now()}`, name: `${t('scenario')} ${copy.length + 1}` })
+                copy.push({ ...copy[activeScenarioIndex], id: `sc${Date.now()}`, name: `Scenario ${copy.length + 1}` })
                 setScenarios(copy)
                 setActiveScenarioIndex(copy.length - 1)
               }}
               className="flex-1 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-2xl py-3 font-semibold shadow-lg"
             >
-              + {t('addScenario')}
+              + {t.addScenario}
             </button>
             <button
               onClick={() => {
@@ -546,7 +960,7 @@ export default function SimulatorPage() {
               }}
               className="px-5 py-3 border border-indigo-300 rounded-2xl text-indigo-700"
             >
-              {t('reset')}
+              {t.reset}
             </button>
           </div>
         </aside>
@@ -557,20 +971,22 @@ export default function SimulatorPage() {
             <div className="flex items-start justify-between">
               <div>
                 <h2 className="text-2xl font-extrabold text-indigo-700">
-                  {t(active?.name || `scenario${activeScenarioIndex + 1}`)}
+                  {active?.name || `${t.engineeringGovt} ${activeScenarioIndex + 1}`}
                 </h2>
-                <p className="text-sm text-indigo-400 mt-1 font-medium tracking-wide">{t('interactiveVisualizer')}</p>
+                {/* <h1>{ `${t.engineeringGovt}`}</h1> */}
+
+                <p className="text-sm text-indigo-400 mt-1 font-medium tracking-wide">{t.interactiveVisualizer}</p>
               </div>
 
               <div className="flex items-center gap-5">
                 <StatPill
                   icon={<GraduationCap className="w-5 h-5 text-indigo-600" />}
-                  label={t('roi')}
+                  label={t.roi}
                   value={active?.roi?.toFixed(2) ?? "-"}
                 />
                 <StatPill
                   icon={<Users className="w-5 h-5 text-indigo-400" />}
-                  label={`${t('employ')} %`}
+                  label={`${t.employ} %`}
                   value={`${((active?.employmentProb || 0) * 100).toFixed(0)}%`}
                 />
               </div>
@@ -579,8 +995,8 @@ export default function SimulatorPage() {
             <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="col-span-1 rounded-2xl border-2 border-dashed border-indigo-300 h-72 flex items-center justify-center bg-gradient-to-b from-indigo-50 to-indigo-100 shadow-inner">
                 <div className="text-center text-indigo-300 select-none">
-                  <div className="text-2xl font-semibold tracking-wide">{t('sankeyFlow')}</div>
-                  <div className="mt-3 text-base">{t('visualizeCourse')}</div>
+                  <div className="text-2xl font-semibold tracking-wide">{t.sankeyFlow}</div>
+                  <div className="mt-3 text-base">{t.visualizeCourse}</div>
                 </div>
               </div>
 
@@ -588,24 +1004,24 @@ export default function SimulatorPage() {
                 <div className="rounded-2xl p-6 border border-indigo-200 shadow-md bg-white">
                   <div className="flex items-center justify-between">
                     <div>
-                      <div className="text-sm text-indigo-500 font-semibold tracking-wide">{t('startingSalary')}</div>
+                      <div className="text-sm text-indigo-500 font-semibold tracking-wide">{t.startingSalary}</div>
                       <div className="text-3xl font-extrabold text-indigo-700">
                         {currency(active?.startingSalary || 0)}
                       </div>
                     </div>
                     <div className="text-right">
-                      <div className="text-sm text-indigo-500 font-semibold tracking-wide">{t('timeToJob')}</div>
+                      <div className="text-sm text-indigo-500 font-semibold tracking-wide">{t.timeToJob}</div>
                       <div className="text-xl font-semibold text-indigo-700">
-                        {active?.timeToJob} {t('months')}
+                        {active?.timeToJob} {t.months}
                       </div>
                     </div>
                   </div>
-                  <div className="mt-4 text-xs text-indigo-400 italic">{t('includesScholarship')}</div>
+                  <div className="mt-4 text-xs text-indigo-400 italic">{t.includesScholarship}</div>
                 </div>
 
                 <div className="rounded-2xl p-4 border border-indigo-300 bg-indigo-50 shadow-inner">
                   <div className="flex items-center justify-between">
-                    <div className="text-sm font-semibold text-indigo-700">{t('scholarshipOdds')}</div>
+                    <div className="text-sm font-semibold text-indigo-700">{t.scholarshipOdds}</div>
                     <div className="font-bold text-indigo-700">{Math.round((active?.scholarshipOdds || 0) * 100)}%</div>
                   </div>
                   <div className="mt-3 h-4 bg-indigo-200 rounded-full overflow-hidden shadow-inner">
@@ -618,20 +1034,20 @@ export default function SimulatorPage() {
 
                 <div className="flex gap-4">
                   <button
-                    onClick={() => playTts(`${active?.name || t('scenario')}: ${t('roi')} ${active?.roi ?? "N/A"}`)}
+                    onClick={() => playTts(`${active?.name || t.scenario}: ${t.roi} ${active?.roi ?? "N/A"}`)}
                     className="flex-1 bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 rounded-2xl"
                   >
-                    {t('explainVoice')}
+                    {t.explainVoice}
                   </button>
                   <button onClick={() => exportSummary()} className="flex-1 border border-indigo-300 rounded-2xl py-3">
-                    {t('export')}
+                    {t.export}
                   </button>
                 </div>
               </div>
             </div>
 
             <div className="mt-8">
-              <label className="block mb-3 font-semibold text-indigo-700">{t('sensitivityLens')}</label>
+              <label className="block mb-3 font-semibold text-indigo-700">{t.sensitivityLens}</label>
               <input
                 type="range"
                 min={-1}
@@ -649,37 +1065,37 @@ export default function SimulatorPage() {
         <aside className="md:col-span-3">
           <div className="bg-white/95 backdrop-blur-md rounded-3xl p-8 shadow-2xl sticky top-24 border border-indigo-200">
             <div className="flex items-center justify-between">
-              <h4 className="text-xl font-semibold text-indigo-700">{t('summary')}</h4>
+              <h4 className="text-xl font-semibold text-indigo-700">{t.summary}</h4>
               <div className="text-indigo-600 font-semibold text-lg">
-                {t('points')}: {totalPoints}
+                {t.points}: {totalPoints}
               </div>
             </div>
 
             <div className="mt-6 space-y-5">
-              <SummaryCard title={t('npv')} value={currency(active?.npv || 0)} hint={t('netPresentValue')} />
-              <SummaryCard title={t('roi')} value={(active?.roi || 0).toFixed(2)} hint={t('returnOnInvestment')} />
+              <SummaryCard title={t.npv} value={currency(active?.npv || 0)} hint={t.netPresentValue} />
+              <SummaryCard title={t.roi} value={(active?.roi || 0).toFixed(2)} hint={t.returnOnInvestment} />
               <SummaryCard
-                title={t('employ')}
+                title={t.employ}
                 value={`${((active?.employmentProb || 0) * 100).toFixed(1)}%`}
-                hint={t('employmentProbability')}
+                hint={t.employmentProbability}
               />
               <SummaryCard
-                title={t('startingSalary').split(" ")[0]}
+                title={t.startingSalary.split(" ")[0]}
                 value={currency(active?.startingSalary || 0)}
-                hint={t('averageStartingSalary')}
+                hint={t.averageStartingSalary}
               />
               <SummaryCard
-                title={t('timeToJob')}
-                value={`${active?.timeToJob} ${t('months')}`}
-                hint={t('typicalTimeToEmployment')}
+                title={`${t.timeToJob}`}
+                value={`${active?.timeToJob} ${t.months}`}
+                hint={t.typicalTimeToEmployment}
               />
             </div>
 
             <div className="mt-8">
-              <h5 className="text-base font-semibold mb-3 text-indigo-700">{t('badges_1')}</h5>
+              <h5 className="text-base font-semibold mb-3 text-indigo-700">{t.badges}</h5>
               <div className="flex flex-wrap gap-3">
                 {badges.length === 0 ? (
-                  <div className="text-indigo-400 italic select-none">{t('noBadgesYet')}</div>
+                  <div className="text-indigo-400 italic select-none">{t.noBadgesYet}</div>
                 ) : (
                   badges.map((b) => <Badge key={b}>{b}</Badge>)
                 )}
@@ -691,13 +1107,13 @@ export default function SimulatorPage() {
                 onClick={() => alert("Share to parents (mock)")}
                 className="flex-1 bg-gradient-to-r from-pink-500 to-yellow-400 text-white py-3 rounded-3xl"
               >
-                {t('share')}
+                {t.share}
               </button>
               <button
                 onClick={() => alert("Save scenario (mock)")}
                 className="flex-1 border border-indigo-300 py-3 rounded-3xl text-indigo-700"
               >
-                {t('save')}
+                {t.save}
               </button>
             </div>
           </div>
@@ -706,8 +1122,8 @@ export default function SimulatorPage() {
 
       {/* COLLAPSIBLE VOICE DOCK: FAB + Expandable Panel */}
       <VoiceDock
-        lang={i18n.language}
-        setLang={i18n.changeLanguage}
+        lang={lang}
+        setLang={setLang}
         voiceConsent={voiceConsent}
         setVoiceConsent={setVoiceConsent}
         listening={listening}
@@ -724,6 +1140,7 @@ export default function SimulatorPage() {
 
 /* -------------------------------
    PRESENTATIONAL SMALL COMPONENTS
+   (Select, Chip, StatPill, SummaryCard, Badge)
    ------------------------------- */
 function Select({ label, value, onChange, options = [], disabled = false, lang = "en" }) {
   return (
@@ -791,7 +1208,12 @@ function Badge({ children }) {
 }
 
 /* -------------------------------
-   VOICE DOCK
+   VOICE DOCK (FAB + Expandable Panel)
+   - collapsed: small FAB bottom-right
+   - expanded: responsive panel
+     * mobile: centered modal
+     * desktop: right-side floating panel (keeps main layout visible)
+   - overlay to close on small screens
    ------------------------------- */
 function VoiceDock({
   lang,
@@ -806,6 +1228,7 @@ function VoiceDock({
   setExpanded,
   t,
 }) {
+  // Close when Escape pressed while expanded
   useEffect(() => {
     const onKey = (e) => {
       if (e.key === "Escape") setExpanded(false)
@@ -814,24 +1237,28 @@ function VoiceDock({
     return () => window.removeEventListener("keydown", onKey)
   }, [expanded, setExpanded])
 
+  // Responsive width classes
   const panelWidthClass = "w-full max-w-md md:max-w-sm lg:max-w-lg"
 
   return (
     <>
+      {/* Collapsed FAB (always visible) */}
       <div className="fixed right-6 bottom-6 z-50 flex items-end justify-end">
         <button
           aria-expanded={expanded}
-          aria-label={expanded ? t('close') : t('voiceAssistant')}
+          aria-label={expanded ? "Close voice assistant" : "Open voice assistant"}
           onClick={() => setExpanded((v) => !v)}
           className="w-14 h-14 rounded-full flex items-center justify-center bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-2xl transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-indigo-300"
-          title={t('voiceAssistant')}
+          title="Voice Assistant"
         >
           <Mic className="w-6 h-6" />
         </button>
       </div>
 
+      {/* Expanded panel: overlay on small screens, side-panel on large screens */}
       {expanded && (
         <>
+          {/* translucent backdrop for mobile / to close easily */}
           <div
             onClick={() => setExpanded(false)}
             className="fixed inset-0 bg-black bg-opacity-30 z-40 md:hidden"
@@ -841,55 +1268,57 @@ function VoiceDock({
           <div
             role="dialog"
             aria-modal="true"
-            className={`fixed z-50 inset-0 flex items-end md:items-center justify-center md:justify-end p-4`}
+            className={`fixed z-50 ${/* center on mobile, align right on md+ */ ""} inset-0 flex items-end md:items-center justify-center md:justify-end p-4`}
           >
             <div
               className={`${panelWidthClass} bg-white rounded-3xl shadow-2xl border border-indigo-200 overflow-hidden z-50 transform transition-all`}
             >
+              {/* header */}
               <div className="flex items-center justify-between p-4 border-b border-neutral-100">
                 <div className="flex items-center gap-3">
                   <div className="bg-gradient-to-br from-indigo-600 to-purple-600 p-2 rounded-full text-white">
                     <Mic className="w-5 h-5" />
                   </div>
                   <div>
-                    <div className="font-semibold text-indigo-700">{t('voiceAssistant')}</div>
-                    <div className="text-xs text-neutral-500">{t('tryCommands')}</div>
+                    <div className="font-semibold text-indigo-700">{t.voiceAssistant}</div>
+                    <div className="text-xs text-neutral-500">{t.tryCommands}</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
                   <button
-                    onClick={() => {
-                      const currentIndex = languages.findIndex((l) => l.code === lang)
-                      const nextIndex = (currentIndex + 1) % languages.length
-                      setLang(languages[nextIndex].code)
-                    }}
+                    onClick={() => setLang(lang === "en" ? "hi" : "en")}
                     className="text-xs px-3 py-1 border rounded-lg text-indigo-700"
                   >
-                    {lang === "en" ? "हिंदी" : "EN"} // Adjust as needed
+                    {lang === "en" ? "हिंदी" : "EN"}
                   </button>
                   <button
-                    onClick={() => setExpanded(false)}
+                    onClick={() => {
+                      setExpanded(false)
+                    }}
                     className="p-2 rounded-md text-neutral-600 hover:bg-neutral-100"
-                    aria-label={t('close')}
+                    aria-label={t.close}
                   >
                     <X className="w-5 h-5" />
                   </button>
                 </div>
               </div>
 
+              {/* body */}
               <div className="p-4 space-y-3 max-h-[60vh] md:max-h-[70vh] overflow-auto">
                 {!voiceConsent ? (
                   <div className="p-4 bg-indigo-50 rounded-lg text-center">
-                    <p className="text-sm text-indigo-700 mb-3">{t('consentMic')}</p>
+                    <p className="text-sm text-indigo-700 mb-3">{t.consentMic}</p>
                     <div className="flex gap-3 justify-center">
                       <button
                         onClick={() => setVoiceConsent(true)}
                         className="px-4 py-2 bg-indigo-600 text-white rounded-lg"
                       >
-                        {t('consentAccept')}
+                        {" "}
+                        {t.consentAccept}{" "}
                       </button>
                       <button onClick={() => setVoiceConsent(false)} className="px-4 py-2 border rounded-lg">
-                        {t('consentDecline')}
+                        {" "}
+                        {t.consentDecline}{" "}
                       </button>
                     </div>
                   </div>
@@ -899,18 +1328,18 @@ function VoiceDock({
                       <MicButton active={listening} onClick={toggleListening} />
                       <div className="flex-1">
                         <div className="text-xs text-neutral-500 mb-2 font-mono">
-                          {t('listening')}:{" "}
+                          {t.listening}:{" "}
                           <span className={listening ? "text-green-600 font-semibold" : "text-red-500 font-semibold"}>
-                            {listening ? t('on') : t('off')}
+                            {listening ? t.on : t.off}
                           </span>
                         </div>
                         <div className="h-36 overflow-auto bg-neutral-50 rounded-lg p-3 text-xs font-mono text-neutral-800">
                           {transcripts.length === 0 ? (
-                            <div className="text-neutral-400 italic">{t('noTranscriptsYet')}</div>
+                            <div className="text-neutral-400 italic">{t.noTranscriptsYet}</div>
                           ) : (
-                            transcripts.map((tr, i) => (
+                            transcripts.map((t, i) => (
                               <div key={i} className="mb-1 break-words">
-                                {tr}
+                                {t}
                               </div>
                             ))
                           )}
@@ -922,7 +1351,7 @@ function VoiceDock({
                     </div>
 
                     <div className="mt-2 text-xs text-neutral-600">
-                      <div className="font-semibold mb-1">{t('suggestedCommands')}</div>
+                      <div className="font-semibold mb-1">{t.suggestedCommands}</div>
                       <div className="flex gap-2 flex-wrap">
                         <CommandChip
                           onClick={() => {
@@ -930,7 +1359,7 @@ function VoiceDock({
                             setExpanded(false)
                           }}
                         >
-                          {t('compare')}
+                          {t.compare}
                         </CommandChip>
                         <CommandChip
                           onClick={() => {
@@ -938,7 +1367,7 @@ function VoiceDock({
                             setExpanded(false)
                           }}
                         >
-                          {t('roi')} {lang === "hi" ? "समझाएं" : "Explain"} // Adjust for lang
+                          {t.roi} {lang === "hi" ? "समझाएं" : "Explain"}
                         </CommandChip>
                         <CommandChip
                           onClick={() => {
@@ -946,7 +1375,7 @@ function VoiceDock({
                             setExpanded(false)
                           }}
                         >
-                          {t('scholarships')}
+                          {t.scholarships}
                         </CommandChip>
                       </div>
                     </div>
@@ -954,8 +1383,9 @@ function VoiceDock({
                 )}
               </div>
 
+              {/* footer actions */}
               <div className="p-4 border-t flex items-center justify-between">
-                <div className="text-sm text-neutral-500">{t('voiceAssistant')}</div>
+                <div className="text-sm text-neutral-500">{t.voiceAssistant}</div>
                 <div className="flex items-center gap-3">
                   <button
                     onClick={() => {
@@ -963,13 +1393,13 @@ function VoiceDock({
                     }}
                     className="text-sm px-3 py-2 border rounded-lg"
                   >
-                    {t('copy')}
+                    {t.copy}
                   </button>
                   <button
                     onClick={() => setExpanded(false)}
                     className="text-sm px-3 py-2 rounded-lg bg-indigo-600 text-white"
                   >
-                    {t('done')}
+                    {t.done}
                   </button>
                 </div>
               </div>
@@ -981,6 +1411,7 @@ function VoiceDock({
   )
 }
 
+/* MicButton with subtle animation when active */
 function MicButton({ active = false, onClick }) {
   return (
     <button
