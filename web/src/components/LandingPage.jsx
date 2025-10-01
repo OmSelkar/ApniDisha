@@ -27,7 +27,7 @@ import { contentAPI } from '../services/contentService';
 const heroSlides = [
   {
     image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1470&q=80', // student studying
-    title: "Confused about your future?",
+    title: "Confused about your future ?",
     subtitle: "Discover the right subject stream and career path tailored to your interests",
   },
   {
