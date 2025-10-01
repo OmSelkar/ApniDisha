@@ -23,31 +23,10 @@ import {
 } from 'lucide-react';
 import { quizAPI, collegesAPI } from '../services/api';
 import { contentAPI } from '../services/contentService';
-
-const heroSlides = [
-  {
-    image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1470&q=80', // student studying
-    title: "Confused about your future ?",
-    subtitle: "Discover the right subject stream and career path tailored to your interests",
-  },
-  {
-    image: 'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1470&q=80', // graduation ceremony
-    title: "Explore Government Colleges Near You",
-    subtitle: "Find course details, eligibility, and facilities at government colleges",
-  },
-  {
-    image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1470&q=80', // career planning
-    title: "Map Your Career Journey",
-    subtitle: "Explore degrees and the careers they unlock",
-  },
-  {
-    image: 'https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?auto=format&fit=crop&w=1470&q=80', // students collaborating
-    title: "Personalized Guidance Powered by AI",
-    subtitle: "Personalized picks for courses, colleges, and study materials",
-  }
-];
+import { useTranslation } from 'react-i18next';
 
 const LandingPage = () => {
+  const { t } = useTranslation();
   const [stats, setStats] = useState({
     studentsGuided: 0,
     collegesListed: 0,
@@ -101,107 +80,130 @@ const LandingPage = () => {
     }
   };
 
+  const heroSlides = [
+    {
+      image: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=1470&q=80', // student studying
+      title: t('hero.slide1.title'),
+      subtitle: t('hero.slide1.subtitle'),
+    },
+    {
+      image: 'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=1470&q=80', // graduation ceremony
+      title: t('hero.slide2.title'),
+      subtitle: t('hero.slide2.subtitle'),
+    },
+    {
+      image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1470&q=80', // career planning
+      title: t('hero.slide3.title'),
+      subtitle: t('hero.slide3.subtitle'),
+    },
+    {
+      image: 'https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?auto=format&fit=crop&w=1470&q=80', // students collaborating
+      title: t('hero.slide4.title'),
+      subtitle: t('hero.slide4.subtitle'),
+    }
+  ];
+
   const features = [
     {
       icon: <Target className="h-8 w-8 text-blue-600" />,
-      title: "Aptitude & Interest Quiz",
-      description: "Discover your strengths and interests with our comprehensive assessment."
+      title: t('features.quiz.title'),
+      description: t('features.quiz.desc'),
     },
     {
       icon: <MapPin className="h-8 w-8 text-green-600" />,
-      title: "Career Pathway Mapping",
-      description: "Visualize your career journey with interactive pathway maps."
+      title: t('features.path.title'),
+      description: t('features.path.desc'),
     },
     {
       icon: <GraduationCap className="h-8 w-8 text-purple-600" />,
-      title: "Government Colleges Directory",
-      description: "Explore 500+ government colleges with detailed program information."
+      title: t('features.colleges.title'),
+      description: t('features.colleges.desc'),
     },
     {
       icon: <Calendar className="h-8 w-8 text-orange-600" />,
-      title: "Timeline Tracker",
-      description: "Stay on track with personalized timelines for admissions and exams."
+      title: t('features.timeline.title'),
+      description: t('features.timeline.desc'),
     },
     {
       icon: <Lightbulb className="h-8 w-8 text-pink-600" />,
-      title: "Personalized Guidance",
-      description: "Get AI-powered recommendations tailored to your profile."
+      title: t('features.guidance.title'),
+      description: t('features.guidance.desc'),
     }
   ];
 
   const journeySteps = [
     {
-      step: "Take Quiz",
+      step: t('journey.quiz'),
       icon: <Target className="h-6 w-6" />,
-      description: "Complete our aptitude assessment",
+      description: t('journey.quizDesc'),
       color: "from-blue-500 to-blue-600"
     },
     {
-      step: "Discover Stream",
+      step: t('journey.stream'),
       icon: <Lightbulb className="h-6 w-6" />,
-      description: "Find your ideal subject stream",
+      description: t('journey.streamDesc'),
       color: "from-green-500 to-green-600"
     },
     {
-      step: "Explore Careers",
+      step: t('journey.careers'),
       icon: <TrendingUp className="h-6 w-6" />,
-      description: "Discover exciting career options",
+      description: t('journey.careersDesc'),
       color: "from-purple-500 to-purple-600"
     },
     {
-      step: "Find Colleges",
+      step: t('journey.colleges'),
       icon: <GraduationCap className="h-6 w-6" />,
-      description: "Browse suitable colleges",
+      description: t('journey.collegesDesc'),
       color: "from-orange-500 to-orange-600"
     },
     {
-      step: "Plan Timeline",
+      step: t('journey.timeline'),
       icon: <Calendar className="h-6 w-6" />,
-      description: "Create your success roadmap",
+      description: t('journey.timelineDesc'),
       color: "from-pink-500 to-pink-600"
     }
   ];
 
   const testimonials = [
     {
-      name: "Rahul Kumar",
-      class: "Class 10",
-      text: "Amazing platform! The timeline tracker ensured I never missed any important admission deadlines.",
+      name: t('testimonials.rahul.name'),
+      class: t('testimonials.rahul.class'),
+      text: t('testimonials.rahul.quote'),
       rating: 5,
       image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
     },
     {
-      name: "Ananya Patel",
-      class: "Class 12, Commerce",
-      text: "Found the perfect college for my CA course through their detailed college directory. Highly recommended!",
+      name: t('testimonials.ananya.name'),
+      class: t('testimonials.ananya.class'),
+      text: t('testimonials.ananya.quote'),
       rating: 5,
       image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face"
     },
     {
-      name: "Rohan Mehta",
-      class: "Class 12, Science",
-      text: "The aptitude quiz showed me my strengths and helped me choose Engineering as the right path.",
+      name: t('testimonials.rohan.name'),
+      class: t('testimonials.rohan.class'),
+      text: t('testimonials.rohan.quote'),
       rating: 4,
       image: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=150&h=150&fit=crop&crop=face"
     },
     {
-      name: "Sneha Sharma",
-      class: "Class 10",
-      text: "Before this, I was confused about which stream to take after 10th. Now I feel confident about pursuing Commerce.",
+      name: t('testimonials.sneha.name'),
+      class: t('testimonials.sneha.class'),
+      text: t('testimonials.sneha.quote'),
       rating: 5,
       image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=150&h=150&fit=crop&crop=face"
     },
     {
-      name: "Arjun Nair",
-      class: "Class 12, Arts",
-      text: "This platform helped me explore different career options in Arts, like Journalism and Design, which I didn’t know about earlier.",
+      name: t('testimonials.arjun.name'),
+      class: t('testimonials.arjun.class'),
+      text: t('testimonials.arjun.quote'),
       rating: 5,
       image: "https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?w=150&h=150&fit=crop&crop=face"
     },
     {
-      name: "Priya Verma",
-      class: "Class 12, Science",
-      text: "I discovered government colleges near me with great facilities. The admission timeline reminders were a lifesaver.",
+      name: t('testimonials.priya.name'),
+      class: t('testimonials.priya.class'),
+      text: t('testimonials.priya.quote'),
       rating: 4,
       image: "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?w=150&h=150&fit=crop&crop=face"
     }
@@ -275,13 +277,13 @@ const LandingPage = () => {
                 <Link to="/login">
                   <Button size="lg" className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold px-8 py-4 text-lg rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
                     <Lightbulb className="mr-2 h-5 w-5" />
-                    Take the Quiz
+                    {t('buttons.takeQuiz')}
                   </Button>
                 </Link>
                 <Link to="/colleges">
                   <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-blue-600 px-8 py-4 text-lg rounded-full backdrop-blur-sm bg-white/10">
                     <MapPin className="mr-2 h-5 w-5" />
-                    Explore Colleges
+                    {t('buttons.exploreColleges')}
                   </Button>
                 </Link>
               </div>
@@ -300,10 +302,10 @@ const LandingPage = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4">
-              Unlock Your Potential
+              {t('features.title')}
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Discover the tools that will guide you towards your dream career
+              {t('features.subtitle')}
             </p>
           </motion.div>
 
@@ -356,10 +358,10 @@ const LandingPage = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4">
-              Your Career Journey
+              {t('journey.title')}
             </h2>
             <p className="text-xl text-gray-600">
-              Follow these steps to transform your future
+              {t('journey.step1.description')}
             </p>
           </motion.div>
 
@@ -415,19 +417,19 @@ const LandingPage = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-5xl font-bold mb-4">
-              Why Choose Us?
+              {t('whyUs.title')}
             </h2>
             <p className="text-xl text-blue-100">
-              Trusted by thousands of students and recognized for excellence
+              {t('impact.subheading')}
             </p>
           </motion.div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
             {[
-              { number: `${stats.studentsGuided.toLocaleString()}+`, label: "Students Guided", icon: <Users className="h-8 w-8" /> },
-              { number: `${stats.collegesListed}+`, label: "Govt Colleges Mapped", icon: <GraduationCap className="h-8 w-8" /> },
-                            { number: `${stats.careerPaths}+`, label: "Career Paths", icon: <TrendingUp className="h-8 w-8" /> },
-              { number: `${stats.studyResources}+`, label: "Study Resources", icon: <BookOpen className="h-8 w-8" /> }
+              { number: `${stats.studentsGuided.toLocaleString()}+`, label: t('stats.studentsGuided'), icon: <Users className="h-8 w-8" /> },
+              { number: `${stats.collegesListed}+`, label: t('stats.collegesListed'), icon: <GraduationCap className="h-8 w-8" /> },
+              { number: `${stats.careerPaths}+`, label: t('stats.careerPaths'), icon: <TrendingUp className="h-8 w-8" /> },
+              { number: `${stats.studyResources}+`, label: t('stats.studyResources'), icon: <BookOpen className="h-8 w-8" /> }
             ].map((stat, index) => (
               <motion.div
                 key={index}
@@ -457,15 +459,15 @@ const LandingPage = () => {
           >
             <div className="flex items-center bg-white/10 backdrop-blur-sm rounded-full px-6 py-3">
               <Award className="h-6 w-6 text-yellow-300 mr-3" />
-              <span className="font-semibold">Award Winner</span>
+              <span className="font-semibold">{t('impact.award')}</span>
             </div>
             <div className="flex items-center bg-white/10 backdrop-blur-sm rounded-full px-6 py-3">
               <Shield className="h-6 w-6 text-green-300 mr-3" />
-              <span className="font-semibold">Government Collaboration</span>
+              <span className="font-semibold">{t('impact.collaboration')}</span>
             </div>
             <div className="flex items-center bg-white/10 backdrop-blur-sm rounded-full px-6 py-3">
               <CheckCircle className="h-6 w-6 text-blue-300 mr-3" />
-              <span className="font-semibold">Verified Data</span>
+              <span className="font-semibold">{t('impact.verified')}</span>
             </div>
           </motion.div>
         </div>
@@ -481,10 +483,10 @@ const LandingPage = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4">
-              Success Stories
+              {t('testimonials.heading')}
             </h2>
             <p className="text-xl text-gray-600">
-              Real students, real transformations
+              {t('testimonials.subheading')}
             </p>
           </motion.div>
 
@@ -560,41 +562,41 @@ const LandingPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
-              <h3 className="text-xl font-bold mb-4">Career & Education Advisor</h3>
+              <h3 className="text-xl font-bold mb-4">{t('scenarioBuilderTitle')}</h3>
               <p className="text-gray-400">
-                Empowering students to make informed decisions about their future through personalized guidance and comprehensive resources.
+                {t('footer.description')}
               </p>
             </div>
 
             <div>
-              <h4 className="font-semibold mb-4">Quick Links</h4>
+              <h4 className="font-semibold mb-4">{t('footer.quickLinks')}</h4>
               <ul className="space-y-2 text-gray-400">
-                <li><Link to="/quiz" className="hover:text-white">Career Quiz</Link></li>
-                <li><Link to="/colleges" className="hover:text-white">Colleges</Link></li>
-                <li><Link to="/content" className="hover:text-white">Study Materials</Link></li>
-                <li><Link to="/timeline" className="hover:text-white">Timeline</Link></li>
+                <li><Link to="/quiz" className="hover:text-white">{t('footer.careerQuiz')}</Link></li>
+                <li><Link to="/colleges" className="hover:text-white">{t('footer.colleges')}</Link></li>
+                <li><Link to="/content" className="hover:text-white">{t('footer.studyMaterials')}</Link></li>
+                <li><Link to="/timeline" className="hover:text-white">{t('footer.timeline')}</Link></li>
               </ul>
             </div>
 
             <div>
-              <h4 className="font-semibold mb-4">Resources</h4>
+              <h4 className="font-semibold mb-4">{t('footer.resources')}</h4>
               <ul className="space-y-2 text-gray-400">
-                <li><Link to="/recommendations" className="hover:text-white">Recommendations</Link></li>
-                <li><Link to="/profile" className="hover:text-white">Profile</Link></li>
-                <li><Link to="/bookmarks" className="hover:text-white">Saved Items</Link></li>
+                <li><Link to="/recommendations" className="hover:text-white">{t('footer.recommendations')}</Link></li>
+                <li><Link to="/profile" className="hover:text-white">{t('footer.profile')}</Link></li>
+                <li><Link to="/bookmarks" className="hover:text-white">{t('footer.savedItems')}</Link></li>
               </ul>
             </div>
 
             <div>
-              <h4 className="font-semibold mb-4">Contact</h4>
+              <h4 className="font-semibold mb-4">{t('footer.contact')}</h4>
               <p className="text-gray-400">
-                Have questions? We&apos;re here to help you on your career journey.
+                {t('footer.contactDesc')}
               </p>
             </div>
           </div>
 
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 Career & Education Advisor. All rights reserved.</p>
+            <p>{t('footer.copyright')}</p>
           </div>
         </div>
       </footer>

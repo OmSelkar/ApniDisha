@@ -1,15 +1,14 @@
-// QuizPage.jsx
 import React, { useEffect, useState, Suspense, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Card, CardHeader, CardContent, CardTitle } from "../ui/card";
 import { Button } from "../ui/button";
 import { Progress } from "../ui/progress";
-import { ArrowLeft, ArrowRight, CheckCircle, Clock, Trophy, Star } from "lucide-react";
+import { ArrowLeft, ArrowRight, CheckCircle, Clock, Trophy, Loader2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Confetti from "react-dom-confetti";
 
 /**
- * QuizPage with validation (Remark 1)
+ * QuizPage with validation
  * - Validates question fixtures on mount
  * - Renders fallback message when data invalid
  * - Prevents navigation/submit when current question unanswered or answer invalid
@@ -18,7 +17,7 @@ import Confetti from "react-dom-confetti";
 /* -------------------------
    Mock quiz questions (fixtures)
    ------------------------- */
-  const MOCK_QUESTIONS = [
+const MOCK_QUESTIONS = [
   { id: "q1", section: "Interests", text: "How much do you enjoy solving logical or scientific problems?", type: "likert", icon: "🧠" },
   { id: "q2", section: "Interests", text: "How interested are you in creative/artistic activities?", type: "likert", icon: "🎨" },
   { id: "q3", section: "Aptitude", text: "How comfortable are you with numbers and calculations?", type: "likert", icon: "🔢" },
@@ -107,6 +106,7 @@ const QuizPage = () => {
   // Internal validated questions state
   const [questions, setQuestions] = useState([]);
   const [validationError, setValidationError] = useState("");
+  const [loading, setLoading] = useState(true);
 
   // Quiz progress & answers
   const [current, setCurrent] = useState(0);
@@ -115,7 +115,7 @@ const QuizPage = () => {
   const [showConfetti, setShowConfetti] = useState(false);
   const [error, setError] = useState("");
 
-  // Chat / mentor states (kept from original)
+  // Chat / mentor states
   const [chatOpen, setChatOpen] = useState(false);
   const [messages, setMessages] = useState([
     { from: "bot", text: "👋 Hi! I’m your assistant. Ask me about courses, exams, or colleges." },
@@ -125,47 +125,28 @@ const QuizPage = () => {
   const chatEndRef = useRef(null);
   const focusErrorRef = useRef(null);
 
-  // ensure scroll to latest chat message
+  // Ensure scroll to latest chat message
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
   /* -------------------------
-     Validate fixture data (Remark 1)
-     - ensure non-empty array
-     - each question must have required fields:
+     Validate fixture data
+     - Ensure non-empty array
+     - Each question must have required fields:
        id (string), text (string), type (likert|choice), icon optional
-     - for 'choice' type: options must be non-empty array
+     - For 'choice' type: options must be non-empty array
   ------------------------- */
   useEffect(() => {
+    setLoading(true);
     const errors = [];
     if (!Array.isArray(MOCK_QUESTIONS) || MOCK_QUESTIONS.length === 0) {
       setValidationError("Quiz data is unavailable. Please try again later.");
       setQuestions([]);
+      setLoading(false);
       return;
     }
 
-    const validated = [];
-    MOCK_QUESTIONS.forEach((q, idx) => {
-      const ctx = `question[index=${idx}]`;
-      if (!q || typeof q !== "object") {
-        errors.push(`${ctx}: invalid object`);
-        return;
-      }
-      if (!q.id || typeof q.id !== "string") errors.push(`${ctx}: missing or invalid id`);
-      if (!q.text || typeof q.text !== "string") errors.push(`${ctx}: missing or invalid text`);
-      if (!q.type || (q.type !== "likert" && q.type !== "choice")) errors.push(`${ctx}: missing or invalid type`);
-      if (q.type === "choice") {
-        if (!Array.isArray(q.options) || q.options.length === 0) errors.push(`${ctx}: 'choice' type requires non-empty options`);
-      }
-      // if all required checks ok, push to validated
-      if (errors.length === 0 || errors[errors.length - 1]?.startsWith(ctx) === false) {
-        // this line ensures we don't push duplicates; simpler approach: push if no error for this idx
-      }
-    });
-
-    // To get per-question error detection and still return valid questions, do second pass:
-    const perQuestionErrors = [];
     const validQuestions = MOCK_QUESTIONS.filter((q, idx) => {
       const localErrs = [];
       if (!q || typeof q !== "object") {
@@ -177,36 +158,30 @@ const QuizPage = () => {
         if (q.type === "choice" && (!Array.isArray(q.options) || q.options.length === 0)) localErrs.push("choice type requires options");
       }
       if (localErrs.length) {
-        perQuestionErrors.push({ index: idx, id: q?.id || `#${idx}`, errors: localErrs });
+        console.warn(`Question ${q?.id || `#${idx}`} invalid: ${localErrs.join(", ")}`);
         return false;
       }
       return true;
     });
 
-    if (perQuestionErrors.length) {
-      // build readable message but keep valid questions available to user
-      const summary = perQuestionErrors
-        .map((p) => `Question ${p.id} invalid: ${p.errors.join(", ")}`)
-        .slice(0, 5)
-        .join(" | ");
-      setValidationError(`Some questions have invalid data: ${summary}. The quiz will run with validated questions only.`);
-      if (validQuestions.length === 0) {
-        setValidationError("All quiz questions are invalid. Please contact the administrator.");
-      }
+    if (validQuestions.length === 0) {
+      setValidationError("All quiz questions are invalid. Please contact the administrator.");
+    } else if (validQuestions.length < MOCK_QUESTIONS.length) {
+      setValidationError("Some questions have invalid data. The quiz will run with validated questions only.");
     } else {
       setValidationError("");
     }
 
     setQuestions(validQuestions);
-    // reset state when question set changes
     setCurrent(0);
     setAnswers({});
     setPoints(0);
     setShowConfetti(false);
+    setLoading(false);
   }, []);
 
   /* -------------------------
-     Chat helpers (unchanged)
+     Chat helpers
   ------------------------- */
   const handleSend = () => {
     if (!input.trim()) return;
@@ -232,14 +207,14 @@ const QuizPage = () => {
   };
 
   /* -------------------------
-     Helpers and safe guards
+     Helpers and safeguards
   ------------------------- */
   const safeLength = questions.length || 0;
   const answeredCount = Object.keys(answers).length;
   const progress = safeLength === 0 ? 0 : Math.round((answeredCount / safeLength) * 100);
   const q = questions[current];
 
-  // validate incoming answer depending on question type
+  // Validate incoming answer depending on question type
   const validateAnswerValue = (question, value) => {
     if (!question) return false;
     if (question.type === "likert") {
@@ -256,19 +231,17 @@ const QuizPage = () => {
     const question = questions.find((qq) => qq.id === qid);
     if (!validateAnswerValue(question, value)) {
       setError("Selected value is invalid for this question.");
-      // focus error region
       setTimeout(() => focusErrorRef.current?.focus?.(), 0);
       return;
     }
     setAnswers((prev) => ({ ...prev, [qid]: value }));
-    // award points only if this is first time answering this qid
     setPoints((prev) => (prev + (prevAnswersHas(qid) ? 0 : 10)));
     setError("");
   };
 
   const prevAnswersHas = (qid) => Object.prototype.hasOwnProperty.call(answers, qid);
 
-  // navigation with validation
+  // Navigation with validation
   const next = () => {
     if (!q) {
       setError("Question not found. Can't proceed.");
@@ -299,16 +272,33 @@ const QuizPage = () => {
       return;
     }
     setError("");
+    setLoading(true);
     setShowConfetti(true);
+
     setTimeout(() => {
       try {
-        // In a real app you'd POST answers to backend and receive attempt id
         navigate("/quiz/results/demo-attempt");
       } catch (err) {
         setValidationError("Failed to navigate to results. Please try again.");
+      } finally {
+        setLoading(false);
       }
     }, 1200);
   };
+
+  /* -------------------------
+     Render loading state
+  ------------------------- */
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center" role="status" aria-live="polite">
+          <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4 text-blue-600" />
+          <p className="text-gray-600">Loading the Result</p>
+        </div>
+      </div>
+    );
+  }
 
   /* -------------------------
      Render fallback when validation fails completely
@@ -317,10 +307,10 @@ const QuizPage = () => {
     return (
       <div className="min-h-screen bg-gray-50 py-8 px-4">
         <div className="max-w-4xl mx-auto text-center py-24">
-          <h2 className="text-2xl font-bold text-red-600 mb-4">Quiz unavailable</h2>
+          <h2 className="text-2xl font-bold text-red-600 mb-4">Quiz Unavailable</h2>
           <p className="text-gray-700 mb-6">{validationError}</p>
           <Button onClick={() => navigate("/quiz")} className="px-6 py-3">
-            Go back to quizzes
+            Go Back to Quizzes
           </Button>
         </div>
       </div>
@@ -341,7 +331,7 @@ const QuizPage = () => {
             </Button>
             <div className="flex items-center gap-3 text-sm text-gray-700">
               <Clock className="h-4 w-4" />
-              <span>Estimated time: {Math.max(1, Math.round((safeLength * 1.5) || 8))}–{Math.max(2, Math.round((safeLength * 2) || 12))} mins</span>
+              <span>Estimated time: {Math.max(1, Math.round(safeLength * 1.5) || 8)}–{Math.max(2, Math.round(safeLength * 2) || 12)} mins</span>
             </div>
           </div>
 
@@ -376,7 +366,7 @@ const QuizPage = () => {
           {/* If no questions after partial validation */}
           {!q ? (
             <Card className="mb-6 rounded-xl shadow-md p-8 text-center">
-              <h3 className="text-lg font-semibold mb-2">No valid questions</h3>
+              <h3 className="text-lg font-semibold mb-2">No Valid Questions</h3>
               <p className="text-gray-600">This quiz currently does not contain valid questions. Try another assessment.</p>
             </Card>
           ) : (
@@ -440,7 +430,7 @@ const QuizPage = () => {
             </AnimatePresence>
           )}
 
-          {/* inline error message */}
+          {/* Inline error message */}
           {(error || validationError) && (
             <div
               ref={focusErrorRef}
@@ -584,7 +574,7 @@ const QuizPage = () => {
               transition={{ delay: 0.7 }}
             >
               <Card className="p-4 rounded-xl shadow-md bg-gradient-to-br from-green-50 to-blue-50">
-                <h5 className="font-bold mb-3 text-gray-800">📊 Your Progress</h5>
+                <h5 className="font-bold mb-3 text-gray-800">Your Progress</h5>
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
                     <span>Questions Answered</span>
