@@ -35,6 +35,7 @@ import AdminContent from "./components/admin/AdminContent";
 import AdminCareerGraph from "./components/admin/AdminCareerGraph";
 import AdminAnalytics from "./components/admin/AdminAnalytics";
 import QuizList from "./components/quiz/QuizList";
+import { LanguageProvider } from "./components/context/LanguageContext";
 
 // Simple fallback component for unmatched routes
 const NotFound = () => (
@@ -269,9 +270,9 @@ const appRouter = createBrowserRouter([
 
 function App() {
   return (
-    <div>
+    <LanguageProvider>
       <RouterProvider router={appRouter} />
-    </div>
+    </LanguageProvider>
   );
 }
 

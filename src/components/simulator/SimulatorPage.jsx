@@ -10,63 +10,62 @@ import i18n from '../../i18n' // Import to initialize
    Fixtures
    ---------------------- */
 const STREAMS = [
-  { id: "arts", label: { en: "Arts", hi: "आर्ट्स", ur: "آرٹس", dogri: "आर्ट्स", gojri: "آर्टس", pahari: "आर्ट्स" } },
-  { id: "science", label: { en: "Science", hi: "साइंस", ur: "سائنس", dogri: "साइंस", gojri: "سائنس", pahari: "साइंस" } },
-  { id: "commerce", label: { en: "Commerce", hi: "कॉमर्स", ur: "کامرس", dogri: "कॉमर्स", gojri: "کامرس", pahari: "कॉमर्स" } },
-  { id: "vocational", label: { en: "Vocational", hi: "वोकेशनल", ur: "ووکیشنل", dogri: "वोकेशनल", gojri: "ووکیشنل", pahari: "वोकेशनल" } },
+  { id: "arts", label: { en: "Arts", hi: "आर्ट्स", ur: "آرٹس", dogri: "आर्ट्स", gojri: "آرٹس", pahari: "आर्ट्स", mi: "कला" } },
+  { id: "science", label: { en: "Science", hi: "साइंस", ur: "سائنس", dogri: "साइंस", gojri: "سائنس", pahari: "साइंस", mi: "विज्ञान" } },
+  { id: "commerce", label: { en: "Commerce", hi: "कॉमर्स", ur: "کامرس", dogri: "कॉमर्स", gojri: "کامرس", pahari: "कॉमर्स", mi: "वाणिज्य" } },
+  { id: "vocational", label: { en: "Vocational", hi: "वोकेशनल", ur: "ووکیشنل", dogri: "वोकेशनल", gojri: "ووکیشنل", pahari: "वोकेशनल", mi: "व्यावसायिक" } },
 ];
 
 const COURSES = {
   arts: [
-    { id: "ba", label: { en: "B.A.", hi: "बी.ए.", ur: "بی. اے.", dogri: "बी.ए.", gojri: "بی. اے.", pahari: "बी.ए." } },
-    { id: "bfa", label: { en: "B.F.A.", hi: "बी.एफ.ए.", ur: "بی. ایف. اے.", dogri: "बी.एफ.ए.", gojri: "بی. ایف. اے.", pahari: "बी.एफ.ए." } },
+    { id: "ba", label: { en: "B.A.", hi: "बी.ए.", ur: "بی. اے.", dogri: "बी.ए.", gojri: "بی. اے.", pahari: "बी.ए.", mi: "बी.ए." } },
+    { id: "bfa", label: { en: "B.F.A.", hi: "बी.एफ.ए.", ur: "بی. ایف. اے.", dogri: "बी.एफ.ए.", gojri: "بی. ایف. اے.", pahari: "बी.एफ.ए.", mi: "बी.एफ.ए." } },
   ],
   science: [
-    { id: "bsc", label: { en: "B.Sc.", hi: "बी.एससी.", ur: "بی. ایس سی.", dogri: "बी.एससी.", gojri: "بی. ایس سی.", pahari: "बी.एससी." } },
-    { id: "btech", label: { en: "B.Tech", hi: "बी.टेक", ur: "بی. ٹیک", dogri: "बी.टेक", gojri: "بی. ٹیک", pahari: "बी.टेक" } },
+    { id: "bsc", label: { en: "B.Sc.", hi: "बी.एससी.", ur: "بی. ایس سی.", dogri: "बी.एससी.", gojri: "بی. ایس سی.", pahari: "बी.एससी.", mi: "बी.एस्सी." } },
+    { id: "btech", label: { en: "B.Tech", hi: "बी.टेक", ur: "بی. ٹیک", dogri: "बी.टेक", gojri: "بی. ٹیک", pahari: "बी.टेक", mi: "बी.टेक" } },
   ],
   commerce: [
-    { id: "bcom", label: { en: "B.Com.", hi: "बी.कॉम.", ur: "بی. کام.", dogri: "बी.कॉम.", gojri: "بی. کام.", pahari: "बी.कॉम." } },
-    { id: "bba", label: { en: "B.B.A.", hi: "बी.बी.ए.", ur: "بی. بی. اے.", dogri: "बी.बी.ए.", gojri: "بی. بی. اے.", pahari: "बी.बी.ए." } },
+    { id: "bcom", label: { en: "B.Com.", hi: "बी.कॉम.", ur: "بی. کام.", dogri: "बी.कॉम.", gojri: "بی. کام.", pahari: "बी.कॉम.", mi: "बी.कॉम." } },
+    { id: "bba", label: { en: "B.B.A.", hi: "बी.बी.ए.", ur: "بی. بی. اے.", dogri: "बी.बी.ए.", gojri: "بی. بی. اے.", pahari: "बी.बी.ए.", mi: "बी.बी.ए." } },
   ],
   vocational: [
-    { id: "diploma", label: { en: "Diploma", hi: "डिप्लोमा", ur: "ڈپلومہ", dogri: "डिप्लोमा", gojri: "ڈپلومہ", pahari: "डिप्लोमा" } },
-    { id: "certificate", label: { en: "Certificate Course", hi: "सर्टिफिकेट कोर्स", ur: "سرٹیفکیٹ کورس", dogri: "सर्टिफिकेट कोर्स", gojri: "سرٹیفکیٹ کورس", pahari: "सर्टिफिकेट कोर्स" } },
+    { id: "diploma", label: { en: "Diploma", hi: "डिप्लोमा", ur: "ڈپلومہ", dogri: "डिप्लोमा", gojri: "ڈپلومہ", pahari: "डिप्लोमा", mi: "डिप्लोमा" } },
+    { id: "certificate", label: { en: "Certificate Course", hi: "सर्टिफिकेट कोर्स", ur: "سرٹیفکیٹ کورس", dogri: "सर्टिफिकेट कोर्स", gojri: "سرٹیفکیٹ کورس", pahari: "सर्टिफिकेट कोर्स", mi: "प्रमाणपत्र अभ्यासक्रम" } },
   ],
 };
 
 const COLLEGE_TYPES = [
-  { id: "govt", label: { en: "Government", hi: "सरकारी", ur: "حکومتی", dogri: "सरकारी", gojri: "حکومتی", pahari: "सरकारी" } },
-  { id: "private", label: { en: "Private", hi: "निजी", ur: "نجی", dogri: "निजी", gojri: "نجی", pahari: "निजी" } },
+  { id: "govt", label: { en: "Government", hi: "सरकारी", ur: "حکومتی", dogri: "सरकारी", gojri: "حکومتی", pahari: "सरकारी", mi: "सरकारी" } },
+  { id: "private", label: { en: "Private", hi: "निजी", ur: "نجی", dogri: "निजी", gojri: "نجی", pahari: "निजी", mi: "खाजगी" } },
 ];
 
 const COLLEGES = {
   govt: [
-    { id: "govt1", label: { en: "Govt College A", hi: "सरकारी कॉलेज ए", ur: "حکومتی کالج اے", dogri: "सरकारी कॉलेज ए", gojri: "حکومتی کالج اے", pahari: "सरकारी कॉलेज ए" }, location: "Delhi" },
-    { id: "govt2", label: { en: "Govt College B", hi: "सरकारी कॉलेज बी", ur: "حکومتی کالج بی", dogri: "सरकारी कॉलेज बी", gojri: "حکومتی کالج بی", pahari: "सरकारी कॉलेज बी" }, location: "Mumbai" },
+    { id: "govt1", label: { en: "Govt College A", hi: "सरकारी कॉलेज ए", ur: "حکومتی کالج اے", dogri: "सरकारी कॉलेज ए", gojri: "حکومتی کالج اے", pahari: "सरकारी कॉलेज ए", mi: "सरकारी महाविद्यालय ए" }, location: "दिल्ली" },
+    { id: "govt2", label: { en: "Govt College B", hi: "सरकारी कॉलेज बी", ur: "حکومتی کالج بی", dogri: "सरकारी कॉलेज बी", gojri: "حکومتی کالج بی", pahari: "सरकारी कॉलेज बी", mi: "सरकारी महाविद्यालय बी" }, location: "मुंबई" },
   ],
   private: [
-    { id: "priv1", label: { en: "Private College X", hi: "निजी कॉलेज एक्स", ur: "نجی کالج ایکس", dogri: "निजी कॉलेज एक्स", gojri: "نجی کالج ایکس", pahari: "निजी कॉलेज एक्स" }, location: "Bengaluru" },
-    { id: "priv2", label: { en: "Private College Y", hi: "निजी कॉलेज वाई", ur: "نجی کالج وائی", dogri: "निजी कॉलेज वाई", gojri: "نجی کالج وائی", pahari: "निजी कॉलेज वाई" }, location: "Chennai" },
+    { id: "priv1", label: { en: "Private College X", hi: "निजी कॉलेज एक्स", ur: "نجی کالج ایکس", dogri: "निजी कॉलेज एक्स", gojri: "نجی کالج ایکس", pahari: "निजी कॉलेज एक्स", mi: "खाजगी महाविद्यालय एक्स" }, location: "बेंगलुरू" },
+    { id: "priv2", label: { en: "Private College Y", hi: "निजी कॉलेज वाई", ur: "نجی کالج وائی", dogri: "निजी कॉलेज वाई", gojri: "نجی کالج وائی", pahari: "निजी कॉलेज वाई", mi: "खाजगी महाविद्यालय वाई" }, location: "चेन्नई" },
   ],
 };
 
 const SKILLS = [
-  { id: "communication", label: { en: "Communication", hi: "संचार", ur: "مواصلات", dogri: "संचार", gojri: "مواصلات", pahari: "संचार" } },
-  { id: "coding", label: { en: "Coding", hi: "कोडिंग", ur: "کوڈنگ", dogri: "कोडिंग", gojri: "کوڈنگ", pahari: "कोडिंग" } },
-  { id: "management", label: { en: "Management", hi: "प्रबंधन", ur: "مینجمنٹ", dogri: "प्रबंधन", gojri: "مینجمنٹ", pahari: "प्रबंधन" } },
+  { id: "communication", label: { en: "Communication", hi: "संचार", ur: "مواصلات", dogri: "संचार", gojri: "مواصلات", pahari: "संचार", mi: "संनाद" } },
+  { id: "coding", label: { en: "Coding", hi: "कोडिंग", ur: "کوڈنگ", dogri: "कोडिंग", gojri: "کوڈنگ", pahari: "कोडिंग", mi: "कोडिंग" } },
+  { id: "management", label: { en: "Management", hi: "प्रबंधन", ur: "مینجمنٹ", dogri: "प्रबंधन", gojri: "مینجمنٹ", pahari: "प्रबंधन", mi: "व्यवस्थापन" } },
 ];
 
 const UPSKILLS = [
-  { id: "cert1", label: { en: "Certification 1", hi: "प्रमाणपत्र 1", ur: "سرٹیفیکیشن 1", dogri: "प्रमाणपत्र 1", gojri: "سرٹیفیکیشن 1", pahari: "प्रमाणपत्र 1" } },
-  { id: "cert2", label: { en: "Certification 2", hi: "प्रमाणपत्र 2", ur: "سرٹیفیکیشن 2", dogri: "प्रमाणपत्र 2", gojri: "سرٹیفیکیشن 2", pahari: "प्रमाणपत्र 2" } },
+  { id: "cert1", label: { en: "Certification 1", hi: "प्रमाणपत्र 1", ur: "سرٹیفیکیشن 1", dogri: "प्रमाणपत्र 1", gojri: "سرٹیفیکیشن 1", pahari: "प्रमाणपत्र 1", mi: "प्रमाणपत्र १" } },
+  { id: "cert2", label: { en: "Certification 2", hi: "प्रमाणपत्र 2", ur: "سرٹیفیکیشن 2", dogri: "प्रमाणपत्र 2", gojri: "سرٹیفیکیشن 2", pahari: "प्रमाणपत्र 2", mi: "प्रमाणपत्र २" } },
 ];
 
 const SCHOLARSHIPS = [
-  { id: "sch1", label: { en: "Merit Scholarship", hi: "मेरिट छात्रवृत्ति", ur: "میرٹ سکالرشپ", dogri: "मेरिट छात्रवृत्ति", gojri: "میرٹ سکالرشپ", pahari: "मेरिट छात्रवृत्ति" } },
-  { id: "sch2", label: { en: "Need-based Scholarship", hi: "आवश्यकता आधारित छात्रवृत्ति", ur: "ضرورت پر مبنی سکالرشپ", dogri: "आवश्यकता आधारित छात्रवृत्ति", gojri: "ضرورت پر مبنی سکالرشپ", pahari: "आवश्यकता आधारित छात्रवृत्ति" } },
+  { id: "sch1", label: { en: "Merit Scholarship", hi: "मेरिट छात्रवृत्ति", ur: "میرٹ سکالرشپ", dogri: "मेरिट छात्रवृत्ति", gojri: "میرٹ سکالرشپ", pahari: "मेरिट छात्रवृत्ति", mi: "गुणवत्ता शिष्यवृत्ती" } },
+  { id: "sch2", label: { en: "Need-based Scholarship", hi: "आवश्यकता आधारित छात्रवृत्ति", ur: "ضرورت پر مبنی سکالرشپ", dogri: "आवश्यकता आधारित छात्रवृत्ति", gojri: "ضرورت پر مبنی سکالرشپ", pahari: "आवश्यकता आधारित छात्रवृत्ति", mi: "आवश्यकता आधारित शिष्यवृत्ती" } },
 ];
-
 const SAMPLE_SCENARIOS = [
   {
     id: "sc1",

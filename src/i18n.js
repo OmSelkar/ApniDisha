@@ -8,6 +8,7 @@ import ur from './locales/ur/translation.json';
 import dogri from './locales/dogri/translation.json';
 import gojri from './locales/gojri/translation.json';
 import pahari from './locales/pahari/translation.json';
+import mi from './locales/mi/translation.json';
 
 const resources = {
   en: { translation: en },
@@ -16,6 +17,7 @@ const resources = {
   dogri: { translation: dogri },
   gojri: { translation: gojri },
   pahari: { translation: pahari },
+  mi: { translation: mi },
 };
 
 i18n

@@ -156,7 +156,7 @@
       "match": "match",
       "perYear": "per year",
       "jobGrowth": "job growth",
-      "exploreCareeer": "Explore Career"
+      "exploreCareer": "Explore Career"
     },
     "content": {
       "noRecommendations": "No content recommendations",
@@ -249,6 +249,48 @@
           "level": "Undergraduate"
         }
       },
+      "colleges": {
+        "iitDelhi": {
+          "name": "Indian Institute of Technology Delhi",
+          "type": "Government",
+          "location": "New Delhi, Delhi"
+        },
+        "delhiUniversity": {
+          "name": "Delhi University",
+          "type": "Government",
+          "location": "New Delhi, Delhi"
+        },
+        "christUniversity": {
+          "name": "Christ University",
+          "type": "Private",
+          "location": "Bengaluru, Karnataka"
+        },
+        "stXaviers": {
+          "name": "St. Xavier's College",
+          "type": "Private",
+          "location": "Mumbai, Maharashtra"
+        },
+        "aiims": {
+          "name": "All India Institute of Medical Sciences",
+          "type": "Government",
+          "location": "New Delhi, Delhi"
+        },
+        "nlsiu": {
+          "name": "National Law School of India University",
+          "type": "Government",
+          "location": "Bengaluru, Karnataka"
+        },
+        "bhu": {
+          "name": "Banaras Hindu University",
+          "type": "Government",
+          "location": "Varanasi, Uttar Pradesh"
+        },
+        "symbiosis": {
+          "name": "Symbiosis International University",
+          "type": "Private",
+          "location": "Pune, Maharashtra"
+        }
+      },
       "careers": {
         "softwareEngineer": {
           "title": "Software Engineer",
@@ -339,9 +381,93 @@
           "title": "Data Science Bootcamp",
           "description": "Hands-on projects in Python, ML, and AI",
           "type": "Course"
-        }
+        } 
       }
     }
   }
-  
+  ,
+  "hero": {
+    "slide1": { "title": "Confused about your future?", "subtitle": "Discover the right subject stream and career path tailored to your interests" },
+    "slide2": { "title": "Explore Government Colleges Near You", "subtitle": "Find course details, eligibility, and facilities at government colleges" },
+    "slide3": { "title": "Map Your Career Journey", "subtitle": "Explore degrees and the careers they unlock" },
+    "slide4": { "title": "Personalized Guidance Powered by AI", "subtitle": "Personalized picks for courses, colleges, and study materials" }
+  },
+  "buttons": { "takeQuiz": "Take the Quiz", "exploreColleges": "Explore Colleges", "browseResources": "Browse Resources", "getStarted": "Get Started Now" },
+  "features": {
+    "title": "Unlock Your Potential", "subtitle": "Discover the tools that will guide you towards your dream career",
+    "quiz": { "title": "Aptitude & Interest Quiz", "desc": "Discover your strengths and interests with our comprehensive assessment." },
+    "path": { "title": "Career Pathway Mapping", "desc": "Visualize your career journey with interactive pathway maps." },
+    "colleges": { "title": "Government Colleges Directory", "desc": "Explore 500+ government colleges with detailed program information." },
+    "timeline": { "title": "Timeline Tracker", "desc": "Stay on track with personalized timelines for admissions and exams." },
+    "guidance": { "title": "Personalized Guidance", "desc": "Get AI-powered recommendations tailored to your profile." }
+  },
+  "journey": {
+    "title": "Your Journey Starts Here",
+    "step1": { "description": "Begin your personalized career discovery" },
+    "quiz": "Take Quiz", "quizDesc": "Complete our aptitude assessment",
+    "stream": "Discover Stream", "streamDesc": "Find your ideal subject stream",
+    "careers": "Explore Careers", "careersDesc": "Discover exciting career options",
+    "colleges": "Find Colleges", "collegesDesc": "Browse suitable colleges",
+    "timeline": "Plan Timeline", "timelineDesc": "Create your success roadmap"
+  },
+  "stats": {
+    "studentsGuided": "Students Guided",
+    "collegesListed": "Colleges Listed",
+    "careerPaths": "Career Paths",
+    "studyResources": "Study Resources"
+  },
+  "resources": {
+    "title": "Curated Study Resources",
+    "subtitle": "Access high-quality, subject-specific study materials to excel in your chosen stream",
+    "browse": "Browse Resources"
+  },
+  "whyUs": {
+    "title": "Why Choose Us?",
+    "aiInsights": { "title": "AI-Powered Insights", "desc": "Get recommendations based on advanced algorithms and real-time data." },
+    "govFocus": { "title": "Government-Focused", "desc": "Exclusive directory of government colleges and programs." },
+    "freeAccess": { "title": "Completely Free", "desc": "All our tools and resources are free for every student." },
+    "expertCurated": { "title": "Expert Curated", "desc": "Content verified by education experts and counselors." }
+  },
+  "impact": {
+    "heading": "Our Impact",
+    "subheading": "See how we're making a difference in students' lives",
+    "students": "Students Guided",
+    "colleges": "Colleges Listed",
+    "careers": "Career Paths Explored",
+    "resources": "Resources Available",
+    "award": "Award-Winning Platform",
+    "collaboration": "Government Collaboration",
+    "verified": "Verified Content"
+  },
+  "testimonials": {
+    "title": "What Students Say",
+    "heading": "What Students Say",
+    "subheading": "Hear from our successful users",
+    "rahul": { "quote": "Amazing platform! The timeline tracker ensured I never missed any important admission deadlines.", "name": "Rahul Sharma", "class": "Class 12 Student" },
+    "ananya": { "quote": "Found the perfect college for my CA course through their detailed college directory. Highly recommended!", "name": "Ananya Patel", "class": "Commerce Graduate" },
+    "rohan": { "quote": "The AI recommendations were spot on! Helped me choose between engineering branches.", "name": "Rohan Mehta", "class": "Class 12, Science" },
+    "sneha": { "quote": "Thanks to the study resources, I aced my board exams. Great platform!", "name": "Sneha Sharma", "class": "Class 10" },
+    "arjun": { "quote": "Discovered my interest in arts through the quiz. Now pursuing my passion!", "name": "Arjun Nair", "class": "Class 12, Arts" },
+    "priya": { "quote": "The career quiz helped me discover my passion for environmental science. Now I'm pursuing my dream course!", "name": "Priya Singh", "class": "Science Student" },
+    "vikram": { "quote": "Excellent resources for JEE preparation. The personalized timeline kept me organized throughout.", "name": "Vikram Reddy", "class": "Engineering Aspirant" }
+  },
+  "cta": {
+    "title": "Ready to Start Your Journey?",
+    "subtitle": "Take our free career assessment quiz and unlock your potential today."
+  },
+  "footer": {
+    "description": "Empowering students to make informed decisions about their future through personalized guidance and comprehensive resources.",
+    "quickLinks": "Quick Links",
+    "careerQuiz": "Career Quiz",
+    "colleges": "Colleges",
+    "studyMaterials": "Study Materials",
+    "timeline": "Timeline",
+    "resources": "Resources",
+    "recommendations": "Recommendations",
+    "profile": "Profile",
+    "savedItems": "Saved Items",
+    "contact": "Contact",
+    "contactDesc": "Have questions? We're here to help you on your career journey.",
+    "copyright": "© 2024 Career & Education Advisor. All rights reserved."
+  }
 }

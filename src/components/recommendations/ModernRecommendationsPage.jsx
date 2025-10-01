@@ -20,9 +20,10 @@ import {
   Loader2,
 } from "lucide-react"
 import { recommendationsAPI } from "../../services/api"
+import "../../i18n" // Import centralized i18n config
 
 const ModernRecommendationsPage = () => {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const [recommendations, setRecommendations] = useState({
     streams: [],
     degrees: [],
@@ -35,14 +36,12 @@ const ModernRecommendationsPage = () => {
 
   useEffect(() => {
     fetchRecommendations()
-  }, [])
+  }, [i18n.language])
 
   const fetchRecommendations = async () => {
     try {
       setLoading(true)
-
       try {
-        // Try to get personalized recommendations (requires auth)
         const response = await recommendationsAPI.getPersonalized()
         const recoData = response.data.data || response.data.recommendations || {}
 
@@ -54,7 +53,6 @@ const ModernRecommendationsPage = () => {
           content: recoData.content || [],
         })
       } catch {
-        // User not authenticated - show sample recommendations
         console.log("User not authenticated - showing sample recommendations")
         setRecommendations({
           streams: [
@@ -115,7 +113,6 @@ const ModernRecommendationsPage = () => {
               category: t("recommendations_1.sampleData.streams.agriculture.category"),
             },
           ],
-
           degrees: [
             {
               _id: "1",
@@ -190,82 +187,80 @@ const ModernRecommendationsPage = () => {
               averageFee: 250000,
             },
           ],
-
           colleges: [
             {
               _id: "1",
-              name: "Indian Institute of Technology Delhi",
-              type: "Government",
+              name: t("recommendations_1.sampleData.colleges.iitDelhi.name"),
+              type: t("recommendations_1.sampleData.colleges.iitDelhi.type"),
+              location: t("recommendations_1.sampleData.colleges.iitDelhi.location"),
               rating: 4.8,
-              location: "New Delhi, Delhi",
               studentsCount: 8000,
               averageFee: 200000,
             },
             {
               _id: "2",
-              name: "Delhi University",
-              type: "Government",
+              name: t("recommendations_1.sampleData.colleges.delhiUniversity.name"),
+              type: t("recommendations_1.sampleData.colleges.delhiUniversity.type"),
+              location: t("recommendations_1.sampleData.colleges.delhiUniversity.location"),
               rating: 4.6,
-              location: "New Delhi, Delhi",
               studentsCount: 200000,
               averageFee: 60000,
             },
             {
               _id: "3",
-              name: "Christ University",
-              type: "Private",
+              name: t("recommendations_1.sampleData.colleges.christUniversity.name"),
+              type: t("recommendations_1.sampleData.colleges.christUniversity.type"),
+              location: t("recommendations_1.sampleData.colleges.christUniversity.location"),
               rating: 4.4,
-              location: "Bengaluru, Karnataka",
               studentsCount: 25000,
               averageFee: 180000,
             },
             {
               _id: "4",
-              name: "St. Xavier's College",
-              type: "Private",
+              name: t("recommendations_1.sampleData.colleges.stXaviers.name"),
+              type: t("recommendations_1.sampleData.colleges.stXaviers.type"),
+              location: t("recommendations_1.sampleData.colleges.stXaviers.location"),
               rating: 4.5,
-              location: "Mumbai, Maharashtra",
               studentsCount: 5000,
               averageFee: 120000,
             },
             {
               _id: "5",
-              name: "All India Institute of Medical Sciences",
-              type: "Government",
+              name: t("recommendations_1.sampleData.colleges.aiims.name"),
+              type: t("recommendations_1.sampleData.colleges.aiims.type"),
+              location: t("recommendations_1.sampleData.colleges.aiims.location"),
               rating: 4.9,
-              location: "New Delhi, Delhi",
               studentsCount: 15000,
               averageFee: 300000,
             },
             {
               _id: "6",
-              name: "National Law School of India University",
-              type: "Government",
+              name: t("recommendations_1.sampleData.colleges.nlsiu.name"),
+              type: t("recommendations_1.sampleData.colleges.nlsiu.type"),
+              location: t("recommendations_1.sampleData.colleges.nlsiu.location"),
               rating: 4.7,
-              location: "Bengaluru, Karnataka",
               studentsCount: 2000,
               averageFee: 250000,
             },
             {
               _id: "7",
-              name: "Banaras Hindu University",
-              type: "Government",
+              name: t("recommendations_1.sampleData.colleges.bhu.name"),
+              type: t("recommendations_1.sampleData.colleges.bhu.type"),
+              location: t("recommendations_1.sampleData.colleges.bhu.location"),
               rating: 4.6,
-              location: "Varanasi, Uttar Pradesh",
               studentsCount: 30000,
               averageFee: 100000,
             },
             {
               _id: "8",
-              name: "Symbiosis International University",
-              type: "Private",
+              name: t("recommendations_1.sampleData.colleges.symbiosis.name"),
+              type: t("recommendations_1.sampleData.colleges.symbiosis.type"),
+              location: t("recommendations_1.sampleData.colleges.symbiosis.location"),
               rating: 4.3,
-              location: "Pune, Maharashtra",
               studentsCount: 18000,
               averageFee: 200000,
             },
           ],
-
           careers: [
             {
               _id: "1",
@@ -340,7 +335,6 @@ const ModernRecommendationsPage = () => {
               growthRate: t("recommendations_1.sampleData.careers.dataScientist.growthRate"),
             },
           ],
-
           content: [
             {
               _id: "1",
@@ -439,13 +433,11 @@ const ModernRecommendationsPage = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">{t("recommendations_1.title")}</h1>
           <p className="text-lg text-gray-600">{t("recommendations_1.subtitle")}</p>
         </div>
 
-        {/* Tabs */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <TabsList className="grid w-full grid-cols-5 mb-8">
             <TabsTrigger value="streams" className="flex items-center gap-2">
@@ -470,7 +462,6 @@ const ModernRecommendationsPage = () => {
             </TabsTrigger>
           </TabsList>
 
-          {/* Streams Tab */}
           <TabsContent value="streams">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {recommendations.streams.length === 0 ? (
@@ -505,15 +496,11 @@ const ModernRecommendationsPage = () => {
                       <div className="space-y-2 mb-4">
                         <div className="flex items-center text-sm text-gray-500">
                           <Users className="h-4 w-4 mr-2" />
-                          <span>
-                            {stream.popularity} {t("recommendations_1.streams.studentsEnrolled")}
-                          </span>
+                          <span>{t("recommendations_1.streams.studentsEnrolled")}</span>
                         </div>
                         <div className="flex items-center text-sm text-gray-500">
                           <TrendingUp className="h-4 w-4 mr-2" />
-                          <span>
-                            {stream.growthRate}% {t("recommendations_1.streams.jobGrowth")}
-                          </span>
+                          <span>{t("recommendations_1.streams.jobGrowth")}</span>
                         </div>
                       </div>
                       <Button className="w-full bg-transparent" variant="outline">
@@ -527,7 +514,6 @@ const ModernRecommendationsPage = () => {
             </div>
           </TabsContent>
 
-          {/* Degrees Tab */}
           <TabsContent value="degrees">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {recommendations.degrees.length === 0 ? (
@@ -584,7 +570,6 @@ const ModernRecommendationsPage = () => {
             </div>
           </TabsContent>
 
-          {/* Colleges Tab */}
           <TabsContent value="colleges">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {recommendations.colleges.length === 0 ? (
@@ -642,7 +627,6 @@ const ModernRecommendationsPage = () => {
             </div>
           </TabsContent>
 
-          {/* Careers Tab */}
           <TabsContent value="careers">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {recommendations.careers.length === 0 ? (
@@ -689,7 +673,7 @@ const ModernRecommendationsPage = () => {
                         </div>
                       </div>
                       <Button className="w-full bg-transparent" variant="outline">
-                        {t("recommendations_1.careers.exploreCareeer")}
+                        {t("recommendations_1.careers.exploreCareer")}
                         <ExternalLink className="h-4 w-4 ml-2" />
                       </Button>
                     </CardContent>
@@ -699,7 +683,6 @@ const ModernRecommendationsPage = () => {
             </div>
           </TabsContent>
 
-          {/* Content Tab */}
           <TabsContent value="content">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {recommendations.content.length === 0 ? (

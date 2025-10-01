@@ -172,7 +172,7 @@ const QuizList = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-12"
         >
-          <h1 className="text-5xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-4">
+          <h1 className="text-5xl font-bold bg-gradient-to-r mb-4">
             🚀 Your Career Journey
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
