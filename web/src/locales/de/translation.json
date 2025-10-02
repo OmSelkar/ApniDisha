@@ -1,0 +1,472 @@
+{
+  "title": "Disha Lab",
+  "subtitle": "Szenarien erstellen, Ergebnisse vergleichen und Familien die Beweise zeigen.",
+  "stream": "Strom",
+  "course": "Kurs",
+  "collegeType": "Hochschultyp",
+  "college": "Hochschule",
+  "skills": "Fähigkeiten",
+  "upskill": "Weiterbildung",
+  "scholarships": "Stipendien",
+  "suggestForMe": "Für mich vorschlagen",
+  "addScenario": "Szenario hinzufügen",
+  "compare": "Vergleichen",
+  "save": "Speichern",
+  "exportPDF": "PDF exportieren",
+  "share": "Teilen",
+  "language": "Sprache",
+  "consentMic": "Mikrofon für die Sprachassistentin zulassen.",
+  "consentAccept": "Zulassen",
+  "consentDecline": "Ablehnen",
+  "noBadgesYet": "Noch keine Abzeichen",
+  "points": "Punkte",
+  "badges_1": "Abzeichen",
+  "playgroundMode": "Auto-Experiment",
+  "sensitivityLens": "Empfindlichkeit",
+  "governmentFirst": "Regierung zuerst",
+  "clear": "Löschen",
+  "reset": "Zurücksetzen",
+  "totalScenarios": "Gesamt Szenarien",
+  "engagement": "Engagement",
+  "high": "Hoch",
+  "summary": "Zusammenfassung",
+  "netPresentValue": "Nettobarwert",
+  "returnOnInvestment": "Kapitalrendite",
+  "employmentProbability": "Beschäftigungswahrscheinlichkeit",
+  "averageStartingSalary": "Durchschnittliches Anfangseinkommen",
+  "typicalTimeToEmployment": "Typische Zeit bis zur Beschäftigung",
+  "employ": "Beschäftigen",
+  "startingSalary": "Anfangseinkommen",
+  "timeToJob": "Zeit bis zur Stelle",
+  "months": "Monate",
+  "includesScholarship": "Beinhaltet Stipendien- und Weiterbildungsannahmen",
+  "scholarshipOdds": "Stipendienchancen",
+  "explainVoice": "Erklären (Sprache)",
+  "export": "Exportieren",
+  "voiceAssistant": "Sprachassistent",
+  "tryCommands": "Versuchen: \"Vergleichen\" / \"ROI erklären\"",
+  "close": "Schließen",
+  "listening": "Höre zu",
+  "on": "AN",
+  "off": "AUS",
+  "noTranscriptsYet": "Noch keine Transkripte",
+  "suggestedCommands": "Vorgeschlagene Befehle",
+  "copy": "Kopieren",
+  "done": "Fertig",
+  "interactiveVisualizer": "Interaktiver Visualisierer • Sankey / Zeitleiste / Karte",
+  "sankeyFlow": "Sankey / Fluss",
+  "visualizeCourse": "Kurs visualisieren → Jobs → Gehaltsflüsse",
+  "scenario": "Szenario",
+  "engineeringGovt": "Ingenieurwesen — Regierung",
+  "npv": "NBW",
+  "roi": "ROI",
+  "scenarioBuilderTitle": "Disha Lab",
+  "career": "Karriere",
+  "savedScenarios": "Gespeicherte Szenarien",
+  "noScenarios": "Noch keine Szenarien. Fügen Sie eines hinzu.",
+  "exportSummary": "Exportieren",
+  "voiceOn": "Stoppen",
+  "voiceOff": "Hören",
+  "totalPoints": "Gesamtpunkte",
+  "scenarioBuilder": "Disha Lab",
+  "quiz": "Quiz",
+  "recommendations": "Empfehlungen",
+  "colleges": "Hochschulen",
+  "timeline": "Zeitleiste",
+  "content": "Content Hub",
+  "remove": "Entfernen",
+  "listen": "Hören",
+  "stop": "Stoppen",
+  "badges": {
+    "beginner": "Anfänger",
+    "explorer": "Entdecker",
+    "careerPro": "Karriereprofi"
+  },
+  "streams": {
+    "arts": "Künste",
+    "science": "Wissenschaft",
+    "commerce": "Handel",
+    "vocational": "Berufsausbildung"
+  },
+  "courses": {
+    "ba": "B.A.",
+    "bfa": "B.F.A.",
+    "bsc": "B.Sc.",
+    "btech": "B.Tech",
+    "bcom": "B.Com.",
+    "bba": "B.B.A.",
+    "diploma": "Diplom",
+    "certificate": "Zertifikatskurs"
+  },
+  "careers": {
+    "teacher": "Lehrer",
+    "journalist": "Journalist",
+    "artist": "Künstler",
+    "designer": "Designer",
+    "scientist": "Wissenschaftler",
+    "researcher": "Forscher",
+    "engineer": "Ingenieur",
+    "developer": "Entwickler",
+    "accountant": "Buchhalter",
+    "banker": "Banker",
+    "manager": "Manager",
+    "entrepreneur": "Unternehmer",
+    "technician": "Techniker",
+    "assistant": "Assistent",
+    "skilledworker": "Facharbeiter",
+    "operator": "Operator"
+  },
+  "recommendations_1": {
+    "title": "Personalisierte Empfehlungen",
+    "subtitle": "Entdecken Sie Karrierewege, Hochschulen und Ressourcen, die auf Ihr Profil und Ihre Interessen zugeschnitten sind",
+    "loading": "Empfehlungen werden geladen...",
+    "tabs": {
+      "streams": "Ströme",
+      "degrees": "Abschlüsse",
+      "colleges": "Hochschulen",
+      "careers": "Karrieren",
+      "content": "Inhalt"
+    },
+    "streams": {
+      "noRecommendations": "Keine Stromempfehlungen",
+      "noRecommendationsDesc": "Füllen Sie ein Karrierequiz aus, um personalisierte Stromempfehlungen zu erhalten.",
+      "match": "Übereinstimmung",
+      "studentsEnrolled": "eingeschriebene Studenten",
+      "jobGrowth": "Jobwachstum",
+      "learnMore": "Mehr erfahren"
+    },
+    "degrees": {
+      "noRecommendations": "Keine Abschlussempfehlungen",
+      "noRecommendationsDesc": "Füllen Sie ein Karrierequiz aus, um personalisierte Abschlussempfehlungen zu erhalten.",
+      "match": "Übereinstimmung",
+      "years": "Jahre",
+      "avgFee": "durchschn. Gebühr",
+      "viewColleges": "Hochschulen ansehen"
+    },
+    "colleges": {
+      "noRecommendations": "Keine Hochschul-Empfehlungen",
+      "noRecommendationsDesc": "Füllen Sie ein Karrierequiz aus, um personalisierte Hochschul-Empfehlungen zu erhalten.",
+      "students": "Studenten",
+      "perYear": "pro Jahr",
+      "viewDetails": "Details ansehen"
+    },
+    "careers": {
+      "noRecommendations": "Keine Karriereempfehlungen",
+      "noRecommendationsDesc": "Füllen Sie ein Karrierequiz aus, um personalisierte Karriereempfehlungen zu erhalten.",
+      "match": "Übereinstimmung",
+      "perYear": "pro Jahr",
+      "jobGrowth": "Jobwachstum",
+      "exploreCareer": "Karriere erkunden"
+    },
+    "content": {
+      "noRecommendations": "Keine Inhaltsempfehlungen",
+      "noRecommendationsDesc": "Füllen Sie ein Karrierequiz aus, um personalisierte Inhaltsempfehlungen zu erhalten.",
+      "enrolled": "eingeschrieben",
+      "accessContent": "Inhalt zugreifen"
+    },
+    "sampleData": {
+      "streams": {
+        "science": {
+          "name": "Wissenschaft",
+          "description": "Mathematik, Physik, Chemie, Biologie und verwandte Bereiche",
+          "category": "MINT"
+        },
+        "commerce": {
+          "name": "Handel",
+          "description": "Geschäft, Wirtschaft, Buchhaltung, Finanzen und verwandte Bereiche",
+          "category": "Geschäft"
+        },
+        "arts": {
+          "name": "Künste und Geisteswissenschaften",
+          "description": "Geschichte, Soziologie, Politikwissenschaft, Literatur und verwandte Bereiche",
+          "category": "Geisteswissenschaften"
+        },
+        "vocational": {
+          "name": "Berufliche Studien",
+          "description": "Praktische Fähigkeiten in Bereichen wie IT, Tourismus, Gastgewerbe und Design",
+          "category": "Angewandt"
+        },
+        "law": {
+          "name": "Recht",
+          "description": "Studium der Rechtssysteme, Rechte und Gerechtigkeit",
+          "category": "Juristisch"
+        },
+        "medical": {
+          "name": "Medizinisch",
+          "description": "MBBS, Krankenpflege, Pharmazie und verwandte Gesundheitsbereiche",
+          "category": "Gesundheitswesen"
+        },
+        "fineArts": {
+          "name": "Schöne Künste",
+          "description": "Malerei, Musik, Tanz, Theater und andere kreative Künste",
+          "category": "Kreativ"
+        },
+        "agriculture": {
+          "name": "Landwirtschaft",
+          "description": "Landwirtschaft, Bodenkunde, Gartenbau und Lebensmitteltechnologie",
+          "category": "Landwirtschaft"
+        }
+      },
+      "degrees": {
+        "btech": {
+          "name": "Bachelor of Technology",
+          "description": "Ingenieurabschluss mit Spezialisierung in verschiedenen technischen Bereichen",
+          "level": "Undergraduate"
+        },
+        "bcom": {
+          "name": "Bachelor of Commerce",
+          "description": "Handelsabschluss deckt Geschäft, Finanzen und Buchhaltung ab",
+          "level": "Undergraduate"
+        },
+        "ba": {
+          "name": "Bachelor of Arts",
+          "description": "Fokus auf Geistes- und Sozialwissenschaften",
+          "level": "Undergraduate"
+        },
+        "bsc": {
+          "name": "Bachelor of Science",
+          "description": "Kernnaturwissenschaften wie Physik, Chemie und Biologie",
+          "level": "Undergraduate"
+        },
+        "mbbs": {
+          "name": "Bachelor of Medicine and Surgery (MBBS)",
+          "description": "Professioneller Abschluss in Medizin und Chirurgie",
+          "level": "Undergraduate"
+        },
+        "bfa": {
+          "name": "Bachelor of Fine Arts",
+          "description": "Abschluss mit Fokus auf bildende und darstellende Künste",
+          "level": "Undergraduate"
+        },
+        "llb": {
+          "name": "Bachelor of Law (LLB)",
+          "description": "Abschluss in Rechtsstudien und Rechtsausübung",
+          "level": "Undergraduate"
+        },
+        "bba": {
+          "name": "Bachelor of Business Administration",
+          "description": "Fokus auf Management, Marketing und Unternehmertum",
+          "level": "Undergraduate"
+        }
+      },
+      "colleges": {
+        "iitDelhi": {
+          "name": "Indian Institute of Technology Delhi",
+          "type": "Regierung",
+          "location": "New Delhi, Delhi"
+        },
+        "delhiUniversity": {
+          "name": "Delhi University",
+          "type": "Regierung",
+          "location": "New Delhi, Delhi"
+        },
+        "christUniversity": {
+          "name": "Christ University",
+          "type": "Privat",
+          "location": "Bengaluru, Karnataka"
+        },
+        "stXaviers": {
+          "name": "St. Xavier's College",
+          "type": "Privat",
+          "location": "Mumbai, Maharashtra"
+        },
+        "aiims": {
+          "name": "All India Institute of Medical Sciences",
+          "type": "Regierung",
+          "location": "New Delhi, Delhi"
+        },
+        "nlsiu": {
+          "name": "National Law School of India University",
+          "type": "Regierung",
+          "location": "Bengaluru, Karnataka"
+        },
+        "bhu": {
+          "name": "Banaras Hindu University",
+          "type": "Regierung",
+          "location": "Varanasi, Uttar Pradesh"
+        },
+        "symbiosis": {
+          "name": "Symbiosis International University",
+          "type": "Privat",
+          "location": "Pune, Maharashtra"
+        }
+      },
+      "careers": {
+        "softwareEngineer": {
+          "title": "Software-Ingenieur",
+          "description": "Software-Anwendungen entwerfen, entwickeln und warten",
+          "industry": "Technologie",
+          "growthRate": "Hoch"
+        },
+        "charteredAccountant": {
+          "title": "Wirtschaftsprüfer",
+          "description": "Finanzkonten, Prüfungen und Unternehmensbesteuerung verwalten",
+          "industry": "Finanzen",
+          "growthRate": "Hoch"
+        },
+        "civilServicesOfficer": {
+          "title": "Beamter des öffentlichen Dienstes",
+          "description": "Der Nation in administrativen Rollen dienen",
+          "industry": "Regierung",
+          "growthRate": "Moderat"
+        },
+        "graphicDesigner": {
+          "title": "Grafikdesigner",
+          "description": "Visuelle Inhalte für digitale und gedruckte Medien erstellen",
+          "industry": "Design",
+          "growthRate": "Hoch"
+        },
+        "doctor": {
+          "title": "Arzt",
+          "description": "Patienten in verschiedenen Fachgebieten diagnostizieren und behandeln",
+          "industry": "Gesundheitswesen",
+          "growthRate": "Hoch"
+        },
+        "lawyer": {
+          "title": "Anwalt",
+          "description": "Klienten vor Gerichten vertreten und Rechtsberatung geben",
+          "industry": "Juristisch",
+          "growthRate": "Hoch"
+        },
+        "entrepreneur": {
+          "title": "Unternehmer",
+          "description": "Eigenes Unternehmen starten und verwalten",
+          "industry": "Geschäft",
+          "growthRate": "Sehr hoch"
+        },
+        "dataScientist": {
+          "title": "Data Scientist",
+          "description": "Daten analysieren, um Erkenntnisse zu gewinnen und prädiktive Modelle zu erstellen",
+          "industry": "Technologie",
+          "growthRate": "Sehr hoch"
+        }
+      },
+      "content": {
+        "jeeGuide": {
+          "title": "Komplette Anleitung zur JEE-Vorbereitung",
+          "description": "Umfassendes Studienmaterial für JEE Main und Advanced",
+          "type": "Studienmaterial"
+        },
+        "commercePack": {
+          "title": "Commerce Starter Pack",
+          "description": "Deckt Grundlagen der Buchhaltung, Wirtschaft und Geschäft ab",
+          "type": "E-Book"
+        },
+        "upscGuide": {
+          "title": "UPSC-Vorbereitungsanleitung",
+          "description": "Wichtige Strategien, Notizen und Mock-Tests für UPSC-Aspiranten",
+          "type": "Kurs"
+        },
+        "graphicDesignCourse": {
+          "title": "Grafikdesign für Anfänger",
+          "description": "Photoshop, Illustrator und Figma Grundlagen lernen",
+          "type": "Video-Kurs"
+        },
+        "neetCourse": {
+          "title": "NEET Crash-Kurs",
+          "description": "Schnelle Wiederholung für NEET-Aspiranten mit Mock-Tests",
+          "type": "Kurs"
+        },
+        "corporateLaw": {
+          "title": "Grundlagen des Unternehmensrechts",
+          "description": "Einführung in Geschäft und Unternehmensrecht",
+          "type": "E-Book"
+        },
+        "entrepreneurshipMaster": {
+          "title": "Entrepreneurship Masterclass",
+          "description": "Schritt-für-Schritt-Anleitung zum Starten und Skalieren von Startups",
+          "type": "Webinar"
+        },
+        "dataScienceBootcamp": {
+          "title": "Data Science Bootcamp",
+          "description": "Praktische Projekte in Python, ML und KI",
+          "type": "Kurs"
+        }
+      }
+    }
+  },
+  "hero": {
+    "slide1": { "title": "Verwirrt über Ihre Zukunft?", "subtitle": "Entdecken Sie den richtigen Fachstrom und Karriereweg, der zu Ihren Interessen passt" },
+    "slide2": { "title": "Regierungshochschulen in Ihrer Nähe erkunden", "subtitle": "Kursdetails, Zulassungsvoraussetzungen und Einrichtungen an Regierungshochschulen finden" },
+    "slide3": { "title": "Ihren Karriereweg kartieren", "subtitle": "Abschlüsse erkunden und die Karrieren, die sie freischalten" },
+    "slide4": { "title": "KI-gestützte persönliche Beratung", "subtitle": "KI-gestützte persönliche Auswahl für Kurse, Hochschulen und Studienmaterialien" }
+  },
+  "buttons": { "takeQuiz": "Quiz machen", "exploreColleges": "Hochschulen erkunden", "browseResources": "Ressourcen durchsuchen", "getStarted": "Jetzt starten" },
+  "features": {
+    "title": "Ihr Potenzial freisetzen", "subtitle": "Entdecken Sie die Tools, die Sie zu Ihrer Traumkarriere führen",
+    "quiz": { "title": "Eignungs- und Interessentest", "desc": "Entdecken Sie Ihre Stärken und Interessen mit unserer umfassenden Bewertung." },
+    "path": { "title": "Karriereweg-Kartierung", "desc": "Visualisieren Sie Ihren Karriereweg mit interaktiven Wegkarten." },
+    "colleges": { "title": "Regierungshochschulen-Verzeichnis", "desc": "500+ Regierungshochschulen mit detaillierten Programminformationen erkunden." },
+    "timeline": { "title": "Zeitleisten-Tracker", "desc": "Auf Kurs bleiben mit personalisierten Zeitleisten für Zulassungen und Prüfungen." },
+    "guidance": { "title": "Persönliche Beratung", "desc": "KI-gestützte Empfehlungen erhalten, die auf Ihr Profil zugeschnitten sind." }
+  },
+  "journey": {
+    "title": "Ihre Reise beginnt hier",
+    "step1": { "description": "Beginnen Sie Ihre personalisierte Karriereentdeckung" },
+    "quiz": "Quiz machen", "quizDesc": "Schließen Sie unsere Eignungsbewertung ab",
+    "stream": "Strom entdecken", "streamDesc": "Finden Sie Ihren idealen Fachstrom",
+    "careers": "Karrieren erkunden", "careersDesc": "Aufregende Karriereoptionen entdecken",
+    "colleges": "Hochschulen finden", "collegesDesc": "Passende Hochschulen durchsuchen",
+    "timeline": "Zeitleiste planen", "timelineDesc": "Erstellen Sie Ihren Erfolgswegplan"
+  },
+  "stats": {
+    "studentsGuided": "Studenten geführt",
+    "collegesListed": "Hochschulen aufgelistet",
+    "careerPaths": "Karrierewege",
+    "studyResources": "Studienressourcen"
+  },
+  "resources": {
+    "title": "Ausgewählte Studienressourcen",
+    "subtitle": "Greifen Sie auf hochwertige, fachspezifische Studienmaterialien zu, um in Ihrem gewählten Strom zu glänzen",
+    "browse": "Ressourcen durchsuchen"
+  },
+  "whyUs": {
+    "title": "Warum uns wählen?",
+    "aiInsights": { "title": "KI-gestützte Einblicke", "desc": "Empfehlungen basierend auf fortschrittlichen Algorithmen und Echtzeitdaten erhalten." },
+    "govFocus": { "title": "Regierungsfokussiert", "desc": "Exklusives Verzeichnis von Regierungshochschulen und -programmen." },
+    "freeAccess": { "title": "Völlig kostenlos", "desc": "Alle unsere Tools und Ressourcen sind für jeden Studenten kostenlos." },
+    "expertCurated": { "title": "Von Experten kuratiert", "desc": "Inhalt von Bildungsexperten und Beratern verifiziert." }
+  },
+  "impact": {
+    "heading": "Unser Einfluss",
+    "subheading": "Sehen Sie, wie wir das Leben von Studenten verändern",
+    "students": "Studenten geführt",
+    "colleges": "Hochschulen aufgelistet",
+    "careers": "Karrierewege erkundet",
+    "resources": "Ressourcen verfügbar",
+    "award": "Preisgekrönte Plattform",
+    "collaboration": "Regierungskooperation",
+    "verified": "Verifizierter Inhalt"
+  },
+  "testimonials": {
+    "title": "Was Studenten sagen",
+    "heading": "Was Studenten sagen",
+    "subheading": "Hören Sie von unseren erfolgreichen Benutzern",
+    "rahul": { "quote": "Unglaubliche Plattform! Der Zeitleisten-Tracker sorgte dafür, dass ich nie wichtige Zulassungstermine verpasste.", "name": "Rahul Sharma", "class": "Klasse 12 Student" },
+    "ananya": { "quote": "Das perfekte College für meinen CA-Kurs durch ihr detailliertes College-Verzeichnis gefunden. Sehr empfohlen!", "name": "Ananya Patel", "class": "Handelsabsolvent" },
+    "rohan": { "quote": "Die KI-Empfehlungen waren genau richtig! Half mir, zwischen Ingenieurzweigen zu wählen.", "name": "Rohan Mehta", "class": "Klasse 12, Naturwissenschaften" },
+    "sneha": { "quote": "Dank der Studienressourcen habe ich meine 10. Klasse Prüfungen bestanden. Tolle Plattform!", "name": "Sneha Sharma", "class": "Klasse 10" },
+    "arjun": { "quote": "Mein Interesse für Kunst durch das Quiz entdeckt. Ich verfolge jetzt meine Leidenschaft!", "name": "Arjun Nair", "class": "Klasse 12, Kunst" },
+    "priya": { "quote": "Das Karrierequiz half mir, meine Leidenschaft für Umweltwissenschaften zu entdecken. Ich verfolge jetzt meinen Traumkurs!", "name": "Priya Singh", "class": "Naturwissenschaftsstudent" },
+    "vikram": { "quote": "Ausgezeichnete Ressourcen für JEE-Vorbereitung. Die personalisierte Zeitleiste hielt mich während des gesamten Prozesses organisiert.", "name": "Vikram Reddy", "class": "Ingenieur-Aspirant" }
+  },
+  "cta": {
+    "title": "Bereit, Ihre Reise zu beginnen?",
+    "subtitle": "Machen Sie unser kostenloses Karrierebewertungsquiz und schalten Sie Ihr Potenzial noch heute frei."
+  },
+  "footer": {
+    "description": "Studenten dabei unterstützen, fundierte Entscheidungen über ihre Zukunft durch personalisierte Beratung und umfassende Ressourcen zu treffen.",
+    "quickLinks": "Schnelllinks",
+    "careerQuiz": "Karrierequiz",
+    "colleges": "Hochschulen",
+    "studyMaterials": "Studienmaterialien",
+    "timeline": "Zeitleiste",
+    "resources": "Ressourcen",
+    "recommendations": "Empfehlungen",
+    "profile": "Profil",
+    "savedItems": "Gespeicherte Elemente",
+    "contact": "Kontakt",
+    "contactDesc": "Haben Sie Fragen? Wir sind da, um Ihnen auf Ihrem Karriereweg zu helfen.",
+    "copyright": "© 2024 Karriere- und Bildungsberater. Alle Rechte vorbehalten."
+  }
+}

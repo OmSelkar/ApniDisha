@@ -1,0 +1,472 @@
+{
+  "title": "Disha Lab",
+  "subtitle": "构建场景，比较结果，并向家庭展示证据。",
+  "stream": "流",
+  "course": "课程",
+  "collegeType": "学院类型",
+  "college": "学院",
+  "skills": "技能",
+  "upskill": "提升技能",
+  "scholarships": "奖学金",
+  "suggestForMe": "为我建议",
+  "addScenario": "添加场景",
+  "compare": "比较",
+  "save": "保存",
+  "exportPDF": "导出PDF",
+  "share": "分享",
+  "language": "语言",
+  "consentMic": "允许麦克风使用语音助手。",
+  "consentAccept": "允许",
+  "consentDecline": "拒绝",
+  "noBadgesYet": "还没有徽章",
+  "points": "积分",
+  "badges_1": "徽章",
+  "playgroundMode": "自动实验",
+  "sensitivityLens": "敏感性",
+  "governmentFirst": "政府优先",
+  "clear": "清除",
+  "reset": "重置",
+  "totalScenarios": "总场景",
+  "engagement": "参与度",
+  "high": "高",
+  "summary": "摘要",
+  "netPresentValue": "净现值",
+  "returnOnInvestment": "投资回报率",
+  "employmentProbability": "就业概率",
+  "averageStartingSalary": "平均起薪",
+  "typicalTimeToEmployment": "典型就业时间",
+  "employ": "雇用",
+  "startingSalary": "起薪",
+  "timeToJob": "就业时间",
+  "months": "个月",
+  "includesScholarship": "包括奖学金和技能提升假设",
+  "scholarshipOdds": "奖学金几率",
+  "explainVoice": "解释（语音）",
+  "export": "导出",
+  "voiceAssistant": "语音助手",
+  "tryCommands": "尝试：\"比较\" / \"解释ROI\"",
+  "close": "关闭",
+  "listening": "正在聆听",
+  "on": "开",
+  "off": "关",
+  "noTranscriptsYet": "还没有转录",
+  "suggestedCommands": "建议命令",
+  "copy": "复制",
+  "done": "完成",
+  "interactiveVisualizer": "交互式可视化器 • 桑基图 / 时间线 / 地图",
+  "sankeyFlow": "桑基图 / 流程",
+  "visualizeCourse": "可视化课程 → 工作 → 薪资流程",
+  "scenario": "场景",
+  "engineeringGovt": "工程 — 政府",
+  "npv": "NPV",
+  "roi": "ROI",
+  "scenarioBuilderTitle": "Disha Lab",
+  "career": "职业",
+  "savedScenarios": "保存的场景",
+  "noScenarios": "还没有场景。添加一个。",
+  "exportSummary": "导出",
+  "voiceOn": "停止",
+  "voiceOff": "聆听",
+  "totalPoints": "总积分",
+  "scenarioBuilder": "Disha Lab",
+  "quiz": "测验",
+  "recommendations": "推荐",
+  "colleges": "学院",
+  "timeline": "时间线",
+  "content": "内容中心",
+  "remove": "移除",
+  "listen": "聆听",
+  "stop": "停止",
+  "badges": {
+    "beginner": "初学者",
+    "explorer": "探索者",
+    "careerPro": "职业专家"
+  },
+  "streams": {
+    "arts": "艺术",
+    "science": "科学",
+    "commerce": "商业",
+    "vocational": "职业教育"
+  },
+  "courses": {
+    "ba": "文学学士",
+    "bfa": "美术学士",
+    "bsc": "理学学士",
+    "btech": "技术学士",
+    "bcom": "商学学士",
+    "bba": "工商管理学士",
+    "diploma": "文凭",
+    "certificate": "证书课程"
+  },
+  "careers": {
+    "teacher": "教师",
+    "journalist": "记者",
+    "artist": "艺术家",
+    "designer": "设计师",
+    "scientist": "科学家",
+    "researcher": "研究员",
+    "engineer": "工程师",
+    "developer": "开发者",
+    "accountant": "会计师",
+    "banker": "银行家",
+    "manager": "经理",
+    "entrepreneur": "企业家",
+    "technician": "技术员",
+    "assistant": "助理",
+    "skilledworker": "熟练工人",
+    "operator": "操作员"
+  },
+  "recommendations_1": {
+    "title": "个性化推荐",
+    "subtitle": "发现根据您的个人资料和兴趣定制的职业道路、学院和资源",
+    "loading": "正在加载推荐...",
+    "tabs": {
+      "streams": "流",
+      "degrees": "学位",
+      "colleges": "学院",
+      "careers": "职业",
+      "content": "内容"
+    },
+    "streams": {
+      "noRecommendations": "没有流推荐",
+      "noRecommendationsDesc": "完成职业测验以获得个性化的流推荐。",
+      "match": "匹配",
+      "studentsEnrolled": "注册学生",
+      "jobGrowth": "就业增长",
+      "learnMore": "了解更多"
+    },
+    "degrees": {
+      "noRecommendations": "没有学位推荐",
+      "noRecommendationsDesc": "完成职业测验以获得个性化的学位推荐。",
+      "match": "匹配",
+      "years": "年",
+      "avgFee": "平均费用",
+      "viewColleges": "查看学院"
+    },
+    "colleges": {
+      "noRecommendations": "没有学院推荐",
+      "noRecommendationsDesc": "完成职业测验以获得个性化的学院推荐。",
+      "students": "学生",
+      "perYear": "每年",
+      "viewDetails": "查看详情"
+    },
+    "careers": {
+      "noRecommendations": "没有职业推荐",
+      "noRecommendationsDesc": "完成职业测验以获得个性化的职业推荐。",
+      "match": "匹配",
+      "perYear": "每年",
+      "jobGrowth": "就业增长",
+      "exploreCareer": "探索职业"
+    },
+    "content": {
+      "noRecommendations": "没有内容推荐",
+      "noRecommendationsDesc": "完成职业测验以获得个性化的内容推荐。",
+      "enrolled": "已注册",
+      "accessContent": "访问内容"
+    },
+    "sampleData": {
+      "streams": {
+        "science": {
+          "name": "科学",
+          "description": "数学、物理、化学、生物学及相关领域",
+          "category": "STEM"
+        },
+        "commerce": {
+          "name": "商业",
+          "description": "商业、经济、会计、金融及相关领域",
+          "category": "商业"
+        },
+        "arts": {
+          "name": "艺术与人文",
+          "description": "历史、社会学、政治学、文学及相关领域",
+          "category": "人文"
+        },
+        "vocational": {
+          "name": "职业教育",
+          "description": "IT、旅游、酒店、设计等领域的实用技能",
+          "category": "应用"
+        },
+        "law": {
+          "name": "法律",
+          "description": "法律体系、权利和正义的研究",
+          "category": "法律"
+        },
+        "medical": {
+          "name": "医学",
+          "description": "MBBS、护理、药学及相关医疗领域",
+          "category": "医疗"
+        },
+        "fineArts": {
+          "name": "美术",
+          "description": "绘画、音乐、舞蹈、戏剧及其他创意艺术",
+          "category": "创意"
+        },
+        "agriculture": {
+          "name": "农业",
+          "description": "农业、土壤科学、园艺和食品技术",
+          "category": "农业"
+        }
+      },
+      "degrees": {
+        "btech": {
+          "name": "技术学士",
+          "description": "工程学位，专攻各种技术领域",
+          "level": "本科"
+        },
+        "bcom": {
+          "name": "商学学士",
+          "description": "涵盖商业、金融和会计的商学位",
+          "level": "本科"
+        },
+        "ba": {
+          "name": "文学学士",
+          "description": "专注于人文和社会科学",
+          "level": "本科"
+        },
+        "bsc": {
+          "name": "理学学士",
+          "description": "物理、化学和生物学等核心科学科目",
+          "level": "本科"
+        },
+        "mbbs": {
+          "name": "医学与外科学士（MBBS）",
+          "description": "医学和外科学的专业学位",
+          "level": "本科"
+        },
+        "bfa": {
+          "name": "美术学士",
+          "description": "专注于视觉和表演艺术的学位",
+          "level": "本科"
+        },
+        "llb": {
+          "name": "法学学士（LLB）",
+          "description": "法律研究和法律实践学位",
+          "level": "本科"
+        },
+        "bba": {
+          "name": "工商管理学士",
+          "description": "专注于管理、市场营销和创业",
+          "level": "本科"
+        }
+      },
+      "colleges": {
+        "iitDelhi": {
+          "name": "印度德里理工学院",
+          "type": "政府",
+          "location": "新德里，德里"
+        },
+        "delhiUniversity": {
+          "name": "德里大学",
+          "type": "政府",
+          "location": "新德里，德里"
+        },
+        "christUniversity": {
+          "name": "基督大学",
+          "type": "私立",
+          "location": "班加罗尔，卡纳塔克"
+        },
+        "stXaviers": {
+          "name": "圣泽维尔学院",
+          "type": "私立",
+          "location": "孟买，马哈拉施特拉"
+        },
+        "aiims": {
+          "name": "全印度医学科学研究所",
+          "type": "政府",
+          "location": "新德里，德里"
+        },
+        "nlsiu": {
+          "name": "印度国家法律学校大学",
+          "type": "政府",
+          "location": "班加罗尔，卡纳塔克"
+        },
+        "bhu": {
+          "name": "瓦拉纳西印度教大学",
+          "type": "政府",
+          "location": "瓦拉纳西，北方邦"
+        },
+        "symbiosis": {
+          "name": "辛比奥西斯国际大学",
+          "type": "私立",
+          "location": "浦那，马哈拉施特拉"
+        }
+      },
+      "careers": {
+        "softwareEngineer": {
+          "title": "软件工程师",
+          "description": "设计、开发和维护软件应用程序",
+          "industry": "技术",
+          "growthRate": "高"
+        },
+        "charteredAccountant": {
+          "title": "特许会计师",
+          "description": "管理财务账户、审计和企业税务",
+          "industry": "金融",
+          "growthRate": "高"
+        },
+        "civilServicesOfficer": {
+          "title": "公务员",
+          "description": "在行政角色中为国家服务",
+          "industry": "政府",
+          "growthRate": "中等"
+        },
+        "graphicDesigner": {
+          "title": "平面设计师",
+          "description": "为数字和印刷媒体创建视觉内容",
+          "industry": "设计",
+          "growthRate": "高"
+        },
+        "doctor": {
+          "title": "医生",
+          "description": "诊断和治疗各种专科的患者",
+          "industry": "医疗",
+          "growthRate": "高"
+        },
+        "lawyer": {
+          "title": "律师",
+          "description": "在法庭上代表客户并提供法律建议",
+          "industry": "法律",
+          "growthRate": "高"
+        },
+        "entrepreneur": {
+          "title": "企业家",
+          "description": "启动和管理自己的企业",
+          "industry": "商业",
+          "growthRate": "很高"
+        },
+        "dataScientist": {
+          "title": "数据科学家",
+          "description": "分析数据以提取洞察并构建预测模型",
+          "industry": "技术",
+          "growthRate": "很高"
+        }
+      },
+      "content": {
+        "jeeGuide": {
+          "title": "JEE准备完整指南",
+          "description": "JEE主考和进阶的综合学习材料",
+          "type": "学习材料"
+        },
+        "commercePack": {
+          "title": "商业入门包",
+          "description": "涵盖会计、经济和商业基础",
+          "type": "电子书"
+        },
+        "upscGuide": {
+          "title": "UPSC准备指南",
+          "description": "UPSC考生的重要策略、笔记和模拟测试",
+          "type": "课程"
+        },
+        "graphicDesignCourse": {
+          "title": "初学者平面设计",
+          "description": "学习Photoshop、Illustrator和Figma基础",
+          "type": "视频课程"
+        },
+        "neetCourse": {
+          "title": "NEET速成课程",
+          "description": "NEET考生快速复习，包含模拟测试",
+          "type": "课程"
+        },
+        "corporateLaw": {
+          "title": "公司法基础",
+          "description": "商业和公司法的介绍",
+          "type": "电子书"
+        },
+        "entrepreneurshipMaster": {
+          "title": "创业大师班",
+          "description": "启动和扩展创业公司的逐步指南",
+          "type": "网络研讨会"
+        },
+        "dataScienceBootcamp": {
+          "title": "数据科学训练营",
+          "description": "Python、ML和AI的实践项目",
+          "type": "课程"
+        }
+      }
+    }
+  },
+  "hero": {
+    "slide1": { "title": "对未来感到困惑？", "subtitle": "发现适合您兴趣的正确科目流和职业道路" },
+    "slide2": { "title": "探索您附近的政府学院", "subtitle": "在政府学院查找课程详情、资格和设施" },
+    "slide3": { "title": "绘制您的职业旅程", "subtitle": "探索学位及其解锁的职业" },
+    "slide4": { "title": "AI驱动的个性化指导", "subtitle": "针对课程、学院和学习材料的AI个性化选择" }
+  },
+  "buttons": { "takeQuiz": "参加测验", "exploreColleges": "探索学院", "browseResources": "浏览资源", "getStarted": "立即开始" },
+  "features": {
+    "title": "释放您的潜力", "subtitle": "发现将引导您走向梦想职业的工具",
+    "quiz": { "title": "能力与兴趣测验", "desc": "通过我们的全面评估发现您的优势和兴趣。" },
+    "path": { "title": "职业路径映射", "desc": "使用交互式路径地图可视化您的职业旅程。" },
+    "colleges": { "title": "政府学院目录", "desc": "探索500+所政府学院及其详细程序信息。" },
+    "timeline": { "title": "时间线跟踪器", "desc": "使用个性化时间线保持录取和考试的进度。" },
+    "guidance": { "title": "个性化指导", "desc": "获得根据您的个人资料定制的AI驱动推荐。" }
+  },
+  "journey": {
+    "title": "您的旅程从这里开始",
+    "step1": { "description": "开始您的个性化职业发现" },
+    "quiz": "参加测验", "quizDesc": "完成我们的能力评估",
+    "stream": "发现流", "streamDesc": "找到您的理想科目流",
+    "careers": "探索职业", "careersDesc": "发现令人兴奋的职业选择",
+    "colleges": "查找学院", "collegesDesc": "浏览合适的学院",
+    "timeline": "规划时间线", "timelineDesc": "创建您的成功路线图"
+  },
+  "stats": {
+    "studentsGuided": "指导学生",
+    "collegesListed": "列出学院",
+    "careerPaths": "职业路径",
+    "studyResources": "学习资源"
+  },
+  "resources": {
+    "title": "精选学习资源",
+    "subtitle": "访问高质量、特定科目的学习材料，在您选择的流中表现出色",
+    "browse": "浏览资源"
+  },
+  "whyUs": {
+    "title": "为什么选择我们？",
+    "aiInsights": { "title": "AI驱动洞察", "desc": "基于先进算法和实时数据获得推荐。" },
+    "govFocus": { "title": "政府聚焦", "desc": "政府学院和程序的独家目录。" },
+    "freeAccess": { "title": "完全免费", "desc": "我们所有的工具和资源对每位学生都是免费的。" },
+    "expertCurated": { "title": "专家策划", "desc": "内容由教育专家和顾问验证。" }
+  },
+  "impact": {
+    "heading": "我们的影响",
+    "subheading": "看看我们如何改变学生的生活",
+    "students": "指导学生",
+    "colleges": "列出学院",
+    "careers": "探索职业路径",
+    "resources": "可用资源",
+    "award": "获奖平台",
+    "collaboration": "政府合作",
+    "verified": "验证内容"
+  },
+  "testimonials": {
+    "title": "学生怎么说",
+    "heading": "学生怎么说",
+    "subheading": "听取我们成功用户的意见",
+    "rahul": { "quote": "令人惊叹的平台！时间线跟踪器确保我从未错过重要的录取截止日期。", "name": "Rahul Sharma", "class": "12年级学生" },
+    "ananya": { "quote": "通过他们详细的学院目录为我的CA课程找到了完美的学院。强烈推荐！", "name": "Ananya Patel", "class": "商业毕业生" },
+    "rohan": { "quote": "AI推荐非常准确！帮助我在工程分支之间做出选择。", "name": "Rohan Mehta", "class": "12年级，科学" },
+    "sneha": { "quote": "感谢学习资源，我通过了10年级考试。很棒的平台！", "name": "Sneha Sharma", "class": "10年级" },
+    "arjun": { "quote": "通过测验发现了对艺术的兴趣。现在我追求我的激情！", "name": "Arjun Nair", "class": "12年级，艺术" },
+    "priya": { "quote": "职业测验帮助我发现了对环境科学的激情。现在我追求我的梦想课程！", "name": "Priya Singh", "class": "科学学生" },
+    "vikram": { "quote": "JEE准备的优秀资源。个性化的时间线让我在整个过程中保持组织。", "name": "Vikram Reddy", "class": "工程求职者" }
+  },
+  "cta": {
+    "title": "准备开始您的旅程了吗？",
+    "subtitle": "参加我们免费的职业评估测验，今天就释放您的潜力。"
+  },
+  "footer": {
+    "description": "通过个性化指导和全面资源，帮助学生对未来做出明智决策。",
+    "quickLinks": "快速链接",
+    "careerQuiz": "职业测验",
+    "colleges": "学院",
+    "studyMaterials": "学习材料",
+    "timeline": "时间线",
+    "resources": "资源",
+    "recommendations": "推荐",
+    "profile": "个人资料",
+    "savedItems": "保存的项目",
+    "contact": "联系",
+    "contactDesc": "有疑问吗？我们在您的职业旅程中为您提供帮助。",
+    "copyright": "© 2024 职业与教育顾问。保留所有权利。"
+  }
+}

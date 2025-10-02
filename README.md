@@ -185,6 +185,51 @@ A comprehensive career and education advisory platform designed to guide student
    - Health Check: http://localhost:8000/health
    - API Documentation: See `/docs/API_DOCUMENTATION.md`
 
+## 🌐 Internationalization (i18n) with Lingo.dev
+
+This project uses [Lingo.dev](https://lingo.dev) for managing translations and internationalization.
+
+### Setup
+
+1. **Install dependencies** (if not already done):
+   ```bash
+   npm install
+   ```
+
+2. **Authenticate with Lingo.dev**:
+   ```bash
+   npx lingo auth
+   ```
+   Follow the prompts to authenticate with your Lingo.dev account.
+
+### Usage
+
+- **Pull translations** from Lingo.dev:
+  ```bash
+  npm run lingo:pull
+  ```
+
+- **Push source translations** to Lingo.dev:
+  ```bash
+  npm run lingo:push
+  ```
+
+- **Check translation status**:
+  ```bash
+  npm run lingo:status
+  ```
+
+### Configuration
+
+The project is configured with:
+- **Source locale**: English (`en`)
+- **Target locales**: Hindi (`hi`), Urdu (`ur`), Dogri (`dogri`), Gojri (`gojri`), Pahari (`pahari`), Maori (`mi`), Spanish (`es`), French (`fr`), German (`de`), Chinese (`zh`), Japanese (`ja`)
+- **Translation files**: Located in `web/src/locales/[locale]/translation.json`
+
+The `lingoconfig.json` file contains the Lingo.dev configuration. For more details, see the [Lingo.dev documentation](https://lingo.dev/docs).
+
+**Note**: The lingo.dev commands require authentication. Make sure to run `npx lingo auth` first before using the pull/push/status commands.
+
 ## 📁 Project Structure
 
 ```

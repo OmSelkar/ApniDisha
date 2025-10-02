@@ -55,6 +55,11 @@ const ModernNavbar = () => {
     { code: "gojri", label: "گوجری" },
     { code: "pahari", label: "पहाड़ी" },
     { code: "mi", label: "मराठी" },
+    { code: "es", label: "Español" },
+    { code: "fr", label: "Français" },
+    { code: "de", label: "Deutsch" },
+    { code: "zh", label: "中文" },
+    { code: "ja", label: "日本語" },
   ];
 
   return (

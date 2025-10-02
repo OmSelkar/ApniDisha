@@ -1,0 +1,27 @@
+{
+  "version": 1.9,
+  "locale": {
+    "source": "en",
+    "targets": [
+      "hi",
+      "ur",
+      "dogri",
+      "gojri",
+      "pahari",
+      "mi",
+      "es",
+      "fr",
+      "de",
+      "zh",
+      "ja"
+    ]
+  },
+  "buckets": {
+    "json": {
+      "include": [
+        "web/src/locales/[locale]/translation.json"
+      ]
+    }
+  },
+  "$schema": "https://lingo.dev/schema/i18n.json"
+}
