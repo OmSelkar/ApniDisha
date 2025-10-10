@@ -10,30 +10,20 @@ import dogri from "../../locales/dogri/translation.json";
 import gojri from "../../locales/gojri/translation.json";
 import pahari from "../../locales/pahari/translation.json";
 import mi from "../../locales/mi/translation.json";
-import es from "../../locales/es/translation.json";
-import fr from "../../locales/fr/translation.json";
-import de from "../../locales/de/translation.json";
-import zh from "../../locales/zh/translation.json";
-import ja from "../../locales/ja/translation.json";
 
 i18n.use(initReactI18next).init({
-  resources: {
+  resources: { 
     en: { translation: en },
     hi: { translation: hi },
     ur: { translation: ur },
     dogri: { translation: dogri },
     gojri: { translation: gojri },
     pahari: { translation: pahari },
-    mi: { translation: mi},
-    es: { translation: es },
-    fr: { translation: fr },
-    de: { translation: de },
-    zh: { translation: zh },
-    ja: { translation: ja }
+    mi: { translation: mi}
   },
   lng: localStorage.getItem("apni_disha_lang") || "en",
   fallbackLng: "en",
-  supportedLngs: ["en", "hi", "ur", "dogri", "gojri", "pahari", "mi", "es", "fr", "de", "zh", "ja"],
+  supportedLngs: ["en", "hi", "ur", "dogri", "gojri", "pahari", "mi"],
   interpolation: { escapeValue: false },
   react: {
     useSuspense: false,
